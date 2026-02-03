@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import 'tailwindcss';
+
+@theme {
+
+    --font-sans: "Urbanist", sans-serif;
+
+    --color-primary: #fe6226;
+
+    --color-primary-active: #ff5412;
+
+    --color-secondary: #ffffff;
+
+    --color-active: #daf8e6;
+
+    --color-active-dark: #4ade80;
+
+    --color-other: #f2f3f5;
+    
+    --color-primary-outline: #fff7f5;
+
+    --color-icons: #6f7375;
+
+    --color-error: #b91c1c;
+
+}
+

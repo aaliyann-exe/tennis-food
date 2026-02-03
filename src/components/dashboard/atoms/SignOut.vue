@@ -1,0 +1,25 @@
+<script setup>
+
+    import signOutIcon from '/src/assets/signOutIcon.svg';
+
+</script>
+
+<template>
+
+    <div class="flex items-center justify-between mt-5 py-3 px-4 ml-8 w-62 h-14 rounded-lg hover:bg-primary-outline cursor-pointer">
+
+        <div class="flex items-center">
+
+            <img :src="signOutIcon" alt="Sign Out Icon" class="w-6 h-6 rounded-full mr-3 opacity-50">
+
+            <div class="flex flex-col justify-center text-gray-500 text-sm font-medium">
+
+                Sign out
+        
+            </div>
+
+        </div>
+
+    </div>
+
+</template>

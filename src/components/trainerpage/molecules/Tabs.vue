@@ -2,7 +2,6 @@
 
     import { ref } from 'vue';
 
-    
     const emit = defineEmits(['update:showArchived']);
 
     const showArchived = ref(false);

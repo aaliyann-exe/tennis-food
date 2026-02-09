@@ -2,7 +2,7 @@
 
   import viewIcon from '/src/assets/viewIcon.png';
   import editIcon from '/src/assets/editIcon.svg';
-  import refreshIcon from '/src/assets/refreshIcon.svg';
+  import activateIcon from '/src/assets/activateIcon.svg';
 
   const props = defineProps({
 
@@ -118,7 +118,7 @@
 
                 <button class="cursor-pointer" @click="$emit('deactivate', club)">
 
-                  <img :src="refreshIcon" class="w-5 h-5" />
+                  <img :src="activateIcon" class="w-5 h-5" />
 
                 </button>
 

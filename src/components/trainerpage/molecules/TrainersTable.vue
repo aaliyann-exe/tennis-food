@@ -1,12 +1,13 @@
 <script setup>
 
+  import { ref } from 'vue';
   import viewIcon from '/src/assets/viewIcon.png';
   import editIcon from '/src/assets/editIcon.svg';
   import activateIcon from '/src/assets/activateIcon.svg';
 
   const props = defineProps({
 
-    clubs: {
+    trainers: {
 
       type: Array,
       required: true,
@@ -17,10 +18,10 @@
   });
 
   const emits = defineEmits(['view', 'edit', 'toggle-status']);
-  
-  const handleToggleStatus = (club) => {
 
-    emits('toggle-status', club);
+  const handleToggleStatus = (trainer) => {
+
+    emits('toggle-status', trainer);
 
   };
 
@@ -48,13 +49,13 @@
 
               </span>
 
-              CLUB NAME
+              TRAINER NAME
 
             </th>
 
             <th class="px-6 py-4">PHONE</th>
 
-            <th class="px-6 py-4"><span class="relative left-50">STATUS</span></th>
+            <th class="px-6 py-4"><span class="relative left-60">STATUS</span></th>
 
             <th class="px-6 py-4 text-right">ACTIONS</th>
             
@@ -64,29 +65,29 @@
 
         <tbody class="divide-y divide-gray-300">
 
-          <tr v-for="(club, index) in props.clubs" :key="index" class="hover:bg-other">
+          <tr v-for="(trainer, index) in props.trainers" :key="index" class="hover:bg-other">
 
             <td class="px-6 py-4">
 
               <div class="flex items-center gap-4">
 
-                <div v-if="club.image" class="w-10 h-10 overflow-hidden rounded-full">
+                <div v-if="trainer.pfp" class="w-10 h-10 overflow-hidden rounded-full">
 
-                   <img :src="club.image" alt="Club logo" class="object-cover w-full h-full" />
+                   <img :src="trainer.pfp" alt="Club logo" class="object-cover w-full h-full" />
 
                 </div>
 
                 <div v-else class="flex items-center justify-center w-10 h-10 text-sm font-bold rounded-full text-secondary bg-primary">
 
-                  {{ club.initials }}
+                  {{ trainer.initials }}
 
                 </div> 
 
                 <div class="flex flex-col">
 
-                  <span class="text-sm font-medium">{{ club.name }}</span>
+                  <span class="text-sm font-medium">{{ trainer.fName + ' ' + trainer.lName}}</span>
 
-                  <span class="text-xs truncate text-primary max-w-50">{{ club.email }}</span>
+                  <span class="text-xs truncate text-primary max-w-50">{{ trainer.email }}</span>
 
                 </div>
 
@@ -95,16 +96,16 @@
             </td>
 
             <td class="px-6 py-4 text-sm font-medium">
-              {{ club.phone }}
+              {{ trainer.phone }}
             </td>
 
             <td class="px-6 py-4">
 
-              <span v-if="club.status" class="relative px-6 py-1 text-xs font-medium border rounded-full left-50 text-active-dark bg-active border-active-dark">
+              <span v-if="trainer.status" class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-active-dark bg-active border-active-dark">
                 Active
               </span>
 
-              <span v-else class="relative px-6 py-1 text-xs font-medium border rounded-full left-40 text-inactive-dark bg-inactive border-inactive-dark">
+              <span v-else class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-inactive-dark bg-inactive border-inactive-dark">
                 Inactive
               </span>
 
@@ -114,19 +115,19 @@
 
               <div class="flex items-center justify-end gap-3 opacity-50">
 
-                <button class="cursor-pointer" @click="$emit('view', club)" title="View">
+                <button class="cursor-pointer" @click="$emit('view', trainer)" title="View">
 
                   <img :src="viewIcon" class="w-5 h-5" />
 
                 </button>
 
-                <button class="cursor-pointer" @click="$emit('edit', club)" title="Edit">
+                <button class="cursor-pointer" @click="$emit('edit', trainer)" title="Edit">
 
                   <img :src="editIcon" class="w-5 h-5" />
 
                 </button>
 
-                <button class="cursor-pointer" @click="handleToggleStatus(club)" :title="(club.status ? 'Deactivate': 'Activate')">
+                <button class="cursor-pointer" @click="handleToggleStatus(trainer)" :title="(trainer.status ? 'Deactivate': 'Activate')">
 
                   <img :src="activateIcon" class="w-5 h-5" />
 
@@ -137,7 +138,6 @@
             </td>
 
           </tr>
-          
 
         </tbody>
 

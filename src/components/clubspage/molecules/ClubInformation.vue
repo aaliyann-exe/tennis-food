@@ -69,6 +69,7 @@
     website: '',
     status: 'Active',
     image: null,
+    status: true,
 
   });
 
@@ -81,6 +82,7 @@
       form.phone = '';
       form.website = '';
       form.image = null;
+      form.status = true;
 
     } else if (props.clubData) {
 
@@ -90,6 +92,7 @@
       form.website = props.clubData.website || '';
       form.status = props.clubData.status || 'Active';
       form.image = props.clubData.image || null;
+      form.status = props.clubData.status;
 
     }
 
@@ -127,9 +130,9 @@
       email: form.email,
       phone: (!form.phone) ? 'N/A' : form.phone,
       website: form.website,
-      status: 'Active',
       initials: getInitials(form.clubName),
       image: form.image,
+      status: true,
 
     };
 

@@ -10,7 +10,7 @@
     
             <h1 class="text-2xl font-semibold">
                 
-                No active trainers found
+                No Data Found
 
             </h1>
     

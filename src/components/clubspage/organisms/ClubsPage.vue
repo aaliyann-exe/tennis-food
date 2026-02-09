@@ -13,10 +13,12 @@
     import ArchivedTab from '/src/components/clubspage/atoms/ArchivedTab.vue';
 
     const clubStore = useClubStore();
-    const clubs = computed(() => clubStore.clubs);
     const clubModalVisible = ref(false);
     const clubMode = ref('create');
     const selectedClub = ref(null);
+    const isArchivedTab = ref(false);
+    const activeClubs = computed( () => clubStore.clubs.filter(club => club.status === true) );
+    const archivedClubs = computed( () => clubStore.clubs.filter(club => club.status === false) );
 
     const toggleModal = () => {
 
@@ -32,7 +34,7 @@
 
     const handleSaveClub = () => {
 
-        toggleModal();
+        clubModalVisible.value = false;
 
     };
 
@@ -60,7 +62,18 @@
 
     };
 
-    const isArchivedTab = ref(false);
+    const toggleClubStatus = (club) => {
+
+        const updatedClub = {
+
+            ...club,
+            status: !club.status,
+
+        };
+
+        clubStore.updateClub(updatedClub);
+
+    };
 
 </script>
 
@@ -86,13 +99,25 @@
 
         <Tabs v-model:show-archived="isArchivedTab"/>
 
-        <ArchivedTab v-if="isArchivedTab"/>
-
         <div v-if="!isArchivedTab">
-            
-            <ClubsTable :clubs="clubs" @view="viewClub" @edit="editClub" />
 
+            <ClubsTable :clubs="activeClubs" @view="viewClub" @edit="editClub" @toggle-status="toggleClubStatus" />
+            
             <ClubFooter />
+
+        </div>
+
+        <div v-else>
+
+            <div v-if="(archivedClubs.length > 0)">
+
+                <ClubsTable :clubs="archivedClubs" @view="viewClub" @edit="editClub" @toggle-status="toggleClubStatus" />
+                
+                <ClubFooter />
+
+            </div>
+
+            <ArchivedTab v-else />
 
         </div>
 

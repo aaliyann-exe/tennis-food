@@ -15,6 +15,8 @@ export const useClubStore = defineStore('clubStore', {
         phone: 'N/A',
         status: 'Active',
         initials: 'TF',
+        status: true,
+
 
       },
 
@@ -26,6 +28,8 @@ export const useClubStore = defineStore('clubStore', {
         phone: 'N/A',
         status: 'Active',
         initials: 'TF',
+        status: true,
+
 
       },
 
@@ -37,6 +41,7 @@ export const useClubStore = defineStore('clubStore', {
         phone: 'N/A',
         status: 'Active',
         initials: 'TF',
+        status: true,
 
       },
       
@@ -48,6 +53,7 @@ export const useClubStore = defineStore('clubStore', {
         phone: 'Amsterdam',
         status: 'Active',
         image: netherlandsTennisClubPfp,
+        status: true,
 
       },
 

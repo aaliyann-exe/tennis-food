@@ -55,13 +55,8 @@
       return 'TF';
 
     else 
-      return name
-      .split('')
-      .map(word => word[0])
-      .join('')
-      .toUpperCase()
-      .slice(0, 2);
-
+      return name.split('').map(word => word[0]).join('').toUpperCase().slice(0, 2);
+    
   };
 
   const imagePreview = ref(null);
@@ -73,8 +68,8 @@
     phone: '',
     website: '',
     status: 'Active',
-    color: 'bg-primary',
     image: null,
+    status: true,
 
   });
 
@@ -87,7 +82,7 @@
       form.phone = '';
       form.website = '';
       form.image = null;
-      form.color = 'bg-primary';
+      form.status = true;
 
     } else if (props.clubData) {
 
@@ -96,8 +91,8 @@
       form.phone = props.clubData.phone === 'N/A' ? '' : (props.clubData.phone || '');
       form.website = props.clubData.website || '';
       form.status = props.clubData.status || 'Active';
-      form.color = props.clubData.color || 'bg-primary';
       form.image = props.clubData.image || null;
+      form.status = props.clubData.status;
 
     }
 
@@ -128,18 +123,6 @@
     if (form.website && !form.website.includes('.'))
       return;
 
-    const newClub = {
-
-      name: form.clubName,
-      email: form.email,
-      phone: ((!form.phone) ? 'N/A' : form.phone),
-      status: 'Active',
-      initials: getInitials(form.clubName),
-      color: form.color,
-      image: form.image,
-
-    };
-
     const clubObject = {
 
       ...props.clubData,
@@ -147,10 +130,9 @@
       email: form.email,
       phone: (!form.phone) ? 'N/A' : form.phone,
       website: form.website,
-      status: 'Active',
       initials: getInitials(form.clubName),
-      color: form.color,
       image: form.image,
+      status: true,
 
     };
 
@@ -168,26 +150,26 @@
 
 <template>
 
-  <div class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+  <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
 
-    <div class="bg-white rounded-2xl shadow-xl w-220 h-max overflow-hidden">
+    <div class="h-full overflow-y-scroll bg-white shadow-xl rounded-2xl w-220">
 
-      <div class="flex justify-between items-center px-8 py-5">
+      <div class="flex items-center justify-between px-8 py-5">
 
-        <h2 v-if="(props.mode === 'create')" class="text-4xl font-semibold ml-5 mt-2">Club Information</h2>
+        <h2 v-if="(props.mode === 'create')" class="mt-2 ml-5 text-4xl font-semibold">Club Information</h2>
 
-        <h2 v-if="(props.mode === 'view')" class="text-4xl font-semibold ml-5 mt-2"> {{ props.clubData.name }} </h2>
+        <h2 v-if="(props.mode === 'view')" class="mt-2 ml-5 text-4xl font-semibold"> {{ props.clubData.name }} </h2>
 
-        <h2 v-if="(props.mode === 'edit')" class="text-4xl font-semibold ml-5 mt-2"> {{ props.clubData.name }} <span class="text-[20px]">( Edit )</span></h2>
+        <h2 v-if="(props.mode === 'edit')" class="mt-2 ml-5 text-4xl font-semibold"> {{ props.clubData.name }} <span class="text-[20px]">( Edit )</span></h2>
 
 
-        <button v-if="props.mode === 'view'" class="cursor-pointer absolute top-21 right-100" @click="$emit('edit', props.clubObject)">
+        <button v-if="props.mode === 'view'" class="absolute cursor-pointer top-21 right-100" @click="$emit('edit', props.clubObject)">
 
           <img :src="editIcon" class="w-6 h-6 opacity-50" />
 
         </button>
 
-        <button @click="$emit('close')" class="text-gray-400 hover:text-gray-600 text-2xl cursor-pointer">
+        <button @click="$emit('close')" class="text-2xl text-gray-400 cursor-pointer hover:text-gray-600">
 
           <img :src="crossIcon" class="w-10 h-10 opacity-40">
 
@@ -195,7 +177,7 @@
 
       </div>
 
-      <hr class="opacity-20 mx-10">
+      <hr class="mx-10 opacity-20">
 
       <form @submit.prevent="handleSave" :class="((props.mode === 'view') ? 'cursor-not-allowed ' : '') + 'p-8'">
 
@@ -223,9 +205,9 @@
 
         <div class="mt-8 mb-4">
 
-          <h3 class="text-2xl font-semibold inline">Primary Contact Person</h3>
+          <h3 class="inline text-2xl font-semibold">Primary Contact Person</h3>
 
-          <span class="text-xs text-orange-500 ml-1">Optional</span>
+          <span class="ml-1 text-xs text-orange-500">Optional</span>
 
         </div>
 

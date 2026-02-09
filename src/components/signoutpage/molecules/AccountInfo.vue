@@ -11,7 +11,7 @@
   import editIcon from '/src/assets/editIcon.svg';
   import cityIcon from '/src/assets/cityIcon.svg';
 
-  import ClubInputs from '/src/components/signoutpage/atoms/ClubInputs.vue';
+  import ProfileInputs from '/src/components/signoutpage/atoms/ProfileInputs.vue';
   import FormButtons from '/src/components/signoutpage/atoms/FormButtons.vue';
   import ImageSubmitButton from '/src/components/signoutpage/atoms/ImageSubmitButton.vue';
 
@@ -89,23 +89,21 @@
 
 <template>
 
-  <div class="rounded-3xl flexbox pb-5 border-gray-300 border bg-secondary">
+  <div class="h-full pb-5 border border-gray-300 rounded-3xl flexbox bg-secondary">
 
-    <div class="bg-linear-to-r from-[#fd6226] to-[#d9d9d9] p-8 rounded-t-3xl block w-full"></div> 
-
-      
+    <div class="bg-linear-to-r from-[#fd6226] to-[#d9d9d9] p-8 rounded-t-3xl block w-full"></div>
 
       <form @submit.prevent="handleSave" class="p-8">
         
-        <div class="flex justify-between items-center px-8 py-5">
+        <div class="flex items-center justify-between px-8 py-5">
 
           <div class="flex">
 
-            <ImageSubmitButton :clubName="form.name" :image="form.pfp" @image-uploaded="handleImageUpload" :mode="mode" />
+            <ImageSubmitButton :name="form.name" :image="form.pfp" @image-uploaded="handleImageUpload" :mode="mode" />
 
             <div class="flex flex-col pt-3 pl-5">
 
-              <h1 class="text-gray-500 font-medium text-lg">{{ form.name }}</h1>
+              <h1 class="text-lg font-medium text-gray-500">{{ form.name }}</h1>
 
               <p class="text-primary">School Admin</p>
 
@@ -113,7 +111,7 @@
 
           </div>
 
-          <button v-if="mode === 'view'" class="cursor-pointer p-2 hover:bg-gray-100 rounded-full transition" @click="enableEditMode">
+          <button v-if="mode === 'view'" class="p-2 transition rounded-full cursor-pointer hover:bg-gray-100" @click="enableEditMode">
             
             <img :src="editIcon" class="w-6 h-6 opacity-50" alt="Edit" />
 
@@ -125,39 +123,39 @@
 
           <div class="grid grid-cols-2">
 
-            <ClubInputs v-model:inputData="form.name" inputLabel="Full Name" inputPlaceholder="Enter school name" :icon="buildingIcon" mustFill hasAsterisk validationMessage="Club name is required" :mode="mode" />
+            <ProfileInputs v-model:inputData="form.name" inputLabel="Full Name" inputPlaceholder="Enter school name" :icon="buildingIcon" mustFill hasAsterisk validationMessage="Club name is required" :mode="mode" />
 
-            <ClubInputs v-model:inputData="form.email" type="email" inputLabel="Email" inputPlaceholder="info@youmai.com" :icon="emailIcon" :mode="mode" hasAsterisk />
+            <ProfileInputs v-model:inputData="form.email" type="email" inputLabel="Email" inputPlaceholder="info@youmai.com" :icon="emailIcon" :mode="mode" hasAsterisk />
             
-            <ClubInputs v-model:inputData="form.phone" type="phone" inputLabel="Phone" inputPlaceholder="Phone" :icon="phoneIcon" :mode="mode" hasAsterisk />
+            <ProfileInputs v-model:inputData="form.phone" type="phone" inputLabel="Phone" inputPlaceholder="Phone" :icon="phoneIcon" :mode="mode" hasAsterisk />
             
-            <ClubInputs v-model:inputData="form.website" type="website" inputLabel="Website" inputPlaceholder="Website" :icon="globeIcon" :mode="mode" hasAsterisk />
+            <ProfileInputs v-model:inputData="form.website" type="website" inputLabel="Website" inputPlaceholder="Website" :icon="globeIcon" :mode="mode" hasAsterisk />
 
-            <ClubInputs v-model:inputData="form.zipCode" type="zipCode" inputLabel="Zip Code" inputPlaceholder="Enter zip code" :icon="locationIcon" :mode="mode" hasAsterisk />
+            <ProfileInputs v-model:inputData="form.zipCode" type="zipCode" inputLabel="Zip Code" inputPlaceholder="Enter zip code" :icon="locationIcon" :mode="mode" hasAsterisk />
 
-            <ClubInputs v-model:inputData="form.city" type="city" inputLabel="City" inputPlaceholder="Select city" :icon="cityIcon" :mode="mode" hasAsterisk isDropDown />
+            <ProfileInputs v-model:inputData="form.city" type="city" inputLabel="City" inputPlaceholder="Select city" :icon="cityIcon" :mode="mode" hasAsterisk isDropDown />
             
           </div>
 
-          <div class="">
+          <div>
 
-            <ClubInputs v-model:inputData="form.address" inputLabel="Address line" inputPlaceholder="Enter address" :icon="locationIcon" :mode="mode" />
+            <ProfileInputs v-model:inputData="form.address" inputLabel="Address line" inputPlaceholder="Enter address" :icon="locationIcon" :mode="mode" />
 
           </div>
 
           <div class="grid grid-cols-2">
 
-            <ClubInputs v-model:inputData="form.repName" inputLabel="School Representative Name" inputPlaceholder="Type representative name" :icon="personIcon" :mode="mode" />
+            <ProfileInputs v-model:inputData="form.repName" inputLabel="School Representative Name" inputPlaceholder="Type representative name" :icon="personIcon" :mode="mode" />
             
-            <ClubInputs v-model:inputData="form.repEmail" type="email" inputLabel="School Representative Email" inputPlaceholder="Enter representative email" :icon="emailIcon" :mode="mode" />
+            <ProfileInputs v-model:inputData="form.repEmail" type="email" inputLabel="School Representative Email" inputPlaceholder="Enter representative email" :icon="emailIcon" :mode="mode" />
             
-            <ClubInputs v-model:inputData="form.repPhone" type="phone" inputLabel="School Representative Phone" inputPlaceholder="Enter representative phone" :icon="phoneIcon" :mode="mode"  />
+            <ProfileInputs v-model:inputData="form.repPhone" type="phone" inputLabel="School Representative Phone" inputPlaceholder="Enter representative phone" :icon="phoneIcon" :mode="mode"  />
           
           </div>
 
         </div>
 
-        <div v-if="mode === 'edit'" class="flex mt-10 justify-start">
+        <div v-if="mode === 'edit'" class="flex justify-start mt-10">
 
           <FormButtons @cancel="cancelEdit" cancel />
 

@@ -16,7 +16,13 @@
 
   });
 
-  const emits = defineEmits(['view', 'edit', 'deactivate']);
+  const emits = defineEmits(['view', 'edit', 'toggle-status']);
+  
+  const handleToggleStatus = (club) => {
+
+    emits('toggle-status', club);
+
+  };
 
 </script>
 
@@ -30,11 +36,11 @@
 
         <thead>
 
-          <tr class="text-lg font-extralight tracking-wider uppercase bg-other border-b border-gray-200">
+          <tr class="text-lg tracking-wider uppercase border-b border-gray-200 font-extralight bg-other">
             
-            <th class="px-6 py-4 flex items-center gap-1">
+            <th class="flex items-center gap-1 px-6 py-4">
 
-              <span class="flex flex-col text-[10px] leading-[4px]">
+              <span class="flex flex-col text-[10px] leading-1">
 
                 <button class="hover:bg-[#ffd4c7] rounded-2xl p-1 cursor-pointer"><span>▲</span></button>
 
@@ -48,7 +54,7 @@
 
             <th class="px-6 py-4">PHONE</th>
 
-            <th class="px-6 py-4"><span class="relative left-60">STATUS</span></th>
+            <th class="px-6 py-4"><span class="relative left-50">STATUS</span></th>
 
             <th class="px-6 py-4 text-right">ACTIONS</th>
             
@@ -64,13 +70,13 @@
 
               <div class="flex items-center gap-4">
 
-                <div v-if="club.image" class="w-10 h-10 rounded-full overflow-hidden">
+                <div v-if="club.image" class="w-10 h-10 overflow-hidden rounded-full">
 
-                   <img :src="club.image" alt="Club logo" class="w-full h-full object-cover" />
+                   <img :src="club.image" alt="Club logo" class="object-cover w-full h-full" />
 
                 </div>
 
-                <div v-else :class="club.color + ' w-10 h-10 rounded-full flex items-center justify-center text-secondary font-bold text-sm'">
+                <div v-else class="flex items-center justify-center w-10 h-10 text-sm font-bold rounded-full text-secondary bg-primary">
 
                   {{ club.initials }}
 
@@ -80,7 +86,7 @@
 
                   <span class="text-sm font-medium">{{ club.name }}</span>
 
-                  <span class="text-xs text-primary truncate max-w-[200px]">{{ club.email }}</span>
+                  <span class="text-xs truncate text-primary max-w-50">{{ club.email }}</span>
 
                 </div>
 
@@ -94,29 +100,33 @@
 
             <td class="px-6 py-4">
 
-              <span class="px-6 py-1 text-xs relative left-60 text-active-dark bg-active border border-active-dark font-medium rounded-full">
-                {{ club.status }}
+              <span v-if="club.status" class="relative px-6 py-1 text-xs font-medium border rounded-full left-50 text-active-dark bg-active border-active-dark">
+                Active
+              </span>
+
+              <span v-else class="relative px-6 py-1 text-xs font-medium border rounded-full left-40 text-inactive-dark bg-inactive border-inactive-dark">
+                Inactive
               </span>
 
             </td>
 
             <td class="px-6 py-4 text-right">
 
-              <div class="flex justify-end items-center gap-3 opacity-50">
+              <div class="flex items-center justify-end gap-3 opacity-50">
 
-                <button class="cursor-pointer" @click="$emit('view', club)">
+                <button class="cursor-pointer" @click="$emit('view', club)" title="View">
 
                   <img :src="viewIcon" class="w-5 h-5" />
 
                 </button>
 
-                <button class="cursor-pointer" @click="$emit('edit', club)">
+                <button class="cursor-pointer" @click="$emit('edit', club)" title="Edit">
 
                   <img :src="editIcon" class="w-5 h-5" />
 
                 </button>
 
-                <button class="cursor-pointer" @click="$emit('deactivate', club)">
+                <button class="cursor-pointer" @click="handleToggleStatus(club)" :title="(club.status ? 'Deactivate': 'Activate')">
 
                   <img :src="activateIcon" class="w-5 h-5" />
 

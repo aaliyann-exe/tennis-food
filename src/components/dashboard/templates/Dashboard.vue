@@ -13,8 +13,46 @@
   import SignOut from '../atoms/SignOut.vue'
   import TennisFoodLogo from '../atoms/TennisFoodLogo.vue'
 
-</script>
+  const menuItems = [
 
+    {
+      icon: dashboardIcon,
+      text: 'Dashboard'
+    },
+
+    {
+      icon: clubsIcon,
+      text: 'Clubs'
+    },
+
+    {
+      icon: trainerIcon,
+      text: 'Trainers'
+    },
+
+    {
+      icon: playerIcon,
+      text: 'Players'
+    },
+
+    {
+      icon: hashIcon,
+      text: 'Hashtags'
+    },
+
+    {
+      icon: courtIcon,
+      text: 'Courts'
+    },
+
+    {
+      icon: trainingsIcon,
+      text: 'Trainings'
+    },
+
+  ];
+
+</script>
 
 <template>
 
@@ -22,13 +60,13 @@
 
     <TennisFoodLogo />
 
-      <Icons v-for="icon in [dashboardIcon, clubsIcon, trainerIcon, playerIcon, hashIcon, courtIcon, trainingsIcon]" :icon="icon" :text="icon === dashboardIcon ? 'Dashboard' : icon === clubsIcon ? 'Clubs' : icon === trainerIcon ? 'Trainers' : icon === playerIcon ? 'Players' : icon === hashIcon ? 'Hashtags' : icon === courtIcon ? 'Courts' : 'Trainings'" />
+    <Icons v-for="item in menuItems" :key="item.text" :icon="item.icon" :text="item.text" />
 
-      <hr class="w-65 ml-5 mr-5 mt-3 opacity-10">
+    <hr class="w-65 ml-5 mr-5 mt-3 opacity-10">
 
-      <SchoolAdmin />
+    <SchoolAdmin />
 
-      <SignOut />
+    <SignOut />
 
   </div>
 

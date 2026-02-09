@@ -1,6 +1,7 @@
 <script setup>
 
-    import { ref } from 'vue';
+    import { computed } from 'vue';
+    import { useRoute } from 'vue-router';
 
     const props = defineProps({
 
@@ -10,77 +11,52 @@
         },
 
         text: {
-
             type: String,
             required: true,
         },
 
         selected: {
-
             type: Boolean,
             required: false,
-        }
+        },
 
     });
 
-    let marker = ref('');
+    const route = useRoute();
 
-    let pointerMarker = ref('invisible');
+    const isActive = computed(() => {
 
-    if (props.text === 'Clubs') {
+        const path = '/' + props.text.toLowerCase();
+        return (route.path === path);
 
-        marker.value = 'text-primary';
-
-        pointerMarker.value = 'block';
-
-    }
-
-    else {
-
-        marker.value = '';
-
-        pointerMarker.value = 'invisible';
-
-    };
+    });
 
 </script>
 
 <template>
 
-    <div class="flex">
+    <div class="flex items-center">
+        
+        <div v-if="isActive || selected" class="text-primary text-[54px] font-extralight leading-none absolute left-5">[</div>
 
-        <div v-if="selected" class="text-primary text-[50px] font-extralight">[</div>
+        <router-link :to="'/' + text.toLowerCase()" class="no-underline">
 
-        <router-link :to="'/' + props.text.toLowerCase()" class="no-underline">
-
-            <div class="py-3 px-2 ml-8 w-60 rounded-lg text-sm font-normal hover:bg-primary-outline hover:text-primary cursor-pointer">
+            <div :class="(isActive ? 'bg-primary-outline ' : '') + 'py-3 px-2 ml-8 w-60 rounded-lg text-sm font-normal transition-colors hover:bg-primary-outline hover:text-primary cursor-pointer'">
 
                 <span class="mr-3">
 
-                    <img :src="icon" alt="Dashboard Icon" class="inline w-5 h-5 opacity-50">
-                    
+                    <img :src="icon" :alt="text + ' Icon'" :class="(isActive ? 'opacity-100 ' : 'opacity-50 ') + 'inline w-5 h-5 transition-opacity'">
+                
                 </span>
 
-                <span :class="marker"> {{ text }} </span>
-                
+                <span :class="(isActive ? 'text-primary font-medium text-[16px]' : '')">
+                    {{ text }}
+                </span>
+
             </div>
 
         </router-link>
 
     </div>
 
-        <!-- <div class="py-3 px-2 ml-8 w-60 rounded-lg text-sm font-normal hover:bg-primary-outline hover:text-primary cursor-pointer">
-
-            <span class="mr-3">
-
-                <img :src="icon" alt="Dashboard Icon" class="inline w-5 h-5 opacity-50">
-                
-            </span>
-
-            <span :class="marker"> {{ text }} </span>
-            
-        </div>
-    
-    </div> -->
-    
 </template>

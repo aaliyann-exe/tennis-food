@@ -68,22 +68,22 @@
 
     <button type="button" @click="triggerUpload" :class="((props.mode === 'view') ? '' : 'cursor-pointer ') + 'group relative hover:opacity-90'">
 
-      <div class="relative w-19 h-19 mb-8">
+      <div class="relative mb-8 w-19 h-19">
 
-            <div v-if="imagePreview" class="w-full h-full rounded-full overflow-hidden border-2 border-gray-200">
+            <div v-if="imagePreview" class="w-full h-full overflow-hidden border-2 border-gray-200 rounded-full">
 
-              <img :src="imagePreview" class="w-full h-full object-cover" />
+              <img :src="imagePreview" class="object-cover w-full h-full" />
 
             </div>
             
             <input type="file" ref="fileInput" @change="onFileChange" accept="image/*" class="hidden" />
             
-            <div v-if="mode === 'edit'" class="absolute top-15 right-6 bg-white p-1 rounded-full border border-gray-200 shadow-lg">
+            <div v-if="mode === 'edit'" class="absolute p-1 bg-white border border-gray-200 rounded-full shadow-lg top-15 right-6">
               
               <img :src="cameraIcon" class="w-4 h-4">
 
             </div>
-
+            
       </div>
 
     </button>

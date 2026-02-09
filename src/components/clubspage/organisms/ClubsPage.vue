@@ -13,10 +13,12 @@
     import ArchivedTab from '/src/components/clubspage/atoms/ArchivedTab.vue';
 
     const clubStore = useClubStore();
-    const clubs = computed(() => clubStore.clubs);
     const clubModalVisible = ref(false);
     const clubMode = ref('create');
     const selectedClub = ref(null);
+    const isArchivedTab = ref(false);
+    const activeClubs = computed( () => clubStore.clubs.filter(club => club.status === true) );
+    const archivedClubs = computed( () => clubStore.clubs.filter(club => club.status === false) );
 
     const toggleModal = () => {
 
@@ -32,7 +34,7 @@
 
     const handleSaveClub = () => {
 
-        toggleModal();
+        clubModalVisible.value = false;
 
     };
 
@@ -60,23 +62,34 @@
 
     };
 
-    const isArchivedTab = ref(false);
+    const toggleClubStatus = (club) => {
+
+        const updatedClub = {
+
+            ...club,
+            status: !club.status,
+
+        };
+
+        clubStore.updateClub(updatedClub);
+
+    };
 
 </script>
 
 <template>
 
-    <div class="bg-other flexbox w-full">
+    <div class="w-full bg-other flexbox">
 
         <div class="flex mt-20">
             
-            <h1 class="text-4xl font-semibold align-left ml-4">Clubs</h1>
+            <h1 class="ml-4 text-4xl font-semibold align-left">Clubs</h1>
 
             <SearchBar />
 
             <ImportIcon />
 
-            <button @click="createClub" class="bg-primary w-12 h-12 rounded-full flex items-center justify-center hover:bg-primary-active ml-5 cursor-pointer">
+            <button @click="createClub" class="flex items-center justify-center w-12 h-12 ml-5 rounded-full cursor-pointer bg-primary hover:bg-primary-active">
 
                 <img :src="plusIcon" class="w-5 h-5 invert">
 
@@ -86,13 +99,25 @@
 
         <Tabs v-model:show-archived="isArchivedTab"/>
 
-        <ArchivedTab v-if="isArchivedTab"/>
-
         <div v-if="!isArchivedTab">
-            
-            <ClubsTable :clubs="clubs" @view="viewClub" @edit="editClub" />
 
+            <ClubsTable :clubs="activeClubs" @view="viewClub" @edit="editClub" @toggle-status="toggleClubStatus" />
+            
             <ClubFooter />
+
+        </div>
+
+        <div v-else>
+
+            <div v-if="(archivedClubs.length > 0)">
+
+                <ClubsTable :clubs="archivedClubs" @view="viewClub" @edit="editClub" @toggle-status="toggleClubStatus" />
+                
+                <ClubFooter />
+
+            </div>
+
+            <ArchivedTab v-else />
 
         </div>
 

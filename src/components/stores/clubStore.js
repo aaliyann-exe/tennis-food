@@ -6,60 +6,59 @@ export const useClubStore = defineStore('clubStore', {
   state: () => ({
 
     clubs: [
+      
+      {
 
-          {
-
-            id: 1,
-            name: 'Ace Tennis Club 2',
-            email: 'aceRoyal.tennis@example.co...',
-            phone: 'N/A',
-            status: 'Active',
-            initials: 'TF',
-            color: 'bg-primary',
-
-        },
+        id: 1,
+        name: 'Ace Tennis Club 2',
+        email: 'aceRoyal.tennis@example.co...',
+        phone: 'N/A',
+        status: 'Active',
+        initials: 'TF',
+        status: true,
 
 
+      },
 
-        {
+      {
 
-            id: 2,
-            name: 'Ace Tennis Club School',
-            email: 'ace.tennisschool@example.c...',
-            phone: 'N/A',
-            status: 'Active',
-            initials: 'TF',
-            color: 'bg-primary',
-
-        },
-
+        id: 2,
+        name: 'Ace Tennis Club School',
+        email: 'ace.tennisschool@example.c...',
+        phone: 'N/A',
+        status: 'Active',
+        initials: 'TF',
+        status: true,
 
 
-        {
+      },
 
-            id: 3,
-            name: 'New Club 37',
-            email: 'club22@youpmail.co',
-            phone: 'N/A',
-            status: 'Active',
-            initials: 'TF',
-            color: 'bg-primary',
+      {
 
-        },
+        id: 3,
+        name: 'New Club 37',
+        email: 'club22@youpmail.co',
+        phone: 'N/A',
+        status: 'Active',
+        initials: 'TF',
+        status: true,
 
+      },
+      
+      {
 
+        id: 4,
+        name: 'Netherlands Tennis Club',
+        email: '',
+        phone: 'Amsterdam',
+        status: 'Active',
+        image: netherlandsTennisClubPfp,
+        status: true,
 
-        {
+      },
 
-            id: 4,
-            name: 'Netherlands Tennis Club',
-            email: '',
-            phone: 'Amsterdam',
-            status: 'Active',
-            image: netherlandsTennisClubPfp,
-
-        },
     ],
+
   }),
 
   actions: {

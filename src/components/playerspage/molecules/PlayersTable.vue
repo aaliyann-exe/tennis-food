@@ -1,12 +1,13 @@
 <script setup>
 
+  import { ref } from 'vue';
   import viewIcon from '/src/assets/viewIcon.png';
   import editIcon from '/src/assets/editIcon.svg';
   import activateIcon from '/src/assets/activateIcon.svg';
 
   const props = defineProps({
 
-    clubs: {
+    players: {
 
       type: Array,
       required: true,
@@ -16,7 +17,13 @@
 
   });
 
-  const emits = defineEmits(['view', 'edit', 'deactivate']);
+  const emits = defineEmits(['view', 'edit', 'toggle-status']);
+
+  const handleToggleStatus = (player) => {
+
+    emits('toggle-status', player);
+
+  };
 
 </script>
 
@@ -42,7 +49,7 @@
 
               </span>
 
-              CLUB NAME
+              PLAYER NAME
 
             </th>
 
@@ -58,29 +65,29 @@
 
         <tbody class="divide-y divide-gray-300">
 
-          <tr v-for="(club, index) in props.clubs" :key="index" class="hover:bg-other">
+          <tr v-for="(player, index) in props.players" :key="index" class="hover:bg-other">
 
             <td class="px-6 py-4">
 
               <div class="flex items-center gap-4">
 
-                <div v-if="club.image" class="w-10 h-10 overflow-hidden rounded-full">
+                <div v-if="player.pfp" class="w-10 h-10 overflow-hidden rounded-full">
 
-                   <img :src="club.image" alt="Club logo" class="object-cover w-full h-full" />
+                   <img :src="player.pfp" alt="Club logo" class="object-cover w-full h-full" />
 
                 </div>
 
                 <div v-else class="flex items-center justify-center w-10 h-10 text-sm font-bold rounded-full text-secondary bg-primary">
 
-                  {{ club.initials }}
+                  {{ player.initials }}
 
                 </div> 
 
                 <div class="flex flex-col">
 
-                  <span class="text-sm font-medium">{{ club.name }}</span>
+                  <span class="text-sm font-medium">{{ player.fName + ' ' + player.lName}}</span>
 
-                  <span class="text-xs truncate text-primary max-w-50">{{ club.email }}</span>
+                  <span class="text-xs truncate text-primary max-w-50">{{ player.email }}</span>
 
                 </div>
 
@@ -89,13 +96,17 @@
             </td>
 
             <td class="px-6 py-4 text-sm font-medium">
-              {{ club.phone }}
+              {{ player.phone }}
             </td>
 
             <td class="px-6 py-4">
 
-              <span class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-active-dark bg-active border-active-dark">
-                {{ club.status }}
+              <span v-if="player.status" class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-active-dark bg-active border-active-dark">
+                Active
+              </span>
+
+              <span v-else class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-inactive-dark bg-inactive border-inactive-dark">
+                Inactive
               </span>
 
             </td>
@@ -104,19 +115,19 @@
 
               <div class="flex items-center justify-end gap-3 opacity-50">
 
-                <button class="cursor-pointer" @click="$emit('view', club)">
+                <button class="cursor-pointer" @click="$emit('view', player)" title="View">
 
                   <img :src="viewIcon" class="w-5 h-5" />
 
                 </button>
 
-                <button class="cursor-pointer" @click="$emit('edit', club)">
+                <button class="cursor-pointer" @click="$emit('edit', player)" title="Edit">
 
                   <img :src="editIcon" class="w-5 h-5" />
 
                 </button>
 
-                <button class="cursor-pointer" @click="$emit('deactivate', club)">
+                <button class="cursor-pointer" @click="handleToggleStatus(player)" :title="(player.status ? 'Deactivate': 'Activate')">
 
                   <img :src="activateIcon" class="w-5 h-5" />
 
@@ -127,7 +138,6 @@
             </td>
 
           </tr>
-          
 
         </tbody>
 

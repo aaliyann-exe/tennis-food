@@ -1,12 +1,17 @@
 <script setup>
 
+  import { ref } from 'vue';
+  import { useHashtagStore } from '/src/components/stores/hashtagStore.js';
+  import ConfirmationBox from './ConfirmationBox.vue';
+
+
   import viewIcon from '/src/assets/viewIcon.png';
   import editIcon from '/src/assets/editIcon.svg';
-  import activateIcon from '/src/assets/activateIcon.svg';
+  import recycleBinIcon from '/src/assets/recycleBinIcon.svg';
 
   const props = defineProps({
 
-    clubs: {
+    hashtags: {
 
       type: Array,
       required: true,
@@ -16,7 +21,17 @@
 
   });
 
-  const emits = defineEmits(['view', 'edit', 'deactivate']);
+  const emits = defineEmits(['view', 'edit', 'delete']);
+
+  const hashtagStore = useHashtagStore();
+
+  const isOpen = ref(false);
+
+  const handleDelete = (hashtag) => {
+    
+    hashtagStore.deleteHashtag(hashtag.id);
+
+  };
 
 </script>
 
@@ -42,13 +57,11 @@
 
               </span>
 
-              CLUB NAME
+              HASHTAG
 
             </th>
 
-            <th class="px-6 py-4">PHONE</th>
-
-            <th class="px-6 py-4"><span class="relative left-60">STATUS</span></th>
+            <th class="px-6 py-4 text-center"><span class="relative left-60">CREATED BY</span></th>
 
             <th class="px-6 py-4 text-right">ACTIONS</th>
             
@@ -58,29 +71,17 @@
 
         <tbody class="divide-y divide-gray-300">
 
-          <tr v-for="(club, index) in props.clubs" :key="index" class="hover:bg-other">
+          <tr v-for="(hashtag, index) in props.hashtags" :key="index" class="hover:bg-other">
+
+            <ConfirmationBox v-if="isOpen" @confirm="handleDelete(hashtag)" @cancel="(isOpen = false)" :title="hashtag.title" />
 
             <td class="px-6 py-4">
 
               <div class="flex items-center gap-4">
 
-                <div v-if="club.image" class="w-10 h-10 overflow-hidden rounded-full">
-
-                   <img :src="club.image" alt="Club logo" class="object-cover w-full h-full" />
-
-                </div>
-
-                <div v-else class="flex items-center justify-center w-10 h-10 text-sm font-bold rounded-full text-secondary bg-primary">
-
-                  {{ club.initials }}
-
-                </div> 
-
                 <div class="flex flex-col">
 
-                  <span class="text-sm font-medium">{{ club.name }}</span>
-
-                  <span class="text-xs truncate text-primary max-w-50">{{ club.email }}</span>
+                  <span class="text-sm font-medium opacity-50">#{{ hashtag.title }}</span>
 
                 </div>
 
@@ -88,14 +89,14 @@
 
             </td>
 
-            <td class="px-6 py-4 text-sm font-medium">
-              {{ club.phone }}
-            </td>
+            <td class="px-6 py-4 text-center">
 
-            <td class="px-6 py-4">
+              <span v-if="hashtag.creator === 'Super Admin'" class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-active-dark bg-active border-active-dark">
+                {{ hashtag.creator }}
+              </span>
 
-              <span class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-active-dark bg-active border-active-dark">
-                {{ club.status }}
+              <span v-else class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-inactive-dark bg-inactive border-inactive-dark">
+                {{ hashtag.creator }}
               </span>
 
             </td>
@@ -104,21 +105,21 @@
 
               <div class="flex items-center justify-end gap-3 opacity-50">
 
-                <button class="cursor-pointer" @click="$emit('view', club)">
+                <button class="cursor-pointer" @click="$emit('view', hashtag)" title="View">
 
                   <img :src="viewIcon" class="w-5 h-5" />
 
                 </button>
 
-                <button class="cursor-pointer" @click="$emit('edit', club)">
+                <button class="cursor-pointer" @click="$emit('edit', hashtag)" title="Edit">
 
                   <img :src="editIcon" class="w-5 h-5" />
 
                 </button>
 
-                <button class="cursor-pointer" @click="$emit('deactivate', club)">
+                <button class="cursor-pointer" @click="(isOpen = true)" title="Delete">
 
-                  <img :src="activateIcon" class="w-5 h-5" />
+                  <img :src="recycleBinIcon" class="w-5 h-5" />
 
                 </button>
 
@@ -127,7 +128,6 @@
             </td>
 
           </tr>
-          
 
         </tbody>
 

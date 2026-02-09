@@ -66,17 +66,17 @@
 
 <template>
 
-    <div class="bg-other flexbox w-full">
+    <div class="w-full bg-other flexbox">
 
         <div class="flex mt-20">
             
-            <h1 class="text-4xl font-semibold align-left ml-4">Clubs</h1>
+            <h1 class="ml-4 text-4xl font-semibold align-left">Clubs</h1>
 
             <SearchBar />
 
             <ImportIcon />
 
-            <button @click="createClub" class="bg-primary w-12 h-12 rounded-full flex items-center justify-center hover:bg-primary-active ml-5 cursor-pointer">
+            <button @click="createClub" class="flex items-center justify-center w-12 h-12 ml-5 rounded-full cursor-pointer bg-primary hover:bg-primary-active">
 
                 <img :src="plusIcon" class="w-5 h-5 invert">
 

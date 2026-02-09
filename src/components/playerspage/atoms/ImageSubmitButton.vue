@@ -15,7 +15,7 @@
     image: {
 
       type: String,
-      default: null,
+      default: '',
 
     },
 
@@ -38,6 +38,22 @@
 
   });
 
+  const getInitials = (name) => {
+
+    if (!name) {
+        
+      return 'TF';
+
+    }
+
+    else {
+        
+      return name.split('').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+
+    }
+
+  };
+
   const onFileChange = (e) => {
 
     const file = e.target.files[0];
@@ -56,7 +72,7 @@
 
     if (props.mode === 'edit' && fileInput.value) {
 
-        fileInput.value.click();
+      fileInput.value.click();
 
     }
 
@@ -73,6 +89,12 @@
             <div v-if="imagePreview" class="w-full h-full overflow-hidden border-2 border-gray-200 rounded-full">
 
               <img :src="imagePreview" class="object-cover w-full h-full" />
+
+            </div>
+
+            <div v-else class="flex items-center justify-center w-full h-full text-2xl font-bold text-white rounded-full bg-primary">
+              
+                {{ getInitials(props.name) }}
 
             </div>
             

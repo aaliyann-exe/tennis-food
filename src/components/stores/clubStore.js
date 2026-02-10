@@ -11,9 +11,8 @@ export const useClubStore = defineStore('clubStore', {
 
         id: 1,
         name: 'Ace Tennis Club 2',
-        email: 'aceRoyal.tennis@example.co...',
+        email: 'aceRoyal.tennis@example.com',
         phone: 'N/A',
-        status: 'Active',
         initials: 'TF',
         status: true,
 
@@ -24,9 +23,8 @@ export const useClubStore = defineStore('clubStore', {
 
         id: 2,
         name: 'Ace Tennis Club School',
-        email: 'ace.tennisschool@example.c...',
+        email: 'ace.tennisschool@example.com',
         phone: 'N/A',
-        status: 'Active',
         initials: 'TF',
         status: true,
 
@@ -37,9 +35,8 @@ export const useClubStore = defineStore('clubStore', {
 
         id: 3,
         name: 'New Club 37',
-        email: 'club22@youpmail.co',
+        email: 'club22@youpmail.com',
         phone: 'N/A',
-        status: 'Active',
         initials: 'TF',
         status: true,
 
@@ -51,7 +48,6 @@ export const useClubStore = defineStore('clubStore', {
         name: 'Netherlands Tennis Club',
         email: '',
         phone: 'Amsterdam',
-        status: 'Active',
         image: netherlandsTennisClubPfp,
         status: true,
 

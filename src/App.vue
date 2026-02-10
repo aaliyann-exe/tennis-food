@@ -1,10 +1,12 @@
 <script setup>
 
-    import { router } from './router';
+    import LanguageToggle from './components/languagetoggle/LanguageToggle.vue';
 
 </script>
 
 <template>
+
+    <LanguageToggle />
 
     <router-view />
 

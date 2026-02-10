@@ -11,9 +11,9 @@
   import editIcon from '/src/assets/editIcon.svg';
   import cityIcon from '/src/assets/cityIcon.svg';
 
-  import ProfileInputs from '/src/components/signoutpage/atoms/ProfileInputs.vue';
-  import FormButtons from '/src/components/signoutpage/atoms/FormButtons.vue';
-  import ImageSubmitButton from '/src/components/signoutpage/atoms/ImageSubmitButton.vue';
+  import ProfileInputs from '/src/components/profilepage/atoms/ProfileInputs.vue';
+  import FormButtons from '/src/components/profilepage/atoms/FormButtons.vue';
+  import ImageSubmitButton from '/src/components/profilepage/atoms/ImageSubmitButton.vue';
 
   const profileStore = useProfileStore();
   

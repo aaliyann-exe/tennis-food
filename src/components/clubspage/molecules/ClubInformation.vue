@@ -67,7 +67,6 @@
     email: '',
     phone: '',
     website: '',
-    status: 'Active',
     image: null,
     status: true,
 
@@ -88,9 +87,9 @@
 
       form.clubName = props.clubData.name || ''; 
       form.email = props.clubData.email || '';
-      form.phone = props.clubData.phone === 'N/A' ? '' : (props.clubData.phone || '');
+      form.phone = ((props.clubData.phone === 'N/A') ? '' : (props.clubData.phone || ''));
       form.website = props.clubData.website || '';
-      form.status = props.clubData.status || 'Active';
+      form.status = props.clubData.status || true;
       form.image = props.clubData.image || null;
       form.status = props.clubData.status;
 
@@ -152,22 +151,29 @@
 
   <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
 
-    <div class="h-full overflow-y-scroll bg-white shadow-xl rounded-2xl w-220">
+    <div class="max-h-[95vh] overflow-y-auto bg-white shadow-xl rounded-2xl w-220">
 
       <div class="flex items-center justify-between px-8 py-5">
 
-        <h2 v-if="(props.mode === 'create')" class="mt-2 ml-5 text-4xl font-semibold">Club Information</h2>
+        <div class="flex flex-col">
 
-        <h2 v-if="(props.mode === 'view')" class="mt-2 ml-5 text-4xl font-semibold"> {{ props.clubData.name }} </h2>
+          <h2 v-if="(props.mode === 'create')" class="mt-2 ml-5 text-4xl font-semibold">Club {{ $t('table.information') }}</h2>
 
-        <h2 v-if="(props.mode === 'edit')" class="mt-2 ml-5 text-4xl font-semibold"> {{ props.clubData.name }} <span class="text-[20px]">( Edit )</span></h2>
+          <h2 v-if="(props.mode === 'view')" class="mt-2 ml-5 text-4xl font-semibold"> {{ props.clubData.name }} </h2>
 
+          <h2 v-if="(props.mode === 'edit')" class="mt-2 ml-5 text-4xl font-semibold"> {{ props.clubData.name }} <span class="text-[20px]">( {{ $t('table.edit') }} )</span></h2>
 
-        <button v-if="props.mode === 'view'" class="absolute cursor-pointer top-21 right-100" @click="$emit('edit', props.clubObject)">
+        </div>
 
-          <img :src="editIcon" class="w-6 h-6 opacity-50" />
+        <div class="flex items-center gap-4">
 
-        </button>
+          <button v-if="props.mode === 'view'" class="absolute cursor-pointer top-21 right-100" @click="$emit('edit', props.clubObject)">
+
+            <img :src="editIcon" class="w-6 h-6 opacity-50" />
+
+          </button>
+
+        </div>
 
         <button @click="$emit('close')" class="text-2xl text-gray-400 cursor-pointer hover:text-gray-600">
 
@@ -189,45 +195,53 @@
 
         <div class="grid grid-cols-2 gap-6">
 
-          <ClubInputs v-if="props.mode === 'create' || props.mode === 'edit'" v-model:inputData="form.clubName" inputLabel="Club Name" inputPlaceholder="Club Name" :icon="clubsIcon" mustFill hasAsterisk validationMessage="Club/Association name is required" :mode="props.mode" />
+          <ClubInputs v-if="props.mode === 'create' || props.mode === 'edit'" v-model:inputData="form.clubName" :inputLabel="'Club ' + $t('table.name')" :inputPlaceholder="'Club ' + $t('table.name')" :icon="clubsIcon" mustFill hasAsterisk :validationMessage="'Club/' + $t('modalField.association') + ' ' + $t('modalField.error')" :mode="props.mode" />
 
-          <ClubInputs v-model:inputData="form.email" type="email" inputLabel="Email" inputPlaceholder="info@youmai.com" :icon="emailIcon" :mode="props.mode" />
+          <ClubInputs v-model:inputData="form.email" type="email" :inputLabel="$t('table.email')" inputPlaceholder="info@youmai.com" :icon="emailIcon" :mode="props.mode" />
 
-          <ClubInputs v-model:inputData="form.phone" type="phone" inputLabel="Phone" inputPlaceholder="Enter phone number" :icon="phoneIcon" :mode="props.mode" />
+          <ClubInputs v-model:inputData="form.phone" type="phone" :inputLabel="$t('table.phone')" :inputPlaceholder="$t('modalField.address')" :icon="phoneIcon" :mode="props.mode" />
 
           <ClubInputs v-model:inputData="form.website" inputLabel="Website" inputPlaceholder="www.club.com" :icon="globeIcon" :mode="props.mode" />
 
           <ClubInputs inputLabel="School" inputPlaceholder="Royal Dutch Tennis" :icon="buildingIcon" isDropDown isDisabled :mode="props.mode" />
 
-          <ClubInputs inputLabel="Address line" inputPlaceholder="Enter address" :icon="locationIcon" :mode="props.mode" />
+          <ClubInputs :inputLabel="$t('table.address')" :inputPlaceholder="$t('modalField.address')" :icon="locationIcon" :mode="props.mode" />
 
         </div>
 
         <div class="mt-8 mb-4">
 
-          <h3 class="inline text-2xl font-semibold">Primary Contact Person</h3>
+          <h3 class="inline text-2xl font-semibold">
 
-          <span class="ml-1 text-xs text-orange-500">Optional</span>
+          {{ $t('table.primaryContact') }}
+
+          </h3>
+
+          <span class="ml-1 text-xs text-orange-500">
+            
+            {{ $t('table.optional')}}
+          
+          </span>
 
         </div>
 
         <div class="grid grid-cols-2 gap-6">
 
-          <ClubInputs inputLabel="First Name" inputPlaceholder="First name" :icon="personIcon" :mode="props.mode" />
+          <ClubInputs :inputLabel="$t('table.fName')" :inputPlaceholder="$t('table.fName')" :icon="personIcon" :mode="props.mode" />
 
-          <ClubInputs inputLabel="Last Name" inputPlaceholder="Last name" :icon="personIcon" :mode="props.mode" />
+          <ClubInputs :inputLabel="$t('table.fName')" :inputPlaceholder="$t('table.fName')" :icon="personIcon" :mode="props.mode" />
 
-          <ClubInputs type="phone" inputLabel="Phone" inputPlaceholder="Enter phone number" :icon="phoneIcon" :mode="props.mode"  />
+          <ClubInputs type="phone" :inputLabel="$t('table.phone')" :inputPlaceholder="$t('modalField.phone')" :icon="phoneIcon" :mode="props.mode"  />
 
-          <ClubInputs type="email" inputLabel="Email" inputPlaceholder="info@emai.com" :icon="emailIcon" :mode="props.mode" />
+          <ClubInputs type="email" :inputLabel="$t('table.email')" inputPlaceholder="info@youmai.com" :icon="emailIcon" :mode="props.mode" />
 
         </div>
 
-        <div v-if="props.mode !== 'view'" class="flex mt-10">
+        <div v-if="(props.mode !== 'view')" class="flex mt-10">
 
-          <FormButtons @cancel="$emit('close')" cancel />
+          <FormButtons @click="$emit('close')" white />
 
-          <FormButtons @save="handleSave" save />
+          <FormButtons :text="((props.mode === 'edit') ? $t('table.update') : $t('table.save') )" orange />
 
         </div>
 

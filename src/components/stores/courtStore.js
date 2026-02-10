@@ -1,5 +1,8 @@
-import { defineStore } from 'pinia'
-import courtPfp from '/src/assets/courtPfp.jpg'
+import { defineStore } from 'pinia';
+// import { useI18n } from 'vue-i18n';
+import courtPfp from '/src/assets/courtPfp.jpg';
+
+// const { t } = useI18n()
 
 export const useCourtStore = defineStore('courtStore', {
 
@@ -14,6 +17,8 @@ export const useCourtStore = defineStore('courtStore', {
         name: 'Centre Court Amsterdam',
         type: 'Hard',
         environment: 'Indoor',
+        // type: t('court.hard'),
+        // environment: t('court.indoor'),
         school: 'Royal Dutch Tennis',
         club: 'Netherlands Tennis Club',
         status: true,

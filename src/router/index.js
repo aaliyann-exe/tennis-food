@@ -1,30 +1,35 @@
 import { createWebHistory, createRouter } from 'vue-router';
 
 import LoginPage from '/src/components/login/templates/LoginPage.vue';
-import ClubsTemplate from '/src/components/clubspage/templates/ClubsTemplate.vue';
-import DashboardPage from '/src/components/otherpages/DashboardPage.vue';
-import TrainersPage from '/src/components/trainerpage/templates/TrainersPage.vue';
+// import DashboardPage from '/src/components/dashboardpage/DashboardPage.vue';
+import ClubsPage from '/src/components/clubspage/templates/ClubsPage.vue';
+import TrainersPage from '/src/components/trainerspage/templates/TrainersPage.vue';
 import PlayersPage from '/src/components/playerspage/templates/PlayersPage.vue';
 import HashtagsPage from '/src/components/hashtagspage/templates/HashtagsPage.vue';
 import CourtsPage from '/src/components/courtspage/templates/CourtsPage.vue';
 import TrainingsPage from '/src/components/trainingspage/templates/TrainingsPage.vue';
-import ProfilePage from '/src/components/signoutpage/templates/ProfilePage.vue';
+import ProfilePage from '/src/components/profilepage/templates/ProfilePage.vue';
 
 const routes = [
-    
+
     {
         path: '/',
         component: LoginPage,
     },
-
+    
     {
-        path: '/dashboard',
-        component: DashboardPage,
+        path: '/login',
+        component: LoginPage,
     },
+
+    // {
+    //     path: '/dashboard',
+    //     component: DashboardPage,
+    // },
     
     {
         path: '/clubs',
-        component: ClubsTemplate,
+        component: ClubsPage,
     },
 
     {
@@ -55,7 +60,7 @@ const routes = [
     {
         path: '/profile',
         component: ProfilePage,
-    }
+    },
 
 ];
 

@@ -4,15 +4,20 @@
 
     defineProps({
 
-        cancel: {
+        white: {
             type: Boolean,
             required: false,
         },
 
-        save: {
+        orange: {
             type: Boolean,
             required: false,
         },
+
+        text: {
+            type: String,
+            required: false,
+        }
 
     });
 
@@ -20,15 +25,15 @@
 
 <template>
 
-    <button v-if="cancel" @click="$emit('cancel')" type="button" class="w-42 inline-block mr-2 py-3 px-1 border border-primary text-primary rounded-lg font-medium hover:bg-gray-50 cursor-pointer">
+    <button v-if="white" @click="$emit('click')" type="button" class="w-42 inline-block mr-2 py-3 px-1 border border-primary text-primary rounded-lg font-medium hover:bg-gray-50 cursor-pointer">
             
-        Cancel
+        {{ text || $t('table.cancel') }}
 
     </button>
 
-    <button v-if="save" type="submit" class="w-42 inline-block ml-2 py-3 px-4 bg-primary text-secondary rounded-lg font-medium hover:bg-orange-600 cursor-pointer">
+    <button v-if="orange" type="submit" class="w-42 inline-block ml-2 py-3 px-4 bg-primary text-secondary rounded-lg font-medium hover:bg-orange-600 cursor-pointer">
             
-        Save
+        {{ text || $t('table.save') }}
 
     </button>
 

@@ -2,6 +2,7 @@
 
   import { ref, reactive, onMounted, watch } from 'vue';
   import { useCourtStore } from '/src/components/stores/courtStore';
+  import { useI18n } from 'vue-i18n';
 
   import clubsIcon from '/src/assets/clubsIcon.svg';
   import crossIcon from '/src/assets/crossIcon.svg';
@@ -33,6 +34,8 @@
   });
 
   const courtStore = useCourtStore();
+
+  const { t } = useI18n();
 
   onMounted(() => {
 
@@ -134,7 +137,7 @@
 
   };
 
-  const types = ['Hard', 'Clay', 'Grass', 'Synthetic', 'Other'];
+  const types = [t('court.hard'), t('court.clay'), t('court.grass'), t('court.synthetic'), t('court.other')];
   const environments = ['Indoor', 'Outdoor'];
   const schools = ['Royal Dutch Tennis'];
   const clubs = ['Netherlands Tennis Club', 'Ace Tennis Club School', 'Ace Tennis Club 2', 'New Club 37'];
@@ -145,21 +148,30 @@
 
   <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
 
-    <div class="h-max bg-white shadow-xl rounded-2xl w-220">
+    <div class="max-h-[95vh] overflow-y-auto bg-white shadow-xl rounded-2xl w-220">
 
       <div class="flex items-center justify-between py-5">
+        
+        <div class="flex flex-col">
 
-        <h2 v-if="(props.mode === 'create')" class="mt-2 ml-10 text-4xl font-semibold">Court Information</h2>
 
-        <h2 v-if="(props.mode === 'view')" class="mt-2 ml-10 text-4xl font-semibold">{{ props.courtData.name}}</h2>
+          <h2 v-if="(props.mode === 'create')" class="mt-2 ml-10 text-4xl font-semibold">{{ $t('court.court') + ' ' + $t('table.information') }}</h2>
 
-        <h2 v-if="(props.mode === 'edit')" class="mt-2 ml-10 text-4xl font-semibold">{{ props.courtData.name}} <span class="text-[20px]"> ( Edit )</span></h2>
+          <h2 v-if="(props.mode === 'view')" class="mt-2 ml-10 text-4xl font-semibold">{{ props.courtData.name}}</h2>
 
-        <button v-if="props.mode === 'view'" class="relative cursor-pointer left-40" @click="$emit('edit', props.courtObject)">
+          <h2 v-if="(props.mode === 'edit')" class="mt-2 ml-10 text-4xl font-semibold">{{ props.courtData.name}} <span class="text-[20px]"> ( {{ $t('table.edit') }} )</span></h2>
 
-          <img :src="editIcon" class="w-6 h-6 opacity-50" />
+        </div>
+
+        <div class="flex items-center gap-4">
+
+          <button v-if="props.mode === 'view'" class="relative cursor-pointer left-40" @click="$emit('edit', props.courtObject)">
+
+            <img :src="editIcon" class="w-6 h-6 opacity-50" />
 
         </button>
+
+        </div>
 
         <button @click="$emit('close')" class="text-2xl text-gray-400 relative right-6 cursor-pointer hover:text-gray-600">
 
@@ -181,23 +193,23 @@
 
         <div class="grid grid-cols-2">
 
-          <CourtInputs v-model:inputData="form.name" inputLabel="Name" inputPlaceholder="Name" mustFill hasAsterisk validationMessage="Court name is required" :mode="props.mode" />
+          <CourtInputs v-model:inputData="form.name" :inputLabel="$t('table.name')" :inputPlaceholder="$t('table.name')" mustFill hasAsterisk :validationMessage="$t('court.court') + ' ' + $t('table.name') + ' ' + $t('modalField.error')" :mode="props.mode" />
 
-          <CourtInputs v-model:inputData="form.type" inputLabel="Type" inputPlaceholder="Type" mustFill hasAsterisk validationMessage="Court type is required" isDropDown :options="types" :mode="props.mode" />
+          <CourtInputs v-model:inputData="form.type" inputLabel="Type" inputPlaceholder="Type" mustFill hasAsterisk :validationMessage="$t('court.court') + ' ' + 'type' + ' ' + 'modalField.error'" isDropDown :options="types" :mode="props.mode" />
 
-          <CourtInputs v-model:inputData="form.environment" type="environment" inputLabel="Environment" inputPlaceholder="Select court environment" mustFill  hasAsterisk :isDisabled="(props.mode === 'view')" validationMessage="Court environment is required" isDropDown :options="environments" :mode="props.mode" />
+          <CourtInputs v-model:inputData="form.environment" type="environment" :inputLabel="$t('court.environment')" :inputPlaceholder="$t('modalField.select') + ' ' + $t('court.court').toLowerCase() + ' ' + $t('court.environment').toLowerCase()" mustFill  hasAsterisk :isDisabled="(props.mode === 'view')" validationMessage="Court environment is required" isDropDown :options="environments" :mode="props.mode" />
           
           <CourtInputs v-model:inputData="form.school" type="school" inputLabel="School" inputPlaceholder="Enter school number" :icon="cityIcon" isDisabled isDropDown :options="schools" :mode="props.mode" />
           
-          <CourtInputs v-model:inputData="form.club" inputLabel="Club" inputPlaceholder="Select Club" :icon="clubsIcon" mustFill hasAsterisk isDropDown :options="clubs" :mode="props.mode" />
+          <CourtInputs v-model:inputData="form.club" inputLabel="Club" :inputPlaceholder="$t('modalField.select') + ' Club'" :icon="clubsIcon" mustFill hasAsterisk isDropDown :options="clubs" :mode="props.mode" />
 
         </div>
 
-        <div v-if="props.mode !== 'view'" class="flex mt-10">
+        <div v-if="(props.mode !== 'view')" class="flex mt-10">
 
-          <FormButtons @cancel="$emit('close')" cancel />
+          <FormButtons @click="$emit('close')" white />
 
-          <FormButtons @save="handleSave" save />
+          <FormButtons :text="((props.mode === 'edit') ? $t('table.update') : $t('table.save') )" orange />
 
         </div>
 

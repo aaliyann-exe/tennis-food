@@ -10,7 +10,11 @@
     
     <div class="flex items-center gap-3 text-sm">
 
-      <span class="text-gray-500">Items per page:</span>
+      <span class="text-gray-500">
+        
+        {{ 'Items per ' + $t('tab.page') }}
+      
+      </span>
       
       <div class="relative cursor-pointer group">
 

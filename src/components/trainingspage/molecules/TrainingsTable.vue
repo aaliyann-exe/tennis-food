@@ -3,6 +3,7 @@
   import viewIcon from '/src/assets/viewIcon.png';
   import editIcon from '/src/assets/editIcon.svg';
   import activateIcon from '/src/assets/activateIcon.svg';
+  import deactivateIcon from '/src/assets/deactivateIcon.svg';
 
   const props = defineProps({
 
@@ -128,7 +129,7 @@
 
                 <button class="cursor-pointer" @click="handleToggleStatus(trainer)" :title="(trainer.status ? 'Deactivate': 'Activate')">
 
-                  <img :src="activateIcon" class="w-5 h-5" />
+                  <img :src="(training.status ? deactivateIcon : activateIcon)" :class="(training.status ? 'opacity-100 ' : '') + 'w-5 h-5'" />
 
                 </button>
 

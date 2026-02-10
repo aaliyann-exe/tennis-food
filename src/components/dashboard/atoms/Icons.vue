@@ -7,12 +7,18 @@
 
         icon: {
             type: String,
-            required: true,
+            required: false,
         },
 
         text: {
             type: String,
             required: true,
+        },
+
+        path: {
+            type: String,
+            required: true,
+            default: '',
         },
 
         selected: {
@@ -24,10 +30,16 @@
 
     const route = useRoute();
 
+    const pagePath = computed(() => {
+
+        const key = props.path; 
+        return ('/' + key);
+        
+    });
+
     const isActive = computed(() => {
 
-        const path = '/' + props.text.toLowerCase();
-        return (route.path === path);
+        return (route.path === pagePath.value);
 
     });
 
@@ -39,7 +51,7 @@
         
         <div v-if="isActive || selected" class="text-primary text-[54px] font-extralight leading-none absolute left-5">[</div>
 
-        <router-link :to="'/' + text.toLowerCase()" class="no-underline">
+        <router-link :to="pagePath" class="no-underline">
 
             <div :class="(isActive ? 'bg-primary-outline ' : '') + 'py-3 px-2 ml-8 w-60 rounded-lg text-sm font-normal transition-colors hover:bg-primary-outline hover:text-primary cursor-pointer'">
 

@@ -10,7 +10,7 @@
     
             <h1 class="text-2xl font-semibold">
                 
-                No Data Found
+                {{ $t('tab.noDataFound') }}
 
             </h1>
     

@@ -2,6 +2,7 @@
 
     import { ref, computed } from 'vue';
     import { useClubStore } from '/src/components/stores/clubStore';
+
     import plusIcon from '/src/assets/plusIcon.svg';
 
     import ClubsTable from '/src/components/clubspage/molecules/ClubsTable.vue';

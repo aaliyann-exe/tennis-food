@@ -3,6 +3,7 @@
   import viewIcon from '/src/assets/viewIcon.png';
   import editIcon from '/src/assets/editIcon.svg';
   import activateIcon from '/src/assets/activateIcon.svg';
+  import deactivateIcon from '/src/assets/deactivateIcon.svg';
 
   const props = defineProps({
 
@@ -32,31 +33,51 @@
 
     <div class="overflow-hidden bg-secondary border border-gray-200 rounded-xl min-h-[75vh]">
 
-      <table class="w-full text-left border-collapse">
+      <table class="w-full text-left border-collapse table-fixed">
 
         <thead>
 
           <tr class="text-lg tracking-wider uppercase border-b border-gray-200 font-extralight bg-other">
             
-            <th class="flex items-center gap-1 px-6 py-4">
+            <th class="px-6 py-4 w-[35%]">
 
-              <span class="flex flex-col text-[10px] leading-1">
+              <div class="flex items-center gap-2">
 
-                <button class="hover:bg-[#ffd4c7] rounded-2xl p-1 cursor-pointer"><span>▲</span></button>
+                <span class="flex flex-col text-[10px] leading-tight shrink-0">
 
-                <button class="hover:bg-[#ffd4c7] rounded-2xl p-1 cursor-po"><span class="opacity-20">▼</span></button>
+                  <button class="hover:bg-[#ffd4c7] rounded-full p-0.5 cursor-pointer"><span>▲</span></button>
 
-              </span>
+                  <button class="hover:bg-[#ffd4c7] rounded-full p-0.5 cursor-pointer"><span class="opacity-20">▼</span></button>
 
-              CLUB NAME
+                </span>
+
+                <span>
+
+                  Club {{ $t('table.name') }}
+
+                </span>
+
+              </div>
 
             </th>
 
-            <th class="px-6 py-4">PHONE</th>
+            <th class="px-6 py-4 w-[25%]">
 
-            <th class="px-6 py-4"><span class="relative left-50">STATUS</span></th>
+              {{ $t('table.phone') }}
 
-            <th class="px-6 py-4 text-right">ACTIONS</th>
+            </th>
+
+            <th class="px-6 py-4 text-center w-[20%]">
+
+              {{ $t('table.status') }}
+
+            </th>
+
+            <th class="px-6 py-4 text-right w-[20%]">
+              
+              {{ $t('table.actions') }}
+
+            </th>
             
           </tr>
 
@@ -70,23 +91,31 @@
 
               <div class="flex items-center gap-4">
 
-                <div v-if="club.image" class="w-10 h-10 overflow-hidden rounded-full">
+                <div v-if="club.image" class="shrink-0 w-10 h-10 overflow-hidden rounded-full">
 
                    <img :src="club.image" alt="Club logo" class="object-cover w-full h-full" />
 
                 </div>
 
-                <div v-else class="flex items-center justify-center w-10 h-10 text-sm font-bold rounded-full text-secondary bg-primary">
+                <div v-else class="flex shrink-0 items-center justify-center w-10 h-10 text-sm font-bold rounded-full text-secondary bg-primary">
 
                   {{ club.initials }}
 
                 </div> 
 
-                <div class="flex flex-col">
+                <div class="flex flex-col min-w-0">
 
-                  <span class="text-sm font-medium">{{ club.name }}</span>
+                  <span class="text-sm font-medium truncate">
+                    
+                    {{ club.name }}
+                  
+                  </span>
 
-                  <span class="text-xs truncate text-primary max-w-50">{{ club.email }}</span>
+                  <span class="text-xs truncate text-primary">
+                    
+                    {{ club.email }}
+                  
+                  </span>
 
                 </div>
 
@@ -94,18 +123,25 @@
 
             </td>
 
-            <td class="px-6 py-4 text-sm font-medium">
+
+            <td class="px-6 py-4 text-sm font-medium truncate">
+
               {{ club.phone }}
+
             </td>
 
-            <td class="px-6 py-4">
+            <td class="px-6 py-4 text-center">
 
-              <span v-if="club.status" class="relative px-6 py-1 text-xs font-medium border rounded-full left-50 text-active-dark bg-active border-active-dark">
-                Active
+              <span v-if="club.status" class="inline-block w-24 py-1 text-xs font-medium border rounded-full text-active-dark bg-active border-active-dark">
+
+                {{ $t('table.active') }}
+
               </span>
 
-              <span v-else class="relative px-6 py-1 text-xs font-medium border rounded-full left-40 text-inactive-dark bg-inactive border-inactive-dark">
-                Inactive
+              <span v-else class="inline-block w-24 py-1 text-xs font-medium border rounded-full text-inactive-dark bg-inactive border-inactive-dark">
+
+                {{ $t('table.inactive') }}
+
               </span>
 
             </td>
@@ -114,30 +150,29 @@
 
               <div class="flex items-center justify-end gap-3 opacity-50">
 
-                <button class="cursor-pointer" @click="$emit('view', club)" title="View">
+                <button class="cursor-pointer" @click="$emit('view', club)" :title="$t('table.view')">
 
                   <img :src="viewIcon" class="w-5 h-5" />
 
                 </button>
 
-                <button class="cursor-pointer" @click="$emit('edit', club)" title="Edit">
+                <button class="cursor-pointer" @click="$emit('edit', club)" :title="$t('table.edit')">
 
                   <img :src="editIcon" class="w-5 h-5" />
 
                 </button>
 
-                <button class="cursor-pointer" @click="handleToggleStatus(club)" :title="(club.status ? 'Deactivate': 'Activate')">
+                <button class="cursor-pointer" @click="handleToggleStatus(club)" :title="(club.status ? $t('table.activate') : $t('table.deactivate'))">
 
-                  <img :src="activateIcon" class="w-5 h-5" />
+                  <img :src="(club.status ? deactivateIcon : activateIcon)" :class="(club.status ? 'opacity-100 ' : '') + 'w-5 h-5'" />
 
                 </button>
 
               </div>
-              
+
             </td>
 
           </tr>
-          
 
         </tbody>
 

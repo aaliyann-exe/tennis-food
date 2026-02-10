@@ -1,13 +1,18 @@
 <script setup>
+
     import Dashboard from '/src/components/dashboard/templates/Dashboard.vue';
-    import Profile from '/src/components/signoutpage/organisms/Profile.vue';
+    import Clubs from '/src/components/clubspage/organisms/Clubs.vue';
+
 </script>
 
 <template>
+
     <div class="flex">
+        
         <Dashboard />
-        <div class="w-full">
-             <Profile />
-        </div>
+
+        <Clubs />
+
     </div>
+
 </template>

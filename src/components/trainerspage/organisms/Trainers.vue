@@ -2,16 +2,15 @@
 
     import { ref, computed } from 'vue';
     import { useTrainerStore } from '/src/components/stores/trainerStore';
-    import plusIcon from '/src/assets/plusIcon.svg';
 
     import TrainersTable from '../molecules/TrainersTable.vue';
     import TrainerInformation from '../molecules/TrainerInformation.vue';
     import TrainersFooter from '../atoms/TrainersFooter.vue';
-    import SearchBar from '../atoms/SearchBar.vue';
-    import ImportIcon from '../atoms/ImportIcon.vue';
+
     import Tabs from '../molecules/Tabs.vue';
-    import ArchivedTab from '../atoms/ArchivedTab.vue';
+    import NoDataTab from '../atoms/NoDataTab.vue';
     import EmptyTab from '../atoms/EmptyTab.vue';
+    import Header from '/src/components/header/molecules/Header.vue';
 
     const trainerStore = useTrainerStore();
     const trainerModalVisible = ref(false);
@@ -20,7 +19,7 @@
     const isArchivedTab = ref(false);
     const activeTrainers = computed( () => trainerStore.trainers.filter(trainer => trainer.status === true) );
     const archivedTrainers = computed( () => trainerStore.trainers.filter(trainer => trainer.status === false) );
-    const hasTrainers = computed(() => trainerStore.trainers.length > 0);
+    const hasTrainers = computed( () => trainerStore.trainers.length > 0 );
 
     const toggleModal = () => {
 
@@ -34,7 +33,7 @@
 
     };
 
-    const handleSaveTrainer = (trainerData) => {
+    const handleSaveTrainer = () => {
 
         trainerModalVisible.value = false;
 
@@ -82,24 +81,10 @@
 <template>
 
     <div class="w-full bg-other flexbox">
+        
+        <Header :text="$t('dashboard.trainers')" @create="createTrainer" />
 
-         <div class="flex mt-20">
-
-                <h1 class="ml-4 text-4xl font-semibold align-left">Trainers</h1>
-
-                <SearchBar />
-
-                <ImportIcon />
-
-                <button @click="createTrainer" class="flex items-center justify-center w-12 h-12 ml-5 rounded-full cursor-pointer bg-primary hover:bg-primary-active">
-                    
-                    <img :src="plusIcon" class="w-5 h-5 invert">
-
-                </button>
-
-            </div>
-
-            <Tabs v-model:show-archived="isArchivedTab" />
+        <Tabs v-model:show-archived="isArchivedTab" />
         
         <div v-if="!hasTrainers" class="items-center justify-center min-h-screen">
 
@@ -109,35 +94,31 @@
 
         <div v-else>
 
-            <div v-if="!hasTrainers" class="items-center justify-center min-h-screen">
+            <div v-if="!isArchivedTab">
+                
+                <div v-if="(activeTrainers.length > 0)">
 
-                <EmptyTab @add-trainer="createTrainer" />
+                    <TrainersTable :trainers="activeTrainers" @view="viewTrainer" @edit="editTrainer" @toggle-status="toggleTrainerStatus" />
+                
+                    <TrainersFooter />
+
+                </div>
+                
+                <NoDataTab v-else />
 
             </div>
 
             <div v-else>
 
-                <div v-if="!isArchivedTab">
+                <div v-if="(archivedTrainers.length > 0)">
 
-                    <TrainersTable :trainers="activeTrainers" @view="viewTrainer" @edit="editTrainer" @toggle-status="toggleTrainerStatus" />
+                    <TrainersTable :trainers="archivedTrainers" @view="viewTrainer" @edit="editTrainer" @toggle-status="toggleTrainerStatus" />
                     
                     <TrainersFooter />
 
                 </div>
 
-                <div v-else>
-
-                    <div v-if="archivedTrainers.length > 0">
-
-                        <TrainersTable :trainers="archivedTrainers" @view="viewTrainer" @edit="editTrainer" @toggle-status="toggleTrainerStatus" />
-                        
-                        <TrainersFooter />
-
-                    </div>
-
-                    <ArchivedTab v-else />
-
-                </div>
+                <NoDataTab v-else />
 
             </div>
 

@@ -192,29 +192,29 @@
 
         <div>
 
-          <TrainingInputs v-model:inputData="form.address" inputLabel="Address line" inputPlaceholder="Enter address" :icon="locationIcon" :mode="props.mode" />
+          <TrainingInputs v-model:inputData="form.address" :inputLabel="$t('table.address')" :inputPlaceholder="$t('modalField.address')" :icon="locationIcon" :mode="props.mode" />
 
         </div>
 
         <div class="grid grid-cols-2">
 
-          <TrainingInputs v-model:inputData="form.city" inputLabel="City" inputPlaceholder="Select City" :icon="cityIcon" isDropDown :options="cities" :mode="props.mode" />
+          <TrainingInputs v-model:inputData="form.city" :inputLabel="$t('table.city')" :inputPlaceholder="$t('modalField.select') + ' ' + $t('table.city')" :icon="cityIcon" isDropDown :options="cities" :mode="props.mode" />
 
-          <TrainingInputs v-model:inputData="form.zipCode" type="zipCode" inputLabel="Zip Code" inputPlaceholder="Enter zip code" :icon="locationIcon" :mode="mode" />
+          <TrainingInputs v-model:inputData="form.zipCode" type="zipCode" :inputLabel="$t('table.zipCode')" :inputPlaceholder="$t('modalField.address')" :icon="locationIcon" :mode="mode" />
 
-          <TrainingInputs v-model:inputData="form.school" inputLabel="School" inputPlaceholder="Select School" :icon="buildingIcon" isDisabled isDropDown :options="schools" hasAsterisk mustFill :mode="props.mode" />
+          <TrainingInputs v-model:inputData="form.school" inputLabel="School" :inputPlaceholder="$t('modalField.select') + ' ' + 'School'" :icon="buildingIcon" isDisabled isDropDown :options="schools" hasAsterisk mustFill :mode="props.mode" />
           
-          <TrainingInputs v-model:input-data="form.club" inputLabel="Club" inputPlaceholder="Select Club" :icon="clubsIcon" isDropDown :options="clubs" hasAsterisk mustFill :mode="props.mode" />
+          <TrainingInputs v-model:input-data="form.club" inputLabel="Club" :inputPlaceholder="$t('modalField.select') + ' ' + 'Club'" :icon="clubsIcon" isDropDown :options="clubs" hasAsterisk mustFill :mode="props.mode" />
         
         </div>
 
-        <div v-if="props.mode !== 'view'" class="flex mt-10">
+          <div v-if="(props.mode !== 'view')" class="flex mt-10">
 
-          <FormButtons @cancel="$emit('close')" cancel />
+            <FormButtons @cancel="$emit('close')" white />
 
-          <FormButtons @save="handleSave" save />
+            <FormButtons @save="handleSave" :text="((props.mode === 'edit') ? $t('table.update') : $t('table.save') )" orange />
 
-        </div>
+          </div>
 
       </form>
 

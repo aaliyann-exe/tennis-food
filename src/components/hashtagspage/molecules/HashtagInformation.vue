@@ -131,13 +131,13 @@
         
         </div>
 
-        <div v-if="props.mode !== 'view'" class="flex mt-10">
+          <div v-if="(props.mode !== 'view')" class="flex mt-10">
 
-          <FormButtons @cancel="$emit('close')" cancel />
+            <FormButtons @cancel="$emit('close')" white />
 
-          <FormButtons @save="handleSave" save />
+            <FormButtons @save="handleSave" :text="((props.mode === 'edit') ? $t('table.update') : $t('table.save') )" orange />
 
-        </div>
+          </div>
 
       </form>
 

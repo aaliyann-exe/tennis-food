@@ -24,7 +24,7 @@
 
             <button @click="toggleTabs('active')" class="cursor-pointer">
                     
-                                <h1 class="text-primary px-4 py-2 mr-4 border-b-2 border-primary">
+                <h1 class="text-primary px-4 py-2 mr-4 border-b-2 border-primary">
                     
                     {{ $t('tab.active') }}
                 
@@ -38,7 +38,8 @@
 
                     {{ $t('tab.archived') }}
 
-                </h1>                
+                </h1>
+                
             </button>
 
         </div>
@@ -57,10 +58,10 @@
                 
             <button @click="toggleTabs('archived')" class="cursor-pointer">
 
-                <h1 class="text-gray-500 px-4 py-2 mr-4 hover:text-gray-600 hover:border-b-2 hover:border-gray-300">
+                <h1 class="text-primary px-4 py-2 border-b-2 border-primary">
                     
-                    {{ $t('tab.active') }}
-
+                    {{ $t('tab.archived') }}
+                
                 </h1>
                 
             </button>

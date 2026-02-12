@@ -12,7 +12,7 @@
     
             <h1 class="text-2xl font-semibold">
                 
-                No trainers found
+                {{ $t('tab.noTrainers') }}
 
             </h1>
 
@@ -20,7 +20,7 @@
 
                 <button @click="$emit('add-trainer')" class="text-primary bg-secondary border border-primary px-6 py-3 rounded-full text-sm cursor-pointer hover:bg-primary hover:text-white">
 
-                    Add Trainer
+                    {{ $t('tab.addTrainer') }}
 
                 </button>
 

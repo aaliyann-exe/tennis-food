@@ -4,7 +4,7 @@ export const useTrainerStore = defineStore('trainerStore', {
 
   state: () => ({
 
-    trainers: [],
+    trainers: [], 
 
   }),
 
@@ -18,7 +18,7 @@ export const useTrainerStore = defineStore('trainerStore', {
 
     updateTrainer(updatedTrainer) {
 
-      const index = this.trainers.findIndex(c => c.id === updatedTrainer.id);
+      const index = this.trainers.findIndex(t => t.id === updatedTrainer.id);
       
       if (index !== -1) {
 

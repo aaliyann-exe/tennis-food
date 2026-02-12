@@ -16,7 +16,6 @@ export const useClubStore = defineStore('clubStore', {
         initials: 'TF',
         status: true,
 
-
       },
 
       {
@@ -27,7 +26,6 @@ export const useClubStore = defineStore('clubStore', {
         phone: 'N/A',
         initials: 'TF',
         status: true,
-
 
       },
 

@@ -131,7 +131,7 @@
 
         </div>
 
-        <div v-else :class="(hasError ? 'border-red-500 ' : 'border-gray-200 focus-within:border-blue-500 ') + (isReadOnly ? 'bg-gray-50 border-gray-200 border p-2.5 cursor-not-allowed ' : 'bg-white border rounded-lg p-2.5 ') + 'w-full flex items-center rounded-lg py-3'">
+        <div v-else :class="(hasError ? 'border-red-500 ' : 'border-gray-200 focus-within:border-primary border') + (isReadOnly ? 'bg-gray-50 border-gray-200 border p-2.5 cursor-not-allowed ' : 'bg-white border rounded-lg p-2.5 ') + 'w-full flex items-center rounded-lg py-3'">
 
             <img :src="icon" class="w-5 h-5 mr-4 ml-3 opacity-40" />
             

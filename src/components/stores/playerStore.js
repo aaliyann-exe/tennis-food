@@ -6,7 +6,7 @@ export const usePlayerStore = defineStore('playerStore', {
   state: () => ({
 
     players: [
-
+      
       {
 
         id: 1,
@@ -25,7 +25,7 @@ export const usePlayerStore = defineStore('playerStore', {
         level: 'National (level 3)',
         status: true,
 
-        },
+      },
 
     ],
 
@@ -41,7 +41,7 @@ export const usePlayerStore = defineStore('playerStore', {
 
     updatePlayer(updatedPlayer) {
 
-      const index = this.players.findIndex(c => c.id === updatedPlayer.id);
+      const index = this.players.findIndex(p => p.id === updatedPlayer.id);
       
       if (index !== -1) {
 
@@ -49,7 +49,7 @@ export const usePlayerStore = defineStore('playerStore', {
 
       } else {
 
-        console.error("Player id not found ", updatedPlayer);
+        console.error("Could not save: Player ID not found", updatedPlayer);
 
       }
 

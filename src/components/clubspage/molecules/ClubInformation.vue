@@ -1,6 +1,6 @@
 <script setup>
 
-  import { ref, reactive, onMounted, watch } from 'vue';
+  import { reactive,  watch } from 'vue';
   import { useClubStore } from '/src/components/stores/clubStore';
 
   import clubsIcon from '/src/assets/clubsIcon.svg';
@@ -39,16 +39,6 @@
 
   const clubStore = useClubStore();
 
-  onMounted(() => {
-
-    if (props.mode === 'edit' || props.mode === 'view') {
-
-    Object.assign(form, props.clubData);
-
-    }
-
-  });
-
   const getInitials = (name) => {
 
     if (!name)
@@ -58,8 +48,6 @@
       return name.split('').map(word => word[0]).join('').toUpperCase().slice(0, 2);
     
   };
-
-  const imagePreview = ref(null);
 
   const form = reactive({
 
@@ -131,14 +119,18 @@
       website: form.website,
       initials: getInitials(form.clubName),
       image: form.image,
-      status: true,
+      status: form.status,
 
     };
 
     if (props.mode === 'create') {
+
       clubStore.addClub(clubObject);
+
     } else if(props.mode === 'edit') {
+
       clubStore.updateClub(clubObject);
+
     }
 
     emit('save', clubObject);
@@ -167,7 +159,7 @@
 
         <div class="flex items-center gap-4">
 
-          <button v-if="props.mode === 'view'" class="absolute cursor-pointer top-21 right-100" @click="$emit('edit', props.clubObject)">
+          <button v-if="(props.mode === 'view')" class="absolute cursor-pointer top-21 right-100" @click="$emit('edit', props.clubData)">
 
             <img :src="editIcon" class="w-6 h-6 opacity-50" />
 
@@ -195,7 +187,7 @@
 
         <div class="grid grid-cols-2 gap-6">
 
-          <ClubInputs v-if="props.mode === 'create' || props.mode === 'edit'" v-model:inputData="form.clubName" :inputLabel="'Club ' + $t('table.name')" :inputPlaceholder="'Club ' + $t('table.name')" :icon="clubsIcon" mustFill hasAsterisk :validationMessage="'Club/' + $t('modalField.association') + ' ' + $t('modalField.error')" :mode="props.mode" />
+          <ClubInputs v-model:inputData="form.clubName" :inputLabel="'Club ' + $t('table.name')" :inputPlaceholder="'Club ' + $t('table.name')" :icon="clubsIcon" mustFill hasAsterisk :validationMessage="'Club/' + $t('modalField.association') + ' ' + $t('modalField.error')" :mode="props.mode" />
 
           <ClubInputs v-model:inputData="form.email" type="email" :inputLabel="$t('table.email')" inputPlaceholder="info@youmai.com" :icon="emailIcon" :mode="props.mode" />
 
@@ -239,9 +231,9 @@
 
         <div v-if="(props.mode !== 'view')" class="flex mt-10">
 
-          <FormButtons @click="$emit('close')" white />
+          <FormButtons @cancel="$emit('close')" white />
 
-          <FormButtons :text="((props.mode === 'edit') ? $t('table.update') : $t('table.save') )" orange />
+          <FormButtons @save="handleSave" :text="((props.mode === 'edit') ? $t('table.update') : $t('table.save') )" orange />
 
         </div>
 

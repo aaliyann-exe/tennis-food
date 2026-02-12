@@ -9,7 +9,6 @@
   import hideIcon from "/src/assets/hideIcon.png";
   import viewIcon from "/src/assets/viewIcon.png";
 
-  import LanguageToggle from "/src/components/login/atoms/LanguageToggle.vue";
   import FormInput from "/src/components/login/atoms/FormInput.vue";
 
   const email = ref("");
@@ -26,15 +25,29 @@
     const passValid = /[!@#$%^&*(),.?":{}|<>]/.test(password.value);
 
     if (emailTouched.value || passwordTouched.value) {
-      if (!email.value && !password.value) return "Email and password are required!";
-      if (!email.value) return "Email is required!";
-      if (!password.value) return "Password is required!";
+
+      if (!email.value && !password.value)
+        return "Email and password are required!";
+
+      if (!email.value)
+        return "Email is required!";
+
+      if (!password.value)
+        return "Password is required!";
+
     }
 
-    if (!emailTouched.value || !passwordTouched.value) return "";
-    if (!emailValid) return "Please enter a valid email address!";
-    if (password.value.length < 6) return "Password must be at least 6 characters!";
-    if (!passValid) return "Password must have at least 1 special character!";
+    if (!emailTouched.value || !passwordTouched.value)
+      return "";
+
+    if (!emailValid)
+      return "Please enter a valid email address!";
+
+    if (password.value.length < 6)
+      return "Password must be at least 6 characters!";
+
+    if (!passValid)
+      return "Password must have at least 1 special character!";
 
     return "";
 
@@ -49,7 +62,7 @@
 
     if (errorMessage.value === "" && email.value && password.value) {
     
-      if (email.value === "tennis@food.com" && password.value === "tennis@123") {
+      if (email.value === "t@f.com" && password.value === "t@1234") {
 
         router.push("/clubs");
 
@@ -82,35 +95,59 @@
 
       <div class="text-center mb-8 mt-30">
 
-        <h1 class="text-3xl font-semibold mb-1">Login</h1>
+        <h1 class="text-3xl font-semibold mb-1">
 
-        <p class="text-slate-500 text-sm mb-3">Streamline your management tasks with ease.</p>
+          {{ $t('login.login') }}
+
+        </h1>
+
+        <p class="text-slate-500 text-sm mb-3">
+
+          {{ $t('login.title') }}
+
+        </p>
 
       </div>
 
       <form @submit.prevent="handleLogin" class="space-y-5 mt-14">
         
-        <FormInput label="User Email" v-model="email" placeholder="Email" :icon="emailIcon" :hasError="errorMessage.toLowerCase().includes('email')" @input-blur="emailTouched = true" />
+        <FormInput :label="$t('login.emailLabel')" v-model="email" :placeholder="$t('login.email')" :icon="emailIcon" :hasError="errorMessage.toLowerCase().includes('email')" @input-blur="emailTouched = true" />
 
-        <FormInput label="Password" v-model="password" :type="showPassword ? 'text' : 'password'" placeholder="Password" :icon="passwordIcon" :showToggle="true" :isPasswordVisible="showPassword" :viewIcon="viewIcon" :hideIcon="hideIcon" :hasError="errorMessage.toLowerCase().includes('password')" @toggle-password="showPassword = !showPassword" @input-blur="passwordTouched = true" />
+        <FormInput :label="$t('login.password')" v-model="password" :type="showPassword ? 'text' : 'password'" :placeholder="$t('login.password')" :icon="passwordIcon" :showToggle="true" :isPasswordVisible="showPassword" :viewIcon="viewIcon" :hideIcon="hideIcon" :hasError="errorMessage.toLowerCase().includes('password')" @toggle-password="showPassword = !showPassword" @input-blur="passwordTouched = true" />
 
         <div :class="['h-4', !errorMessage ? 'hidden' : 'block']">
 
-          <p class="text-red-500 text-sm text-left">{{ errorMessage }}</p>
+          <p class="text-red-500 text-sm text-left">
+            
+            {{ errorMessage }}
+          
+          </p>
 
         </div>
 
         <div v-if="invalidMessage" :class="['h-4', !invalidMessage ? 'hidden' : 'block']">
 
-          <p class="text-red-500 text-sm text-left">{{ invalidMessage }}</p>
+          <p class="text-red-500 text-sm text-left">
+            
+            {{ invalidMessage }}
+          
+          </p>
 
         </div>
 
-        <button type="submit" class="w-full bg-[#ff5a1f] hover:bg-[#de5223] text-white font-medium py-3 rounded-lg active:bg-[#d33500] transition-all">Sign In</button>
+        <button type="submit" class="w-full bg-[#ff5a1f] hover:bg-[#de5223] text-white font-medium py-3 rounded-lg active:bg-[#d33500] transition-all">
+
+          {{ $t('login.signin') }}
+
+        </button>
 
         <div class="text-center mt-2">
           
-          <a href="#" class="text-gray-500 text-10 hover:text-[#ff5a1f]">Forgot Password?</a>
+          <a href="#" class="text-gray-500 text-10 hover:text-[#ff5a1f]">
+
+            {{ $t('login.forgotPass') }}
+
+          </a>
           
         </div>
         

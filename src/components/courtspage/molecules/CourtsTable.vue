@@ -51,7 +51,9 @@
 
               <span>
 
-                {{ $t('court.court') }} {{ $t('table.name') }}
+                {{ $t('court.court') }}
+
+                 <!-- {{ $t('table.name') }} -->
 
               </span>
 
@@ -69,7 +71,11 @@
 
             <th class="px-6 py-4"><span class="relative left-40">STATUS</span></th>
 
-            <th class="px-6 py-4 text-right">{{ $t('table.actions') }}</th>
+            <th class="px-6 py-4 text-right">
+              
+              {{ $t('table.actions') }}
+            
+            </th>
             
           </tr>
 
@@ -97,9 +103,17 @@
 
                 <div class="flex flex-col">
 
-                  <span class="text-sm font-medium">{{ court.name}}</span>
+                  <span class="text-sm font-medium">
 
-                  <span class="text-xs truncate text-primary max-w-50">{{ court.type }}</span>
+                    {{ court.name }}
+
+                  </span>
+
+                  <span class="text-xs truncate text-primary max-w-50">
+
+                    {{ court.type }}
+
+                  </span>
 
                 </div>
 
@@ -110,7 +124,9 @@
             <td class="px-6 py-4 text-sm font-medium">
               
               <span class="relative left-50">
+
               {{ court.environment }}
+
               </span>
 
             </td>
@@ -135,19 +151,19 @@
 
               <div class="flex items-center justify-end gap-3 opacity-50">
 
-                <button class="cursor-pointer" @click="$emit('view', court)" :title="$t('title.view')">
+                <button class="cursor-pointer" @click="$emit('view', court)" :title="$t('table.view')">
 
                   <img :src="viewIcon" class="w-5 h-5" />
 
                 </button>
 
-                <button class="cursor-pointer" @click="$emit('edit', court)" :title="$t('title.edit')">
+                <button class="cursor-pointer" @click="$emit('edit', court)" :title="$t('table.edit')">
 
                   <img :src="editIcon" class="w-5 h-5" />
 
                 </button>
 
-                <button class="cursor-pointer" @click="handleToggleStatus(court)" :title="(club.status ? $t('table.activate') : $t('table.deactivate'))">
+                <button class="cursor-pointer" @click="handleToggleStatus(court)" :title="(court.status ? $t('table.activate') : $t('table.deactivate'))">
 
                   <img :src="(court.status ? deactivateIcon : activateIcon)" :class="(court.status ? 'opacity-100 ' : '') + 'w-5 h-5'" />
 

@@ -1,6 +1,5 @@
 <script setup>
 
-  import { ref } from 'vue';
   import viewIcon from '/src/assets/viewIcon.png';
   import editIcon from '/src/assets/editIcon.svg';
   import activateIcon from '/src/assets/activateIcon.svg';
@@ -12,7 +11,7 @@
 
       type: Array,
       required: true,
-      default: [],
+      default: () => [],
 
     },
 
@@ -34,31 +33,51 @@
 
     <div class="overflow-hidden bg-secondary border border-gray-200 rounded-xl min-h-[75vh]">
 
-      <table class="w-full text-left border-collapse">
+      <table class="w-full text-left border-collapse table-fixed">
 
         <thead>
 
           <tr class="text-lg tracking-wider uppercase border-b border-gray-200 font-extralight bg-other">
             
-            <th class="flex items-center gap-1 px-6 py-4">
+            <th class="px-6 py-4 w-[35%]">
 
-              <span class="flex flex-col text-[10px] leading-1">
+              <div class="flex items-center gap-2">
 
-                <button class="hover:bg-[#ffd4c7] rounded-2xl p-1 cursor-pointer"><span>▲</span></button>
+                <span class="flex flex-col text-[10px] leading-tight shrink-0">
 
-                <button class="hover:bg-[#ffd4c7] rounded-2xl p-1 cursor-po"><span class="opacity-20">▼</span></button>
+                  <button class="hover:bg-[#ffd4c7] rounded-full p-0.5 cursor-pointer"><span>▲</span></button>
 
-              </span>
+                  <button class="hover:bg-[#ffd4c7] rounded-full p-0.5 cursor-pointer"><span class="opacity-20">▼</span></button>
 
-              TRAINER NAME
+                </span>
+
+                <span>
+
+                  TRAINER {{ $t('table.name') }}
+            
+                </span>
+
+              </div>
 
             </th>
 
-            <th class="px-6 py-4">PHONE</th>
+            <th class="px-6 py-4 w-[40%]">
 
-            <th class="px-6 py-4"><span class="relative left-60">STATUS</span></th>
+              {{ $t('table.phone') }}
 
-            <th class="px-6 py-4 text-right">ACTIONS</th>
+            </th>
+
+            <th class="px-6 py-4 text-left w-[12%]">
+
+              STATUS
+
+            </th>
+
+            <th class="px-6 py-4 text-right w-[13%]">
+
+              {{ $t('table.actions') }}
+
+            </th>
             
           </tr>
 
@@ -72,23 +91,31 @@
 
               <div class="flex items-center gap-4">
 
-                <div v-if="trainer.pfp" class="w-10 h-10 overflow-hidden rounded-full">
+                <div v-if="trainer.pfp" class="shrink-0 w-10 h-10 overflow-hidden rounded-full">
 
-                   <img :src="trainer.pfp" alt="Club logo" class="object-cover w-full h-full" />
+                   <img :src="trainer.pfp" alt="Trainer logo" class="object-cover w-full h-full" />
 
                 </div>
 
-                <div v-else class="flex items-center justify-center w-10 h-10 text-sm font-bold rounded-full text-secondary bg-primary">
+                <div v-else class="flex shrink-0 items-center justify-center w-10 h-10 text-sm font-bold rounded-full text-secondary bg-primary">
 
                   {{ trainer.initials }}
 
                 </div> 
 
-                <div class="flex flex-col">
+                <div class="flex flex-col min-w-0">
 
-                  <span class="text-sm font-medium">{{ trainer.fName + ' ' + trainer.lName}}</span>
+                  <span class="text-sm font-medium">
+                    
+                    {{ trainer.fName + ' ' + trainer.lName}}
+                  
+                  </span>
 
-                  <span class="text-xs truncate text-primary max-w-50">{{ trainer.email }}</span>
+                  <span class="text-xs text-primary">
+                    
+                    {{ trainer.email }}
+                  
+                  </span>
 
                 </div>
 
@@ -97,17 +124,23 @@
             </td>
 
             <td class="px-6 py-4 text-sm font-medium">
+
               {{ trainer.phone }}
+
             </td>
 
-            <td class="px-6 py-4">
+            <td class="px-6 py-4 text-right">
 
-              <span v-if="trainer.status" class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-active-dark bg-active border-active-dark">
-                Active
+              <span v-if="trainer.status" class="inline-block text-center w-24 py-1 text-xs font-medium border rounded-full text-active-dark bg-active border-active-dark">
+                
+                {{ $t('table.active') }}
+
               </span>
 
-              <span v-else class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-inactive-dark bg-inactive border-inactive-dark">
-                Inactive
+              <span v-else class="inline-block text-center w-24 py-1 text-xs font-medium border rounded-full text-inactive-dark bg-inactive border-inactive-dark">
+                
+                {{ $t('table.inactive') }}
+
               </span>
 
             </td>
@@ -116,19 +149,19 @@
 
               <div class="flex items-center justify-end gap-3 opacity-50">
 
-                <button class="cursor-pointer" @click="$emit('view', trainer)" title="View">
+                <button class="cursor-pointer" @click="$emit('view', trainer)" :title="$t('table.view')">
 
                   <img :src="viewIcon" class="w-5 h-5" />
 
                 </button>
 
-                <button class="cursor-pointer" @click="$emit('edit', trainer)" title="Edit">
+                <button class="cursor-pointer" @click="$emit('edit', trainer)" title="$t('table.edit')">
 
                   <img :src="editIcon" class="w-5 h-5" />
 
                 </button>
 
-                <button class="cursor-pointer" @click="handleToggleStatus(trainer)" :title="(trainer.status ? 'Deactivate': 'Activate')">
+                <button class="cursor-pointer" @click="handleToggleStatus(trainer)" :title="(trainer.status ? $t('table.deactivate'): $t('table.activate'))">
 
                   <img :src="(trainer.status ? deactivateIcon : activateIcon)" :class="(trainer.status ? 'opacity-100 ' : '') + 'w-5 h-5'" />
 

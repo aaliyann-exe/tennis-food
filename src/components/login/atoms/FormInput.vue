@@ -1,32 +1,26 @@
 <script setup>
 
-    import { computed } from 'vue';
+  const props = defineProps({
 
-    const props = defineProps({
+    label: String,
+    modelValue: String,
+    placeholder: String,
+    icon: String,
+    showToggle: Boolean,
+    isPasswordVisible: Boolean,
+    hideIcon: String,
+    viewIcon: String,
+    hasError: Boolean
 
-        label: String,
-        modelValue: String,
-        placeholder: String,
-        icon: String,
-        showToggle: Boolean,
-        isPasswordVisible: Boolean,
-        hideIcon: String,
-        viewIcon: String,
-        hasError: Boolean
+  });
 
-    });
+  const emit = defineEmits(['update:modelValue', 'toggle-password', 'input-blur']);
 
-    const emit = defineEmits(
+  const onInput = (e) => {
 
-        ['update:modelValue', 'toggle-password', 'input-blur']
+    emit('update:modelValue', e.target.value);
 
-    );
-
-    const onInput = (e) => {
-
-        emit('update:modelValue', e.target.value);
-
-    };
+  };
 
 </script>
 

@@ -11,7 +11,7 @@
 
       type: Array,
       required: true,
-      default: [],
+      default: () => [],
 
     },
 
@@ -38,7 +38,7 @@
         <thead>
 
           <tr class="text-lg tracking-wider uppercase border-b border-gray-200 font-extralight bg-other">
-            
+
             <th class="px-6 py-4 w-[35%]">
 
               <div class="flex items-center gap-2">
@@ -52,7 +52,7 @@
                 </span>
 
                 <span>
-
+                  
                   Club {{ $t('table.name') }}
 
                 </span>
@@ -61,24 +61,24 @@
 
             </th>
 
-            <th class="px-6 py-4 w-[25%]">
+            <th class="px-6 py-4 w-[40%]">
 
               {{ $t('table.phone') }}
 
             </th>
 
-            <th class="px-6 py-4 text-center w-[20%]">
-
-              {{ $t('table.status') }}
+            <th class="px-6 py-4 text-left w-[12%]">
+              
+              STATUS
 
             </th>
 
-            <th class="px-6 py-4 text-right w-[20%]">
-              
+            <th class="px-6 py-4 text-right w-[13%]">
+
               {{ $t('table.actions') }}
 
             </th>
-            
+
           </tr>
 
         </thead>
@@ -105,13 +105,13 @@
 
                 <div class="flex flex-col min-w-0">
 
-                  <span class="text-sm font-medium truncate">
+                  <span class="text-sm font-medium">
                     
                     {{ club.name }}
                   
                   </span>
 
-                  <span class="text-xs truncate text-primary">
+                  <span class="text-xs text-primary">
                     
                     {{ club.email }}
                   
@@ -124,21 +124,21 @@
             </td>
 
 
-            <td class="px-6 py-4 text-sm font-medium truncate">
+            <td class="px-6 py-4 text-sm font-medium">
 
               {{ club.phone }}
 
             </td>
 
-            <td class="px-6 py-4 text-center">
+            <td class="px-6 py-4 text-right">
 
-              <span v-if="club.status" class="inline-block w-24 py-1 text-xs font-medium border rounded-full text-active-dark bg-active border-active-dark">
+              <span v-if="club.status" class="inline-block text-center w-24 py-1 text-xs font-medium border rounded-full text-active-dark bg-active border-active-dark">
 
                 {{ $t('table.active') }}
 
               </span>
 
-              <span v-else class="inline-block w-24 py-1 text-xs font-medium border rounded-full text-inactive-dark bg-inactive border-inactive-dark">
+              <span v-else class="inline-block text-center w-24 py-1 text-xs font-medium border rounded-full text-inactive-dark bg-inactive border-inactive-dark">
 
                 {{ $t('table.inactive') }}
 

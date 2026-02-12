@@ -6,7 +6,7 @@
 
 <template>
 
-    <div class="p-10 bg-other h-full w-full">
+    <div class="px-10 pb-10 pt-24 bg-other h-full w-full">
 
         <AccountInfo />
 

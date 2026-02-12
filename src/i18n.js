@@ -1,8 +1,22 @@
 import { createI18n } from 'vue-i18n';
 
+// const savedLocale = ( localStorage.getItem('locale-language') || 'en' );
+
 const messages = {
 
   en: {
+
+    login: {
+
+      login: 'Login',
+      title: 'Streamline your management tasks with ease.',
+      email: 'E-mail',
+      emailLabel: 'User Email',
+      password: 'Password',
+      signin: 'Sign In',
+      forgotPass: 'Forgot Password?',
+
+    },
 
     dashboard: {
 
@@ -25,6 +39,8 @@ const messages = {
       archived: 'Archived',
       page: 'page',
       noDataFound: 'No Data Found',
+      noTrainers: 'No trainers found',
+      addTrainer: 'Add Trainer',
     
     },
 
@@ -47,9 +63,17 @@ const messages = {
       optional: 'Optional',
       fName: 'First Name',
       lName: 'Last Name',
+      fullName: 'Full Name',
       cancel: 'Cancel',
       save: 'Save',
       update: 'Update',
+      zipCode: 'Zip Code',
+      city: 'City',
+      representative: 'Representative',
+      admin: 'Admin',
+      dob: 'Date of Birth',
+      ageGroup: 'Age Group',
+      playerLevel: 'Player Level',
 
     },
 
@@ -58,8 +82,31 @@ const messages = {
       association: 'Association',
       phone: 'Enter phone number',
       address: 'Enter address',
+      zipCode: 'Enter zip code',
+      rName: 'Type representative name',
+      rEmail: 'Enter representative email',
+      rPhone: 'Enter representative phone',
       error: 'is required',
       select: 'Select',
+      type: 'Type',
+      dob: 'dd/mm/yy',
+
+    },
+
+    player: {
+
+      player: 'Player',
+      players: 'Players',
+      all: 'All',
+      u12: 'Under 12y',
+      a12: '13-18y',
+      a18: '19-30y',
+      a30: '31-50y',
+      a50: 'Over 50y',
+      national: 'National (level 3)',
+      competitive: 'Competitive (levels 4-5)',
+      recreational: 'Recreational (levels 6-7)',
+      beginner: 'Beginner (levels 8-9)',
 
     },
 
@@ -82,6 +129,18 @@ const messages = {
 
   nl: {
 
+    login: {
+
+      login: 'Inloggen',
+      title: 'Stroomlijn uw beheertaken met gemak.',
+      email: 'E-mail',
+      emailLabel: 'Gebruikers E-mail',
+      password: 'Wachtwoord',
+      signin: 'Inloggen',
+      forgotPass: 'Wachtwoord vergeten?',
+
+    },
+
     dashboard: {
 
       dashboard: 'Dashboard',
@@ -103,6 +162,8 @@ const messages = {
       archived: 'Gearchiveerd',
       page: 'pagina',
       noDataFound: 'Geen Gegevens Gevonden',
+      noTrainers: 'Geen trainers gevonden',
+      addTrainer: 'Trainer Toevoegen',
 
     },
 
@@ -125,9 +186,17 @@ const messages = {
       optional: 'Optioneel',
       fName: 'Voornaam',
       lName: 'Achternaam',
+      fullName: 'Volledige naam',
       cancel: 'Annuleren',
       save: 'Opslaan',
       update: 'Bijwerken',
+      zipCode: 'Postcode',
+      city: 'Stad',
+      representative: 'Vertegenwoordiger',
+      admin: 'Beheerder',
+      dob: 'Geboortedatum',
+      ageGroup: 'Leeftijdsgroep',
+      playerLevel: 'Spelersniveau',
 
     },
 
@@ -136,8 +205,30 @@ const messages = {
       association: 'Vereniging',
       phone: 'Voer telefoonnummer in',
       address: 'Voer adres in',
+      zipCode: 'Voer postcode in',
+      rName: 'Typ vertegenwoordiger naam',
+      rEmail: 'Voer vertegenwoordiger e-mail in',
+      rPhone: 'Voer vertegenwoordiger telefoon in',
       error: 'is verplicht',
       select: 'Selecteer',
+      dob: 'dd/mm/jj',
+
+    },
+
+    player: {
+
+      player: 'Speler',
+      players: 'Spelers',
+      all: 'Alle',
+      u12: 'Onder 12j',
+      a12: '13-18j',
+      a18: '19-30j',
+      a30: '31-50j',
+      a50: 'Boven 50j',
+      national: 'Nationaal (niveau 3)',
+      competitive: 'Competitief (niveaus 4-5)',
+      recreational: 'Recreatief (niveaus 6-7)',
+      beginner: 'Beginner (niveaus 8-9)',
 
     },
 

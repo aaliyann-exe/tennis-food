@@ -105,7 +105,7 @@
 
               <h1 class="text-lg font-medium text-gray-500">{{ form.name }}</h1>
 
-              <p class="text-primary">School Admin</p>
+              <p class="text-primary">School {{ $t('table.admin') }}</p>
 
             </div>
 
@@ -123,46 +123,48 @@
 
           <div class="grid grid-cols-2">
 
-            <ProfileInputs v-model:inputData="form.name" inputLabel="Full Name" inputPlaceholder="Enter school name" :icon="buildingIcon" mustFill hasAsterisk validationMessage="Club name is required" :mode="mode" />
+            <ProfileInputs v-model:inputData="form.name" :inputLabel="$t('table.fullName')" :inputPlaceholder="'Voer ' + $t('table.fullName') + ' in'" :icon="buildingIcon" mustFill hasAsterisk :validationMessage="$t('table.fullName') + ' ' + $t('modalField.error')" :mode="mode" />
 
-            <ProfileInputs v-model:inputData="form.email" type="email" inputLabel="Email" inputPlaceholder="info@youmai.com" :icon="emailIcon" :mode="mode" hasAsterisk />
+            <ProfileInputs v-model:inputData="form.email" type="email" :inputLabel="$t('table.email')" inputPlaceholder="info@youmai.com" :icon="emailIcon" :mode="mode" hasAsterisk />
             
-            <ProfileInputs v-model:inputData="form.phone" type="phone" inputLabel="Phone" inputPlaceholder="Phone" :icon="phoneIcon" :mode="mode" hasAsterisk />
+            <ProfileInputs v-model:inputData="form.phone" type="phone" :inputLabel="$t('table.phone')" :inputPlaceholder="$t('modalField.phone')" :icon="phoneIcon" :mode="mode" hasAsterisk />
             
             <ProfileInputs v-model:inputData="form.website" type="website" inputLabel="Website" inputPlaceholder="Website" :icon="globeIcon" :mode="mode" hasAsterisk />
 
-            <ProfileInputs v-model:inputData="form.zipCode" type="zipCode" inputLabel="Zip Code" inputPlaceholder="Enter zip code" :icon="locationIcon" :mode="mode" hasAsterisk />
+            <ProfileInputs v-model:inputData="form.zipCode" type="zipCode" :inputLabel="$t('table.zipCode')" :inputPlaceholder="$t('modalField.zipCode')" :icon="locationIcon" :mode="mode" hasAsterisk />
 
-            <ProfileInputs v-model:inputData="form.city" type="city" inputLabel="City" inputPlaceholder="Select city" :icon="cityIcon" :mode="mode" hasAsterisk isDropDown />
+            <ProfileInputs v-model:inputData="form.city" type="city" :inputLabel="$t('table.city')" :inputPlaceholder="$t('modalField.select') + ' ' + $t('table.city')" :icon="cityIcon" :mode="mode" hasAsterisk isDropDown />
             
           </div>
 
           <div>
 
-            <ProfileInputs v-model:inputData="form.address" inputLabel="Address line" inputPlaceholder="Enter address" :icon="locationIcon" :mode="mode" />
+            <ProfileInputs v-model:inputData="form.address" :inputLabel="$t('table.address')" :inputPlaceholder="$t('modalField.address')" :icon="locationIcon" :mode="mode" />
 
           </div>
 
           <div class="grid grid-cols-2">
 
-            <ProfileInputs v-model:inputData="form.repName" inputLabel="School Representative Name" inputPlaceholder="Type representative name" :icon="personIcon" :mode="mode" />
+            <ProfileInputs v-model:inputData="form.repName" :inputLabel="'School ' + $t('table.representative').toLowerCase() + ' ' + $t('table.name').toLowerCase()" :inputPlaceholder="$t('modalField.rName')" :icon="personIcon" :mode="mode" />
             
-            <ProfileInputs v-model:inputData="form.repEmail" type="email" inputLabel="School Representative Email" inputPlaceholder="Enter representative email" :icon="emailIcon" :mode="mode" />
+            <ProfileInputs v-model:inputData="form.repEmail" type="email" :inputLabel="'School ' + $t('table.representative').toLowerCase() + ' ' + $t('table.email').toLowerCase()" :inputPlaceholder="$t('modalField.rEmail')" :icon="emailIcon" :mode="mode" />
             
-            <ProfileInputs v-model:inputData="form.repPhone" type="phone" inputLabel="School Representative Phone" inputPlaceholder="Enter representative phone" :icon="phoneIcon" :mode="mode"  />
+            <ProfileInputs v-model:inputData="form.repPhone" type="phone" :inputLabel="'School ' + $t('table.representative').toLowerCase() + ' ' + $t('table.phone').toLowerCase()" :inputPlaceholder="$t('modalField.rPhone')" :icon="phoneIcon" :mode="mode"  />
           
           </div>
 
         </div>
 
-        <div v-if="mode === 'edit'" class="flex justify-start mt-10">
+        <div v-if="(mode === 'edit')" class="flex justify-start mt-10">
 
-          <FormButtons @cancel="cancelEdit" cancel />
+          <FormButtons @cancel="cancelEdit" white />
 
-          <FormButtons @save="handleSave" save />
+          <FormButtons @save="handleSave" orange />
 
         </div>
 
       </form>
+
   </div>
+
 </template>

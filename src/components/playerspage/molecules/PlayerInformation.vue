@@ -1,7 +1,9 @@
 <script setup>
 
-  import { ref, reactive, onMounted, watch } from 'vue';
+  import { reactive, watch } from 'vue';
   import { usePlayerStore } from '/src/components/stores/playerStore';
+  import { useI18n } from 'vue-i18n';
+
 
   import clubsIcon from '/src/assets/clubsIcon.svg';
   import emailIcon from '/src/assets/emailIcon.svg';
@@ -42,27 +44,17 @@
 
   const playerStore = usePlayerStore();
 
-  onMounted(() => {
-
-    if (props.mode === 'edit' || props.mode === 'view') {
-
-    Object.assign(form, props.playerData);
-
-    }
-
-  });
+  const { t } = useI18n();
 
   const getInitials = (name) => {
 
     if (!name)
       return 'TF';
 
-    else 
+    else
       return name.split('').map(word => word[0]).join('').toUpperCase().slice(0, 2);
 
   };
-
-  const imagePreview = ref(null);
 
   const form = reactive({
     
@@ -167,20 +159,24 @@
     };
 
     if (props.mode === 'create') {
+
       playerStore.addPlayer(playerObject);
+
     } else if(props.mode === 'edit') {
+
       playerStore.updatePlayer(playerObject);
+
     }
 
     emit('save', playerObject);
 
   };
 
-  const ageGroups = ['Under 12y', '13-18y', '19-30y', '31-50y', 'Over 50y'];
+  const ageGroups = [t('player.all'), t('player.u12'), t('player.a12'), t('player.a18'), t('player.a30'), t('player.a50')];
   const cities = ['Amsterdam', 'Amstenrade', 'Kats', 'Echtenerbrug'];
   const schools = ['Royal Dutch Tennis'];
   const clubs = ['Netherlands Tennis Club', 'Ace Tennis Club School', 'Ace Tennis Club 2', 'New Club 37'];
-  const levels = ['National (level 3)', 'Competitive (level 4-5)', 'Recreational (level 6-7)', 'Beginner (level 8-9)'];
+  const levels = [t('player.national'), t('player.competitive'), t('player.recreational'), t('player.beginner')];
 
 </script>
 
@@ -188,21 +184,29 @@
 
   <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
 
-    <div class="h-full overflow-y-scroll bg-white shadow-xl rounded-2xl w-220">
+    <div class="max-h-[95vh] overflow-y-auto bg-white shadow-xl rounded-2xl w-220">
 
-      <div class="flex items-center justify-between py-5">
+      <div class="flex items-center justify-between px-8 py-5">
 
-        <h2 v-if="(props.mode === 'create')" class="mt-2 ml-5 text-4xl font-semibold">Player Information</h2>
+        <div class="flex flex-col">
 
-        <h2 v-if="(props.mode === 'view')" class="mt-2 ml-5 text-4xl font-semibold">{{ props.playerData.fName + ' ' + props.playerData.lName}}</h2>
+          <h2 v-if="(props.mode === 'create')" class="mt-2 ml-5 text-4xl font-semibold">{{ $t('player.player') }} {{ $t('table.information') }}</h2>
 
-        <h2 v-if="(props.mode === 'edit')" class="mt-2 ml-5 text-4xl font-semibold">{{ props.playerData.fName + ' ' + props.playerData.lName}} <span class="text-[20px]"> ( Edit )</span></h2>
+          <h2 v-if="(props.mode === 'view')" class="mt-2 ml-5 text-4xl font-semibold">{{ props.playerData.fName + ' ' + props.playerData.lName}}</h2>
 
-        <button v-if="props.mode === 'view'" class="relative cursor-pointer left-65" @click="$emit('edit', props.playerObject)">
+          <h2 v-if="(props.mode === 'edit')" class="mt-2 ml-5 text-4xl font-semibold">{{ props.playerData.fName + ' ' + props.playerData.lName}} <span class="text-[20px]"> ( {{ $t('table.edit') }} )</span></h2>
 
-          <img :src="editIcon" class="w-6 h-6 opacity-50" />
+        </div>
 
-        </button>
+        <div class="flex items-center gap-4">
+
+          <button v-if="(props.mode === 'view')" class="absolute cursor-pointer top-20 right-100" @click="$emit('edit', props.playerData)">
+
+            <img :src="editIcon" class="w-6 h-6 opacity-50" />
+
+          </button>
+
+        </div>
 
         <button @click="$emit('close')" class="text-2xl text-gray-400 cursor-pointer hover:text-gray-600">
 
@@ -222,47 +226,47 @@
 
         </div>
 
-        <div class="grid grid-cols-2">
+        <div class="grid grid-cols-2 gap-6">
 
-          <PlayerInputs v-model:inputData="form.fName" inputLabel="First Name" inputPlaceholder="First Name" :icon="personIcon" mustFill hasAsterisk validationMessage="First name is required" :mode="props.mode" />
+          <PlayerInputs v-model:inputData="form.fName" :inputLabel="$t('table.fName')" :inputPlaceholder="$t('table.fName')" :icon="personIcon" mustFill hasAsterisk :validationMessage="$t('table.fName') + ' ' + $t('modalField.error')" :mode="props.mode" />
 
-          <PlayerInputs v-model:inputData="form.lName" inputLabel="Last Name" inputPlaceholder="Last Name" :icon="personIcon" :mode="props.mode" />
+          <PlayerInputs v-model:inputData="form.lName" :inputLabel="$t('table.lName')" :inputPlaceholder="$t('table.lName')" :icon="personIcon" :mode="props.mode" />
 
-          <PlayerInputs v-model:inputData="form.email" type="email" inputLabel="Email" inputPlaceholder="info@youmai.com" :icon="emailIcon" mustFill  hasAsterisk :isDisabled="props.mode === 'view'" validationMessage="Email is required" :mode="props.mode" />
+          <PlayerInputs v-model:inputData="form.email" type="email" :inputLabel="$t('table.email')" inputPlaceholder="info@youmai.com" :icon="emailIcon" mustFill  hasAsterisk :isDisabled="(props.mode === 'view')" :validationMessage="$t('table.email') + ' ' + $t('modalField.error')" :mode="props.mode" />
           
-          <PlayerInputs v-model:inputData="form.phone" type="phone" inputLabel="Phone" inputPlaceholder="Enter phone number" :icon="phoneIcon" :mode="props.mode" />
+          <PlayerInputs v-model:inputData="form.phone" type="phone" :inputLabel="$t('table.phone')" :inputPlaceholder="$t('modalField.phone')" :icon="phoneIcon" :mode="props.mode" />
           
-          <PlayerInputs v-model:inputData="form.dob" inputLabel="Date of Birth" inputPlaceholder="DOB" :icon="calendarIcon" isDropDown mustFill hasAsterisk :mode="props.mode" />
+          <PlayerInputs v-model:inputData="form.dob" :inputLabel="$t('table.dob')" :inputPlaceholder="$t('modalField.dob')" :icon="calendarIcon" isDropDown mustFill hasAsterisk :mode="props.mode" />
 
-          <PlayerInputs v-model:inputData="form.ageGroup" inputLabel="Age Group" inputPlaceholder="Select Age Group" :icon="waitingIcon" isDropDown :options="ageGroups" :mode="props.mode" />
+          <PlayerInputs v-model:inputData="form.ageGroup" :inputLabel="$t('table.ageGroup')" :inputPlaceholder="$t('modalField.select') + ' ' + $t('table.ageGroup')" :icon="waitingIcon" isDropDown :options="ageGroups" :mode="props.mode" />
         
         </div>
 
         <div>
 
-          <PlayerInputs v-model:inputData="form.address" inputLabel="Address line" inputPlaceholder="Enter address" :icon="locationIcon" :mode="props.mode" />
+          <PlayerInputs v-model:inputData="form.address" :inputLabel="$t('table.address')" :inputPlaceholder="$t('modalField.address')" :icon="locationIcon" :mode="props.mode" />
 
         </div>
 
-        <div class="grid grid-cols-2">
+        <div class="grid grid-cols-2 gap-6">
 
-          <PlayerInputs v-model:inputData="form.city" inputLabel="City" inputPlaceholder="Select City" :icon="cityIcon" isDropDown :options="cities" :mode="props.mode" />
+          <PlayerInputs v-model:inputData="form.city" :inputLabel="$t('table.city')" :inputPlaceholder="$t('modalField.select') + ' ' + $t('table.city')" :icon="cityIcon" isDropDown :options="cities" :mode="props.mode" />
 
-          <PlayerInputs v-model:inputData="form.zipCode" type="zipCode" inputLabel="Zip Code" inputPlaceholder="Enter zip code" :icon="locationIcon" :mode="mode" />
+          <PlayerInputs v-model:inputData="form.zipCode" type="zipCode" :inputLabel="$t('table.zipCode')" :inputPlaceholder="$t('modalField.address')" :icon="locationIcon" :mode="mode" />
 
-          <PlayerInputs v-model:inputData="form.school" inputLabel="School" inputPlaceholder="Select School" :icon="buildingIcon" isDropDown :options="schools" hasAsterisk mustFill :mode="props.mode" />
+          <PlayerInputs v-model:inputData="form.school" inputLabel="School" :inputPlaceholder="$t('modalField.select') + ' ' + 'School'" :icon="buildingIcon" isDropDown :options="schools" hasAsterisk mustFill :mode="props.mode" />
           
-          <PlayerInputs v-model:input-data="form.club" inputLabel="Club" inputPlaceholder="Select Club" :icon="clubsIcon" isDropDown :options="clubs" hasAsterisk mustFill :mode="props.mode" />
+          <PlayerInputs v-model:input-data="form.club" inputLabel="Club" :inputPlaceholder="$t('modalField.select') + ' ' + 'Club'" :icon="clubsIcon" isDropDown :options="clubs" hasAsterisk mustFill :mode="props.mode" />
 
-          <PlayerInputs v-model:inputData="form.level" inputLabel="Player Level" inputPlaceholder="Select Level" :icon="flagPersonIcon" isDropDown :options="levels" :mode="props.mode" />
+          <PlayerInputs v-model:inputData="form.level" :inputLabel="$t('table.playerLevel')" :inputPlaceholder="$t('modalField.select') + ' ' + $t('table.playerLevel')" :icon="flagPersonIcon" isDropDown :options="levels" :mode="props.mode" />
         
         </div>
 
-        <div v-if="props.mode !== 'view'" class="flex mt-10">
+        <div v-if="(props.mode !== 'view')" class="flex mt-10">
 
-          <FormButtons @cancel="$emit('close')" cancel />
+          <FormButtons @cancel="$emit('close')" white />
 
-          <FormButtons @save="handleSave" save />
+          <FormButtons @save="handleSave" :text="((props.mode === 'edit') ? $t('table.update') : $t('table.save') )" orange />
 
         </div>
 

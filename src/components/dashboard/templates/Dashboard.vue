@@ -74,8 +74,8 @@
 
 <template>
 
-  <div class="bg-secondary pb-89 inline-block">
-
+  <div class="bg-secondary pb-89 min-h-screen">
+  
     <TennisFoodLogo />
 
     <Icons v-for="item in menuItems" :key="item.text" :icon="item.icon" :text="item.text" :path="item.path" />

@@ -1,6 +1,6 @@
 <script setup>
 
-  import { ref, reactive, onMounted, watch } from 'vue';
+  import { reactive, watch } from 'vue';
   import { useTrainerStore } from '/src/components/stores/trainerStore';
 
   import clubsIcon from '/src/assets/clubsIcon.svg';
@@ -12,8 +12,6 @@
   import crossIcon from '/src/assets/crossIcon.svg';
   import editIcon from '/src/assets/editIcon.svg';
   import calendarIcon from '/src/assets/calendarIcon.svg';
-  import waitingIcon from '/src/assets/waitingIcon.svg';
-  import flagPersonIcon from '/src/assets/flagPersonIcon.svg';
   import cityIcon from '/src/assets/cityIcon.svg';
 
   import TrainerInputs from '../atoms/TrainerInputs.vue';
@@ -42,16 +40,6 @@
 
   const trainerStore = useTrainerStore();
 
-  onMounted(() => {
-
-    if (props.mode === 'edit' || props.mode === 'view') {
-
-    Object.assign(form, props.trainerData);
-
-    }
-
-  });
-
   const getInitials = (name) => {
 
     if (!name)
@@ -61,8 +49,6 @@
       return name.split('').map(word => word[0]).join('').toUpperCase().slice(0, 2);
 
   };
-
-  const imagePreview = ref(null);
 
   const form = reactive({
     
@@ -159,9 +145,13 @@
     };
 
     if (props.mode === 'create') {
+
       trainerStore.addTrainer(trainerObject);
+
     } else if(props.mode === 'edit') {
+
       trainerStore.updateTrainer(trainerObject);
+
     }
 
     emit('save', trainerObject);
@@ -178,21 +168,29 @@
 
   <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
 
-    <div class="h-full overflow-y-scroll bg-white shadow-xl rounded-2xl w-220">
+    <div class="max-h-[95vh] overflow-y-auto bg-white shadow-xl rounded-2xl w-220">
 
-      <div class="flex items-center justify-between py-5">
+      <div class="flex items-center justify-between px-8 py-5">
 
-        <h2 v-if="(props.mode === 'create')" class="mt-2 ml-10 text-4xl font-semibold">Trainer Information</h2>
+        <div class="flex flex-col">
 
-        <h2 v-if="(props.mode === 'view')" class="mt-2 ml-10 text-4xl font-semibold">{{ props.trainerData.fName + ' ' + props.trainerData.lName}}</h2>
+          <h2 v-if="(props.mode === 'create')" class="mt-2 ml-5 text-4xl font-semibold">Trainer {{ $t('table.information') }}</h2>
 
-        <h2 v-if="(props.mode === 'edit')" class="mt-2 ml-10 text-4xl font-semibold">{{ props.trainerData.fName + ' ' + props.trainerData.lName}}<span class="text-[20px]"> ( Edit )</span></h2>
+          <h2 v-if="(props.mode === 'view')" class="mt-2 ml-5 text-4xl font-semibold">{{ props.trainerData.fName + ' ' + props.trainerData.lName}}</h2>
 
-        <button v-if="props.mode === 'view'" class="relative cursor-pointer left-65" @click="$emit('edit', props.trainerObject)">
+          <h2 v-if="(props.mode === 'edit')" class="mt-2 ml-5 text-4xl font-semibold">{{ props.trainerData.fName + ' ' + props.trainerData.lName}}<span class="text-[20px]"> ( {{ $t('table.edit') }} )</span></h2>
 
-          <img :src="editIcon" class="w-6 h-6 opacity-50" />
+        </div>
 
-        </button>
+        <div class="flex items-center gap-4">
+
+          <button v-if="(props.mode === 'view')" class="absolute cursor-pointer top-20 right-100" @click="$emit('edit', props.trainerData)">
+
+            <img :src="editIcon" class="w-6 h-6 opacity-50" />
+
+          </button>
+
+        </div>
 
         <button @click="$emit('close')" class="text-2xl text-gray-400 cursor-pointer hover:text-gray-600">
 
@@ -214,41 +212,41 @@
 
         <div class="grid grid-cols-2">
 
-          <TrainerInputs v-model:inputData="form.fName" inputLabel="First Name" inputPlaceholder="First Name" :icon="personIcon" mustFill hasAsterisk validationMessage="First name is required" :mode="props.mode" />
+          <TrainerInputs v-model:inputData="form.fName" :inputLabel="$t('table.fName')" :inputPlaceholder="$t('table.fName')" :icon="personIcon" mustFill hasAsterisk :validationMessage="$t('table.fName') + ' ' + $t('modalField.error')" :mode="props.mode" />
 
-          <TrainerInputs v-model:inputData="form.lName" inputLabel="Last Name" inputPlaceholder="Last Name" :icon="personIcon" :mode="props.mode" />
+          <TrainerInputs v-model:inputData="form.lName" :inputLabel="$t('table.lName')" :inputPlaceholder="$t('table.lName')" :icon="personIcon" :mode="props.mode" />
 
-          <TrainerInputs v-model:inputData="form.email" type="email" inputLabel="Email" inputPlaceholder="info@youmai.com" :icon="emailIcon" mustFill  hasAsterisk :isDisabled="props.mode === 'view'" validationMessage="Email is required" :mode="props.mode" />
+          <TrainerInputs v-model:inputData="form.email" type="email" :inputLabel="$t('table.email')" inputPlaceholder="info@youmai.com" :icon="emailIcon" mustFill  hasAsterisk :isDisabled="(props.mode === 'view')" :validationMessage="$t('table.email') + ' ' + $t('modalField.error')" :mode="props.mode" />
           
-          <TrainerInputs v-model:inputData="form.phone" type="phone" inputLabel="Phone" inputPlaceholder="Enter phone number" :icon="phoneIcon" :mode="props.mode" />
+          <TrainerInputs v-model:inputData="form.phone" type="phone" :inputLabel="$t('table.phone')" :inputPlaceholder="$t('modalField.phone')" :icon="phoneIcon" :mode="props.mode" />
           
-          <TrainerInputs v-model:inputData="form.dob" inputLabel="Date of Birth" inputPlaceholder="DOB" :icon="calendarIcon" isDropDown mustFill hasAsterisk :mode="props.mode" />
+          <TrainerInputs v-model:inputData="form.dob" :inputLabel="$t('table.dob')" :inputPlaceholder="$t('modalField.dob')" :icon="calendarIcon" isDropDown mustFill hasAsterisk :mode="props.mode" />
         
         </div>
 
         <div>
 
-          <TrainerInputs v-model:inputData="form.address" inputLabel="Address line" inputPlaceholder="Enter address" :icon="locationIcon" :mode="props.mode" />
+          <TrainerInputs v-model:inputData="form.address" :inputLabel="$t('table.address')" :inputPlaceholder="$t('modalField.address')" :icon="locationIcon" :mode="props.mode" />
 
         </div>
 
         <div class="grid grid-cols-2">
 
-          <TrainerInputs v-model:inputData="form.city" inputLabel="City" inputPlaceholder="Select City" :icon="cityIcon" isDropDown :options="cities" :mode="props.mode" />
+          <TrainerInputs v-model:inputData="form.city" :inputLabel="$t('table.city')" :inputPlaceholder="$t('modalField.select') + ' ' + $t('table.city')" :icon="cityIcon" isDropDown :options="cities" :mode="props.mode" />
 
-          <TrainerInputs v-model:inputData="form.zipCode" type="zipCode" inputLabel="Zip Code" inputPlaceholder="Enter zip code" :icon="locationIcon" :mode="mode" />
+          <TrainerInputs v-model:inputData="form.zipCode" type="zipCode" :inputLabel="$t('table.zipCode')" :inputPlaceholder="$t('modalField.zipCode')" :icon="locationIcon" :mode="props.mode" />
 
-          <TrainerInputs v-model:inputData="form.school" inputLabel="School" inputPlaceholder="Select School" :icon="buildingIcon" isDisabled isDropDown :options="schools" hasAsterisk mustFill :mode="props.mode" />
+          <TrainerInputs v-model:inputData="form.school" inputLabel="School" :inputPlaceholder="$t('modalField.select') + ' ' + 'School'" :icon="buildingIcon" isDisabled isDropDown :options="schools" hasAsterisk mustFill :mode="props.mode" />
           
-          <TrainerInputs v-model:input-data="form.club" inputLabel="Club" inputPlaceholder="Select Club" :icon="clubsIcon" isDropDown :options="clubs" hasAsterisk mustFill :mode="props.mode" />
+          <TrainerInputs v-model:inputData="form.club" inputLabel="Club" :inputPlaceholder="$t('modalField.select') + ' ' + 'Club'" :icon="clubsIcon" isDropDown :options="clubs" hasAsterisk mustFill :mode="props.mode" />
         
         </div>
 
-        <div v-if="props.mode !== 'view'" class="flex mt-10">
+        <div v-if="(props.mode !== 'view')" class="flex mt-10">
 
-          <FormButtons @cancel="$emit('close')" cancel />
+          <FormButtons @cancel="$emit('close')" white />
 
-          <FormButtons @save="handleSave" save />
+          <FormButtons @save="handleSave" :text="((props.mode === 'edit') ? $t('table.update') : $t('table.save') )" orange />
 
         </div>
 

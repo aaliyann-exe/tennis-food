@@ -2,15 +2,13 @@
 
     import { ref, computed } from 'vue';
     import { useCourtStore } from '/src/components/stores/courtStore';
-    import plusIcon from '/src/assets/plusIcon.svg';
 
     import CourtsTable from '../molecules/CourtsTable.vue';
     import CourtInformation from '../molecules/CourtInformation.vue';
     import CourtsFooter from '../atoms/CourtsFooter.vue';
-    import SearchBar from '../atoms/SearchBar.vue';
-    import ImportIcon from '../atoms/ImportIcon.vue';
     import Tabs from '../molecules/Tabs.vue';
     import ArchivedTab from '../atoms/ArchivedTab.vue';
+    import Header from '/src/components/header/molecules/Header.vue';
 
     const courtStore = useCourtStore();
     const courtModalVisible = ref(false);
@@ -81,21 +79,7 @@
 
     <div class="w-full bg-other flexbox">
 
-        <div class="flex mt-20">
-            
-            <h1 class="ml-4 text-4xl font-semibold align-left">Courts</h1>
-
-            <SearchBar />
-
-            <ImportIcon />
-
-            <button @click="createCourt" class="flex items-center justify-center w-12 h-12 ml-5 rounded-full cursor-pointer bg-primary hover:bg-primary-active">
-
-                <img :src="plusIcon" class="w-5 h-5 invert">
-
-            </button>
-
-        </div>
+        <Header :text="$t('dashboard.courts')" @create="createCourt" />
 
         <Tabs v-model:show-archived="isArchivedTab"/>
 

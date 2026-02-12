@@ -2,15 +2,14 @@
 
     import { ref, computed } from 'vue';
     import { usePlayerStore } from '/src/components/stores/playerStore';
-    import plusIcon from '/src/assets/plusIcon.svg';
 
     import PlayersTable from '../molecules/PlayersTable.vue';
     import PlayerInformation from '../molecules/PlayerInformation.vue';
     import PlayersFooter from '../atoms/PlayersFooter.vue';
-    import SearchBar from '../atoms/SearchBar.vue';
-    import ImportIcon from '../atoms/ImportIcon.vue';
+
     import Tabs from '../molecules/Tabs.vue';
-    import ArchivedTab from '../atoms/ArchivedTab.vue';
+    import EmptyTab from '../atoms/EmptyTab.vue';
+    import Header from '/src/components/header/molecules/Header.vue';
 
     const playerStore = usePlayerStore();
     const playerModalVisible = ref(false);
@@ -32,7 +31,7 @@
 
     };
 
-    const handleSavePlayer = (playerData) => {
+    const handleSavePlayer = () => {
 
         playerModalVisible.value = false;
 
@@ -81,29 +80,21 @@
 
     <div class="w-full bg-other flexbox">
 
-        <div class="flex mt-20">
-            
-            <h1 class="ml-4 text-4xl font-semibold align-left">Players</h1>
-
-            <SearchBar />
-
-            <ImportIcon />
-
-            <button @click="createPlayer" class="flex items-center justify-center w-12 h-12 ml-5 rounded-full cursor-pointer bg-primary hover:bg-primary-active">
-
-                <img :src="plusIcon" class="w-5 h-5 invert">
-
-            </button>
-
-        </div>
+        <Header :text="$t('dashboard.players')" @create="createPlayer" />
 
         <Tabs v-model:show-archived="isArchivedTab"/>
 
         <div v-if="!isArchivedTab">
 
-            <PlayersTable :players="activePlayers" @view="viewPlayer" @edit="editPlayer" @toggle-status="togglePlayerStatus" />
-            
-            <PlayersFooter />
+            <div v-if="(archivedPlayers.length > 0)">
+
+                <PlayersTable :players="activePlayers" @view="viewPlayer" @edit="editPlayer" @toggle-status="togglePlayerStatus" />
+                
+                <PlayersFooter />
+
+            </div>
+
+            <EmptyTab v-else />
 
         </div>
 
@@ -117,7 +108,7 @@
 
             </div>
 
-            <ArchivedTab v-else />
+            <EmptyTab v-else />
 
         </div>
 

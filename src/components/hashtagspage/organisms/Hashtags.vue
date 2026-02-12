@@ -7,8 +7,8 @@
     import HashtagsTable from '../molecules/HashtagsTable.vue';
     import HashtagInformation from '../molecules/HashtagInformation.vue';
     import HashtagsFooter from '../atoms/HashtagsFooter.vue';
-    import SearchBar from '../atoms/SearchBar.vue';
-    import ImportIcon from '../atoms/ImportIcon.vue';
+
+    import Header from '/src/components/header/molecules/Header.vue';
 
     const hashtagStore = useHashtagStore();
     const hashtags = computed(() => hashtagStore.hashtags);
@@ -64,13 +64,7 @@
         selectedHashtag.value = hashtag;
         isOpen.value = true;
 
-    }
-
-    const handleDelete = (hashtag) => {
-    
-    hashtagStore.deleteHashtag(hashtag.id);
-
-  };
+    };
 
 </script>
 
@@ -78,21 +72,7 @@
 
     <div class="w-full bg-other flexbox">
 
-        <div class="flex mt-20">
-            
-            <h1 class="ml-4 text-4xl font-semibold align-left">Hashtags</h1>
-
-            <SearchBar />
-
-            <ImportIcon />
-
-            <button @click="createHashtag" class="flex items-center justify-center w-12 h-12 ml-5 rounded-full cursor-pointer bg-primary hover:bg-primary-active">
-
-                <img :src="plusIcon" class="w-5 h-5 invert">
-
-            </button>
-
-        </div>
+        <Header :text="$t('dashboard.hashtags')" @create="createHashtag" />
 
         <div>
 

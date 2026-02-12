@@ -3,15 +3,12 @@
     import { ref, computed } from 'vue';
     import { useClubStore } from '/src/components/stores/clubStore';
 
-    import plusIcon from '/src/assets/plusIcon.svg';
-
     import ClubsTable from '/src/components/clubspage/molecules/ClubsTable.vue';
     import ClubInformation from '/src/components/clubspage/molecules/ClubInformation.vue';
     import ClubFooter from '/src/components/clubspage/atoms/ClubFooter.vue';
-    import SearchBar from '/src/components/clubspage/atoms/SearchBar.vue';
-    import ImportIcon from '/src/components/clubspage/atoms/ImportIcon.vue';
     import Tabs from '/src/components/clubspage/molecules/Tabs.vue';
-    import ArchivedTab from '/src/components/clubspage/atoms/ArchivedTab.vue';
+    import EmptyTab from '/src/components/clubspage/atoms/EmptyTab.vue';
+    import Header from '/src/components/header/molecules/Header.vue';
 
     const clubStore = useClubStore();
     const clubModalVisible = ref(false);
@@ -82,29 +79,22 @@
 
     <div class="w-full bg-other flexbox">
 
-        <div class="flex mt-20">
-            
-            <h1 class="ml-4 text-4xl font-semibold align-left">Clubs</h1>
-
-            <SearchBar />
-
-            <ImportIcon />
-
-            <button @click="createClub" class="flex items-center justify-center w-12 h-12 ml-5 rounded-full cursor-pointer bg-primary hover:bg-primary-active">
-
-                <img :src="plusIcon" class="w-5 h-5 invert">
-
-            </button>
-
-        </div>
+        <Header :text="$t('dashboard.clubs')" @create="createClub" />
 
         <Tabs v-model:show-archived="isArchivedTab"/>
 
         <div v-if="!isArchivedTab">
 
-            <ClubsTable :clubs="activeClubs" @view="viewClub" @edit="editClub" @toggle-status="toggleClubStatus" />
-            
-            <ClubFooter />
+            <div v-if="(activeClubs.length > 0)">
+
+                <ClubsTable :clubs="activeClubs" @view="viewClub" @edit="editClub" @toggle-status="toggleClubStatus" />
+                
+                <ClubFooter />
+
+            </div>
+
+            <EmptyTab v-else />
+
 
         </div>
 
@@ -118,7 +108,7 @@
 
             </div>
 
-            <ArchivedTab v-else />
+            <EmptyTab v-else />
 
         </div>
 

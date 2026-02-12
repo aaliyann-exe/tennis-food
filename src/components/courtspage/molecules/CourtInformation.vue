@@ -1,6 +1,6 @@
 <script setup>
 
-  import { ref, reactive, onMounted, watch } from 'vue';
+  import { reactive, watch } from 'vue';
   import { useCourtStore } from '/src/components/stores/courtStore';
   import { useI18n } from 'vue-i18n';
 
@@ -37,16 +37,6 @@
 
   const { t } = useI18n();
 
-  onMounted(() => {
-
-    if (props.mode === 'edit' || props.mode === 'view') {
-
-    Object.assign(form, props.courtData);
-
-    }
-
-  });
-
   const getInitials = (name) => {
 
     if (!name)
@@ -56,8 +46,6 @@
       return name.split('').map(word => word[0]).join('').toUpperCase().slice(0, 2);
 
   };
-
-  const imagePreview = ref(null);
 
   const form = reactive({
     
@@ -138,7 +126,7 @@
   };
 
   const types = [t('court.hard'), t('court.clay'), t('court.grass'), t('court.synthetic'), t('court.other')];
-  const environments = ['Indoor', 'Outdoor'];
+  const environments = [t('court.indoor'), t('court.outdoor')];
   const schools = ['Royal Dutch Tennis'];
   const clubs = ['Netherlands Tennis Club', 'Ace Tennis Club School', 'Ace Tennis Club 2', 'New Club 37'];
 

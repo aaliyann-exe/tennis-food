@@ -1,6 +1,6 @@
 <script setup>
 
-    import TennisLogo from '/src/assets/tennisLogo.svg'
+import TennisLogo from '/src/assets/tennisLogo.svg'
 
 </script>
 
@@ -8,17 +8,17 @@
 
     <router-link to="/dashboard" class="text-primary text-[26px] font-bold inline relative top-1 right-1">
 
-            <div class="inline-block pl-6 pt-9 mb-7">
+        <div class="inline-block pl-6 pt-9 mb-7">
 
-                <img :src="TennisLogo" alt="Tennis Logo" class="inline pr-4">
-                
-                <span class="font-bold">
+            <img :src="TennisLogo" alt="Tennis Logo" class="inline pr-4">
 
-                    TennisFood
+            <span class="font-bold">
 
-                </span>
+                TennisFood
 
-            </div>
+            </span>
+
+        </div>
 
     </router-link>
 

@@ -1,70 +1,70 @@
 <script setup>
 
-    import { ref, computed } from 'vue';
-    import { useHashtagStore } from '/src/components/stores/hashtagStore';
-    import plusIcon from '/src/assets/plusIcon.svg';
+import { ref, computed } from 'vue';
+import { useHashtagStore } from '/src/components/stores/hashtagStore';
+import plusIcon from '/src/assets/plusIcon.svg';
 
-    import HashtagsTable from '../molecules/HashtagsTable.vue';
-    import HashtagInformation from '../molecules/HashtagInformation.vue';
-    import HashtagsFooter from '../atoms/HashtagsFooter.vue';
+import HashtagsTable from '../molecules/HashtagsTable.vue';
+import HashtagInformation from '../molecules/HashtagInformation.vue';
+import HashtagsFooter from '../atoms/HashtagsFooter.vue';
 
-    import Header from '/src/components/header/molecules/Header.vue';
+import Header from '/src/components/header/molecules/Header.vue';
 
-    const hashtagStore = useHashtagStore();
-    const hashtags = computed(() => hashtagStore.hashtags);
-    const hashtagModalVisible = ref(false);
-    const hashtagMode = ref('create');
-    const selectedHashtag = ref(null);
-    const isOpen = ref(false);
+const hashtagStore = useHashtagStore();
+const hashtags = computed(() => hashtagStore.hashtags);
+const hashtagModalVisible = ref(false);
+const hashtagMode = ref('create');
+const selectedHashtag = ref(null);
+const isOpen = ref(false);
 
-    const toggleModal = () => {
+const toggleModal = () => {
 
-        hashtagModalVisible.value = !hashtagModalVisible.value;
+    hashtagModalVisible.value = !hashtagModalVisible.value;
 
-        if(!hashtagModalVisible.value) {
+    if (!hashtagModalVisible.value) {
 
-            selectedHashtag.value = null;
+        selectedHashtag.value = null;
 
-        }
+    }
 
-    };
+};
 
-    const handleSaveHashtag = (hashtagData) => {
+const handleSaveHashtag = (hashtagData) => {
 
-        hashtagModalVisible.value = false;
+    hashtagModalVisible.value = false;
 
-    };
+};
 
-    const createHashtag = () => {
+const createHashtag = () => {
 
-        selectedHashtag.value = {};
-        hashtagMode.value = 'create';
-        hashtagModalVisible.value = true;
+    selectedHashtag.value = {};
+    hashtagMode.value = 'create';
+    hashtagModalVisible.value = true;
 
-    };
+};
 
-    const viewHashtag = (hashtag) => {
+const viewHashtag = (hashtag) => {
 
-        selectedHashtag.value = hashtag;
-        hashtagMode.value = 'view';
-        hashtagModalVisible.value = true;
+    selectedHashtag.value = hashtag;
+    hashtagMode.value = 'view';
+    hashtagModalVisible.value = true;
 
-    };
+};
 
-    const editHashtag = (hashtag) => {
+const editHashtag = (hashtag) => {
 
-        selectedHashtag.value = hashtag;
-        hashtagMode.value = 'edit';
-        hashtagModalVisible.value = true;
+    selectedHashtag.value = hashtag;
+    hashtagMode.value = 'edit';
+    hashtagModalVisible.value = true;
 
-    };
+};
 
-    const deleteHashtag = (hashtag) => {
-        
-        selectedHashtag.value = hashtag;
-        isOpen.value = true;
+const deleteHashtag = (hashtag) => {
 
-    };
+    selectedHashtag.value = hashtag;
+    isOpen.value = true;
+
+};
 
 </script>
 
@@ -77,12 +77,13 @@
         <div>
 
             <HashtagsTable :hashtags="hashtags" @view="viewHashtag" @edit="editHashtag" @delete="deleteHashtag" />
-            
+
             <HashtagsFooter />
 
         </div>
 
-        <HashtagInformation v-if="hashtagModalVisible" @close="toggleModal" @save="handleSaveHashtag" @edit="editHashtag" :mode="hashtagMode" :hashtagData="selectedHashtag" />
+        <HashtagInformation v-if="hashtagModalVisible" @close="toggleModal" @save="handleSaveHashtag"
+            @edit="editHashtag" :mode="hashtagMode" :hashtagData="selectedHashtag" />
 
     </div>
 

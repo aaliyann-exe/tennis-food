@@ -1,47 +1,55 @@
 <script setup>
 
-    import ImportIcon from '../atoms/ImportIcon.vue';
-    import SearchBar from '../atoms/SearchBar.vue';
+import ImportIcon from '../atoms/ImportIcon.vue';
+import SearchBar from '../atoms/SearchBar.vue';
 
-    import plusIcon from '/src/assets/plusIcon.svg';
+import plusIcon from '/src/assets/plusIcon.svg';
 
-    defineProps({
+defineProps({
 
-        text: {
+    text: {
 
-            type: String,
-            required: true,
+        type: String,
+        required: true,
 
-        },
+    },
 
-    });
+    dashboard: {
 
-    defineEmits(['create']);
+        type: Boolean,
+        required: false,
+
+    },
+
+});
+
+defineEmits(['create']);
 
 </script>
 
 <template>
 
     <div class="flex items-center justify-between mt-20 px-4">
-    
+
         <h1 class="text-4xl font-semibold truncate">
-        
+
             {{ text }}
-        
+
         </h1>
 
         <div class="flex items-center">
-        
+
             <SearchBar />
-        
-            <ImportIcon />
-        
-            <button @click="$emit('create')" class="flex items-center justify-center w-12 h-12 ml-5 rounded-full cursor-pointer bg-primary hover:bg-primary-active shrink-0">
-                
+
+            <ImportIcon v-if="!dashboard" />
+
+            <button v-if="!dashboard" @click="$emit('create')"
+                class="flex items-center justify-center w-12 h-12 ml-5 rounded-full cursor-pointer bg-primary hover:bg-primary-active shrink-0">
+
                 <img :src="plusIcon" class="w-5 h-5 invert">
 
             </button>
-        
+
         </div>
 
     </div>

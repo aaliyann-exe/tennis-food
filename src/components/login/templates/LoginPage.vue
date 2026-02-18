@@ -1,8 +1,8 @@
 <script setup>
 
-  import InstructorPage from '/src/components/login/atoms/InstructorPage.vue';
-  import LoginField from '/src/components/login/molecules/LoginField.vue';
-  
+import InstructorPage from '/src/components/login/atoms/InstructorPage.vue';
+import LoginField from '/src/components/login/molecules/LoginField.vue';
+
 </script>
 
 <template>

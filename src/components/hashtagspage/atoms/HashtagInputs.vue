@@ -1,99 +1,99 @@
 <script setup>
 
-    import { ref, computed } from 'vue';
+import { ref, computed } from 'vue';
 
-    const props = defineProps({
+const props = defineProps({
 
-        inputLabel: {
-            type: String,
-            required: true,
-        },
+    inputLabel: {
+        type: String,
+        required: true,
+    },
 
-        inputPlaceholder: {
-            type: String,
-            required: true,
-        },
+    inputPlaceholder: {
+        type: String,
+        required: true,
+    },
 
-        inputData: {
-            type: String,
-            required: true,
-        },
+    inputData: {
+        type: String,
+        required: true,
+    },
 
-        icon: {
-            type: String,
-            required: true,
-        },
+    icon: {
+        type: String,
+        required: true,
+    },
 
-        hasAsterisk: {
-            type: Boolean,
-            default: false,
-        },
+    hasAsterisk: {
+        type: Boolean,
+        default: false,
+    },
 
-        mustFill: {
-            type: Boolean,
-            default: false,
-        },
+    mustFill: {
+        type: Boolean,
+        default: false,
+    },
 
-        validationMessage: {
-            type: String,
-            default: 'This field is required',
-        },
+    validationMessage: {
+        type: String,
+        default: 'This field is required',
+    },
 
-        mode: {
-            type: String,
-            default: 'create',
-        },
+    mode: {
+        type: String,
+        default: 'create',
+    },
 
-    });
+});
 
-    const emit = defineEmits(['update:inputData']);
+const emit = defineEmits(['update:inputData']);
 
-    const isReadOnly = computed(() => {
+const isReadOnly = computed(() => {
 
-        return props.mode === 'view' || props.isDisabled;
+    return props.mode === 'view' || props.isDisabled;
 
-    });
+});
 
-    const fieldTouched = ref(false);
+const fieldTouched = ref(false);
 
-    const handleInput = (e) => {
+const handleInput = (e) => {
 
-        fieldTouched.value = true;
-        emit('update:inputData', e.target.value);
+    fieldTouched.value = true;
+    emit('update:inputData', e.target.value);
 
-    };
+};
 
-    const handleBlur = () => {
+const handleBlur = () => {
 
-        fieldTouched.value = true;
+    fieldTouched.value = true;
 
-    };
+};
 
-    const hasError = computed(() => {
+const hasError = computed(() => {
 
-        if (!fieldTouched.value)
-            return false;
+    if (!fieldTouched.value)
+        return false;
 
-        if (props.mustFill && !props.inputData)
-            return true;
+    if (props.mustFill && !props.inputData)
+        return true;
 
-        else
-            return false;
+    else
+        return false;
 
-    });
-    
-    const errorMessage = computed(() => {
+});
 
-        if (!fieldTouched.value)
-            return null;
+const errorMessage = computed(() => {
 
-        if (props.mustFill && !props.inputData)
-            return props.validationMessage;
+    if (!fieldTouched.value)
+        return null;
 
-        else
-            return null;
+    if (props.mustFill && !props.inputData)
+        return props.validationMessage;
 
-    });
+    else
+        return null;
+
+});
 
 </script>
 
@@ -109,18 +109,21 @@
 
         </label>
 
-        <div :class="(hasError ? 'border-error focus-within:border-error ' : 'border-gray-200 focus-within:border-primary ') + (isReadOnly ? 'bg-gray-50 cursor-not-allowed ' : 'bg-white ') + 'w-full p-2.5 border rounded-lg focus-within:border flex items-center'">
+        <div
+            :class="(hasError ? 'border-error focus-within:border-error ' : 'border-gray-200 focus-within:border-primary ') + (isReadOnly ? 'bg-gray-50 cursor-not-allowed ' : 'bg-white ') + 'w-full p-2.5 border rounded-lg focus-within:border flex items-center'">
 
             <img :src="icon" class="inline-block w-5 h-5 ml-1 mr-5 opacity-40" />
-            
-            <input :value="props.inputData" :required="props.mustFill" :disabled="isReadOnly" type="text" @blur="handleBlur" @input="handleInput" :placeholder="props.inputPlaceholder" :class="(isReadOnly ? 'cursor-not-allowed text-primary ' : 'text-primary ') + 'pr-34 placeholder:text-black placeholder:opacity-10 outline-none bg-transparent w-full'">
-        
+
+            <input :value="props.inputData" :required="props.mustFill" :disabled="isReadOnly" type="text"
+                @blur="handleBlur" @input="handleInput" :placeholder="props.inputPlaceholder"
+                :class="(isReadOnly ? 'cursor-not-allowed text-primary ' : 'text-primary ') + 'pr-34 placeholder:text-black placeholder:opacity-10 outline-none bg-transparent w-full'">
+
         </div>
 
         <div v-if="errorMessage" class="mt-1 text-sm font-normal text-error">
 
             {{ errorMessage }}
-            
+
         </div>
 
     </div>

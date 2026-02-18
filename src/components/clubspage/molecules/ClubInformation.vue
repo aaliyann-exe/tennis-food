@@ -1,141 +1,141 @@
 <script setup>
 
-  import { reactive,  watch } from 'vue';
-  import { useClubStore } from '/src/components/stores/clubStore';
+import { reactive, watch } from 'vue';
+import { useClubStore } from '/src/components/stores/clubStore';
 
-  import clubsIcon from '/src/assets/clubsIcon.svg';
-  import emailIcon from '/src/assets/emailIcon.svg';
-  import phoneIcon from '/src/assets/phoneIcon.svg';
-  import globeIcon from '/src/assets/globeIcon.svg';
-  import personIcon from '/src/assets/personIcon.svg';
-  import buildingIcon from '/src/assets/buildingIcon.svg';
-  import locationIcon from '/src/assets/locationIcon.svg';
-  import crossIcon from '/src/assets/crossIcon.svg';
-  import editIcon from '/src/assets/editIcon.svg';
+import clubsIcon from '/src/assets/clubsIcon.svg';
+import emailIcon from '/src/assets/emailIcon.svg';
+import phoneIcon from '/src/assets/phoneIcon.svg';
+import globeIcon from '/src/assets/globeIcon.svg';
+import personIcon from '/src/assets/personIcon.svg';
+import buildingIcon from '/src/assets/buildingIcon.svg';
+import locationIcon from '/src/assets/locationIcon.svg';
+import crossIcon from '/src/assets/crossIcon.svg';
+import editIcon from '/src/assets/editIcon.svg';
 
-  import ClubInputs from '/src/components/clubspage/atoms/ClubInputs.vue';
-  import FormButtons from '/src/components/clubspage/atoms/FormButtons.vue';
-  import ImageSubmitButton from '/src/components/clubspage/atoms/ImageSubmitButton.vue';
+import ClubInputs from '/src/components/clubspage/atoms/ClubInputs.vue';
+import FormButtons from '/src/components/clubspage/atoms/FormButtons.vue';
+import ImageSubmitButton from '/src/components/clubspage/atoms/ImageSubmitButton.vue';
 
-  const emit = defineEmits(['close', 'save', 'edit']);
+const emit = defineEmits(['close', 'save', 'edit']);
 
-  const props = defineProps({
+const props = defineProps({
 
-    mode: {
+  mode: {
 
-      type: String,
-      default: 'create',
+    type: String,
+    default: 'create',
 
-    },
+  },
 
-    clubData: {
+  clubData: {
 
-      type: Object,
-      default: () => ({}),
+    type: Object,
+    default: () => ({}),
 
-    },
+  },
 
-  });
+});
 
-  const clubStore = useClubStore();
+const clubStore = useClubStore();
 
-  const getInitials = (name) => {
+const getInitials = (name) => {
 
-    if (!name)
-      return 'TF';
+  if (!name)
+    return 'TF';
 
-    else 
-      return name.split('').map(word => word[0]).join('').toUpperCase().slice(0, 2);
-    
-  };
+  else
+    return name.split('').map(word => word[0]).join('').toUpperCase().slice(0, 2);
 
-  const form = reactive({
+};
 
-    clubName: '',
-    email: '',
-    phone: '',
-    website: '',
-    image: null,
-    status: true,
+const form = reactive({
 
-  });
+  clubName: '',
+  email: '',
+  phone: '',
+  website: '',
+  image: null,
+  status: true,
 
-  const fillForm = () => {
+});
 
-    if (props.mode === 'create') {
-      
-      form.clubName = '';
-      form.email = '';
-      form.phone = '';
-      form.website = '';
-      form.image = null;
-      form.status = true;
+const fillForm = () => {
 
-    } else if (props.clubData) {
+  if (props.mode === 'create') {
 
-      form.clubName = props.clubData.name || ''; 
-      form.email = props.clubData.email || '';
-      form.phone = ((props.clubData.phone === 'N/A') ? '' : (props.clubData.phone || ''));
-      form.website = props.clubData.website || '';
-      form.status = props.clubData.status || true;
-      form.image = props.clubData.image || null;
-      form.status = props.clubData.status;
+    form.clubName = '';
+    form.email = '';
+    form.phone = '';
+    form.website = '';
+    form.image = null;
+    form.status = true;
 
-    }
+  } else if (props.clubData) {
 
-  };
+    form.clubName = props.clubData.name || '';
+    form.email = props.clubData.email || '';
+    form.phone = ((props.clubData.phone === 'N/A') ? '' : (props.clubData.phone || ''));
+    form.website = props.clubData.website || '';
+    form.status = props.clubData.status || true;
+    form.image = props.clubData.image || null;
+    form.status = props.clubData.status;
 
-  watch(() => props.clubData, fillForm, { immediate: true }); 
-  
-  const handleImageUpload = (image) => {
+  }
 
-    form.image = image;
+};
 
-  };
+watch(() => props.clubData, fillForm, { immediate: true });
 
-  const handleSave = () => {
+const handleImageUpload = (image) => {
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^(?:\+31|0)[1-9]\d{8}$/;
+  form.image = image;
 
-    if (!form.clubName)
-      return;
+};
 
-    if (form.email && !emailRegex.test(form.email))
-      return;
+const handleSave = () => {
 
-    if (form.phone && !phoneRegex.test(form.phone))
-      return;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^(?:\+31|0)[1-9]\d{8}$/;
 
-    if (form.website && !form.website.includes('.'))
-      return;
+  if (!form.clubName)
+    return;
 
-    const clubObject = {
+  if (form.email && !emailRegex.test(form.email))
+    return;
 
-      ...props.clubData,
-      name: form.clubName,
-      email: form.email,
-      phone: (!form.phone) ? 'N/A' : form.phone,
-      website: form.website,
-      initials: getInitials(form.clubName),
-      image: form.image,
-      status: form.status,
+  if (form.phone && !phoneRegex.test(form.phone))
+    return;
 
-    };
+  if (form.website && !form.website.includes('.'))
+    return;
 
-    if (props.mode === 'create') {
+  const clubObject = {
 
-      clubStore.addClub(clubObject);
-
-    } else if(props.mode === 'edit') {
-
-      clubStore.updateClub(clubObject);
-
-    }
-
-    emit('save', clubObject);
+    ...props.clubData,
+    name: form.clubName,
+    email: form.email,
+    phone: (!form.phone) ? 'N/A' : form.phone,
+    website: form.website,
+    initials: getInitials(form.clubName),
+    image: form.image,
+    status: form.status,
 
   };
+
+  if (props.mode === 'create') {
+
+    clubStore.addClub(clubObject);
+
+  } else if (props.mode === 'edit') {
+
+    clubStore.updateClub(clubObject);
+
+  }
+
+  emit('save', clubObject);
+
+};
 
 </script>
 
@@ -149,17 +149,20 @@
 
         <div class="flex flex-col">
 
-          <h2 v-if="(props.mode === 'create')" class="mt-2 ml-5 text-4xl font-semibold">Club {{ $t('table.information') }}</h2>
+          <h2 v-if="(props.mode === 'create')" class="mt-2 ml-5 text-4xl font-semibold">Club {{ $t('table.information')
+          }}</h2>
 
           <h2 v-if="(props.mode === 'view')" class="mt-2 ml-5 text-4xl font-semibold"> {{ props.clubData.name }} </h2>
 
-          <h2 v-if="(props.mode === 'edit')" class="mt-2 ml-5 text-4xl font-semibold"> {{ props.clubData.name }} <span class="text-[20px]">( {{ $t('table.edit') }} )</span></h2>
+          <h2 v-if="(props.mode === 'edit')" class="mt-2 ml-5 text-4xl font-semibold"> {{ props.clubData.name }} <span
+              class="text-[20px]">( {{ $t('table.edit') }} )</span></h2>
 
         </div>
 
         <div class="flex items-center gap-4">
 
-          <button v-if="(props.mode === 'view')" class="absolute cursor-pointer top-21 right-100" @click="$emit('edit', props.clubData)">
+          <button v-if="(props.mode === 'view')" class="absolute cursor-pointer top-21 right-100"
+            @click="$emit('edit', props.clubData)">
 
             <img :src="editIcon" class="w-6 h-6 opacity-50" />
 
@@ -187,17 +190,25 @@
 
         <div class="grid grid-cols-2 gap-6">
 
-          <ClubInputs v-model:inputData="form.clubName" :inputLabel="'Club ' + $t('table.name')" :inputPlaceholder="'Club ' + $t('table.name')" :icon="clubsIcon" mustFill hasAsterisk :validationMessage="'Club/' + $t('modalField.association') + ' ' + $t('modalField.error')" :mode="props.mode" />
+          <ClubInputs v-model:inputData="form.clubName" :inputLabel="'Club ' + $t('table.name')"
+            :inputPlaceholder="'Club ' + $t('table.name')" :icon="clubsIcon" mustFill hasAsterisk
+            :validationMessage="'Club/' + $t('modalField.association') + ' ' + $t('modalField.error')"
+            :mode="props.mode" />
 
-          <ClubInputs v-model:inputData="form.email" type="email" :inputLabel="$t('table.email')" inputPlaceholder="info@youmai.com" :icon="emailIcon" :mode="props.mode" />
+          <ClubInputs v-model:inputData="form.email" type="email" :inputLabel="$t('table.email')"
+            inputPlaceholder="info@youmai.com" :icon="emailIcon" :mode="props.mode" />
 
-          <ClubInputs v-model:inputData="form.phone" type="phone" :inputLabel="$t('table.phone')" :inputPlaceholder="$t('modalField.address')" :icon="phoneIcon" :mode="props.mode" />
+          <ClubInputs v-model:inputData="form.phone" type="phone" :inputLabel="$t('table.phone')"
+            :inputPlaceholder="$t('modalField.address')" :icon="phoneIcon" :mode="props.mode" />
 
-          <ClubInputs v-model:inputData="form.website" inputLabel="Website" inputPlaceholder="www.club.com" :icon="globeIcon" :mode="props.mode" />
+          <ClubInputs v-model:inputData="form.website" inputLabel="Website" inputPlaceholder="www.club.com"
+            :icon="globeIcon" :mode="props.mode" />
 
-          <ClubInputs inputLabel="School" inputPlaceholder="Royal Dutch Tennis" :icon="buildingIcon" isDropDown isDisabled :mode="props.mode" />
+          <ClubInputs inputLabel="School" inputPlaceholder="Royal Dutch Tennis" :icon="buildingIcon" isDropDown
+            isDisabled :mode="props.mode" />
 
-          <ClubInputs :inputLabel="$t('table.address')" :inputPlaceholder="$t('modalField.address')" :icon="locationIcon" :mode="props.mode" />
+          <ClubInputs :inputLabel="$t('table.address')" :inputPlaceholder="$t('modalField.address')"
+            :icon="locationIcon" :mode="props.mode" />
 
         </div>
 
@@ -205,27 +216,31 @@
 
           <h3 class="inline text-2xl font-semibold">
 
-          {{ $t('table.primaryContact') }}
+            {{ $t('table.primaryContact') }}
 
           </h3>
 
           <span class="ml-1 text-xs text-orange-500">
-            
-            {{ $t('table.optional')}}
-          
+
+            {{ $t('table.optional') }}
+
           </span>
 
         </div>
 
         <div class="grid grid-cols-2 gap-6">
 
-          <ClubInputs :inputLabel="$t('table.fName')" :inputPlaceholder="$t('table.fName')" :icon="personIcon" :mode="props.mode" />
+          <ClubInputs :inputLabel="$t('table.fName')" :inputPlaceholder="$t('table.fName')" :icon="personIcon"
+            :mode="props.mode" />
 
-          <ClubInputs :inputLabel="$t('table.fName')" :inputPlaceholder="$t('table.fName')" :icon="personIcon" :mode="props.mode" />
+          <ClubInputs :inputLabel="$t('table.fName')" :inputPlaceholder="$t('table.fName')" :icon="personIcon"
+            :mode="props.mode" />
 
-          <ClubInputs type="phone" :inputLabel="$t('table.phone')" :inputPlaceholder="$t('modalField.phone')" :icon="phoneIcon" :mode="props.mode"  />
+          <ClubInputs type="phone" :inputLabel="$t('table.phone')" :inputPlaceholder="$t('modalField.phone')"
+            :icon="phoneIcon" :mode="props.mode" />
 
-          <ClubInputs type="email" :inputLabel="$t('table.email')" inputPlaceholder="info@youmai.com" :icon="emailIcon" :mode="props.mode" />
+          <ClubInputs type="email" :inputLabel="$t('table.email')" inputPlaceholder="info@youmai.com" :icon="emailIcon"
+            :mode="props.mode" />
 
         </div>
 
@@ -233,7 +248,8 @@
 
           <FormButtons @cancel="$emit('close')" white />
 
-          <FormButtons @save="handleSave" :text="((props.mode === 'edit') ? $t('table.update') : $t('table.save') )" orange />
+          <FormButtons @save="handleSave" :text="((props.mode === 'edit') ? $t('table.update') : $t('table.save'))"
+            orange />
 
         </div>
 

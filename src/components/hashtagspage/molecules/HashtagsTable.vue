@@ -1,37 +1,38 @@
 <script setup>
 
-  import { ref } from 'vue';
-  import { useHashtagStore } from '/src/components/stores/hashtagStore.js';
-  import ConfirmationBox from './ConfirmationBox.vue';
+import { ref } from 'vue';
+import { useHashtagStore } from '/src/components/stores/hashtagStore.js';
+import ConfirmationBox from './ConfirmationBox.vue';
 
 
-  import viewIcon from '/src/assets/viewIcon.png';
-  import editIcon from '/src/assets/editIcon.svg';
-  import recycleBinIcon from '/src/assets/recycleBinIcon.svg';
+import viewIcon from '/src/assets/viewIcon.png';
+import editIcon from '/src/assets/editIcon.svg';
+import recycleBinIcon from '/src/assets/recycleBinIcon.svg';
 
-  const props = defineProps({
+const props = defineProps({
 
-    hashtags: {
+  hashtags: {
 
-      type: Array,
-      required: true,
-      default: [],
+    type: Array,
+    required: true,
+    default: [],
 
-    },
+  },
 
-  });
+});
 
-  const emits = defineEmits(['view', 'edit', 'delete']);
+const emits = defineEmits(['view', 'edit', 'delete']);
 
-  const hashtagStore = useHashtagStore();
+const hashtagStore = useHashtagStore();
 
-  const isOpen = ref(false);
+const isOpen = ref(false);
 
-  const handleDelete = (hashtag) => {
-    
-    hashtagStore.deleteHashtag(hashtag.id);
+const handleDelete = (hashtag) => {
 
-  };
+  hashtagStore.deleteHashtag(hashtag.id);
+  isOpen.value = false;
+
+};
 
 </script>
 
@@ -46,7 +47,7 @@
         <thead>
 
           <tr class="text-lg tracking-wider uppercase border-b border-gray-200 font-extralight bg-other">
-            
+
             <th class="flex items-center gap-1 px-6 py-4">
 
               <span class="flex flex-col text-[10px] leading-1">
@@ -64,7 +65,7 @@
             <th class="px-6 py-4 text-center"><span class="relative left-60">CREATED BY</span></th>
 
             <th class="px-6 py-4 text-right">ACTIONS</th>
-            
+
           </tr>
 
         </thead>
@@ -73,7 +74,11 @@
 
           <tr v-for="(hashtag, index) in props.hashtags" :key="index" class="hover:bg-other">
 
-            <ConfirmationBox v-if="isOpen" @confirm="handleDelete(hashtag)" @cancel="(isOpen = false)" :title="hashtag.title" />
+            <Teleport v-if="isOpen" to="body">
+
+              <ConfirmationBox @confirm="handleDelete(hashtag)" @cancel="(isOpen = false)" :title="hashtag.title" />
+
+            </Teleport>
 
             <td class="px-6 py-4">
 
@@ -91,11 +96,13 @@
 
             <td class="px-6 py-4 text-center">
 
-              <span v-if="hashtag.creator === 'Super Admin'" class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-active-dark bg-active border-active-dark">
+              <span v-if="hashtag.creator === 'Super Admin'"
+                class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-active-dark bg-active border-active-dark">
                 {{ hashtag.creator }}
               </span>
 
-              <span v-else class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-inactive-dark bg-inactive border-inactive-dark">
+              <span v-else
+                class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-inactive-dark bg-inactive border-inactive-dark">
                 {{ hashtag.creator }}
               </span>
 
@@ -124,7 +131,7 @@
                 </button>
 
               </div>
-              
+
             </td>
 
           </tr>

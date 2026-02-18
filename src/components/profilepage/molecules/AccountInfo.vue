@@ -1,89 +1,89 @@
 <script setup>
-  import { ref, reactive, onMounted } from 'vue';
-  import { useProfileStore } from '/src/components/stores/profileStore.js';
+import { ref, reactive, onMounted } from 'vue';
+import { useProfileStore } from '/src/components/stores/profileStore.js';
 
-  import emailIcon from '/src/assets/emailIcon.svg';
-  import phoneIcon from '/src/assets/phoneIcon.svg';
-  import globeIcon from '/src/assets/globeIcon.svg';
-  import personIcon from '/src/assets/personIcon.svg';
-  import buildingIcon from '/src/assets/buildingIcon.svg';
-  import locationIcon from '/src/assets/locationIcon.svg';
-  import editIcon from '/src/assets/editIcon.svg';
-  import cityIcon from '/src/assets/cityIcon.svg';
+import emailIcon from '/src/assets/emailIcon.svg';
+import phoneIcon from '/src/assets/phoneIcon.svg';
+import globeIcon from '/src/assets/globeIcon.svg';
+import personIcon from '/src/assets/personIcon.svg';
+import buildingIcon from '/src/assets/buildingIcon.svg';
+import locationIcon from '/src/assets/locationIcon.svg';
+import editIcon from '/src/assets/editIcon.svg';
+import cityIcon from '/src/assets/cityIcon.svg';
 
-  import ProfileInputs from '/src/components/profilepage/atoms/ProfileInputs.vue';
-  import FormButtons from '/src/components/profilepage/atoms/FormButtons.vue';
-  import ImageSubmitButton from '/src/components/profilepage/atoms/ImageSubmitButton.vue';
+import ProfileInputs from '/src/components/profilepage/atoms/ProfileInputs.vue';
+import FormButtons from '/src/components/profilepage/atoms/FormButtons.vue';
+import ImageSubmitButton from '/src/components/profilepage/atoms/ImageSubmitButton.vue';
 
-  const profileStore = useProfileStore();
-  
-  const mode = ref('view'); 
+const profileStore = useProfileStore();
 
-  const form = reactive({
+const mode = ref('view');
 
-    pfp: null,
-    name: '',
-    email: '',
-    phone: '',
-    website: '',
-    zipCode: '',
-    city: '',
-    address: '',
-    repName: '',
-    repEmail: '',
-    repPhone: '',
+const form = reactive({
 
-  });
-  
-  const getProfileStore = () => {
+  pfp: null,
+  name: '',
+  email: '',
+  phone: '',
+  website: '',
+  zipCode: '',
+  city: '',
+  address: '',
+  repName: '',
+  repEmail: '',
+  repPhone: '',
 
-    Object.assign(form, { ...profileStore.profile });
-  
-  };
+});
 
-  onMounted(() => {
+const getProfileStore = () => {
 
-    getProfileStore();
+  Object.assign(form, { ...profileStore.profile });
 
-  });
+};
 
-  const enableEditMode = () => {
+onMounted(() => {
 
-    getProfileStore();
-    mode.value = 'edit';
+  getProfileStore();
 
-  };
+});
 
-  const cancelEdit = () => {
+const enableEditMode = () => {
 
-    getProfileStore();
-    mode.value = 'view';
+  getProfileStore();
+  mode.value = 'edit';
 
-  };
+};
 
-  const handleImageUpload = (image) => {
+const cancelEdit = () => {
 
-    form.pfp = image;
+  getProfileStore();
+  mode.value = 'view';
 
-  };
+};
 
-  const handleSave = () => {
+const handleImageUpload = (image) => {
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
-    if (!form.name) {
-        return;
-    }
-    
-    if (form.email && !emailRegex.test(form.email)) {
-        return;
-    }
+  form.pfp = image;
 
-    profileStore.updateProfile({ ...form });
+};
 
-    mode.value = 'view';
+const handleSave = () => {
 
-  };
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!form.name) {
+    return;
+  }
+
+  if (form.email && !emailRegex.test(form.email)) {
+    return;
+  }
+
+  profileStore.updateProfile({ ...form });
+
+  mode.value = 'view';
+
+};
 
 </script>
 
@@ -93,77 +93,93 @@
 
     <div class="bg-linear-to-r from-[#fd6226] to-[#d9d9d9] p-8 rounded-t-3xl block w-full"></div>
 
-      <form @submit.prevent="handleSave" class="p-8">
-        
-        <div class="flex items-center justify-between px-8 py-5">
+    <form @submit.prevent="handleSave" class="p-8">
 
-          <div class="flex">
+      <div class="flex items-center justify-between px-8 py-5">
 
-            <ImageSubmitButton :name="form.name" :image="form.pfp" @image-uploaded="handleImageUpload" :mode="mode" />
+        <div class="flex">
 
-            <div class="flex flex-col pt-3 pl-5">
+          <ImageSubmitButton :name="form.name" :image="form.pfp" @image-uploaded="handleImageUpload" :mode="mode" />
 
-              <h1 class="text-lg font-medium text-gray-500">{{ form.name }}</h1>
+          <div class="flex flex-col pt-3 pl-5">
 
-              <p class="text-primary">School {{ $t('table.admin') }}</p>
+            <h1 class="text-lg font-medium text-gray-500">{{ form.name }}</h1>
 
-            </div>
+            <p class="text-primary">School {{ $t('table.admin') }}</p>
 
           </div>
 
-          <button v-if="mode === 'view'" class="p-2 transition rounded-full cursor-pointer hover:bg-gray-100" @click="enableEditMode">
-            
-            <img :src="editIcon" class="w-6 h-6 opacity-50" alt="Edit" />
+        </div>
 
-          </button>
+        <button v-if="mode === 'view'" class="p-2 transition rounded-full cursor-pointer hover:bg-gray-100"
+          @click="enableEditMode">
+
+          <img :src="editIcon" class="w-6 h-6 opacity-50" alt="Edit" />
+
+        </button>
+
+      </div>
+
+      <div>
+
+        <div class="grid grid-cols-2">
+
+          <ProfileInputs v-model:inputData="form.name" :inputLabel="$t('table.fullName')"
+            :inputPlaceholder="'Voer ' + $t('table.fullName') + ' in'" :icon="buildingIcon" mustFill hasAsterisk
+            :validationMessage="$t('table.fullName') + ' ' + $t('modalField.error')" :mode="mode" />
+
+          <ProfileInputs v-model:inputData="form.email" type="email" :inputLabel="$t('table.email')"
+            inputPlaceholder="info@youmai.com" :icon="emailIcon" :mode="mode" hasAsterisk />
+
+          <ProfileInputs v-model:inputData="form.phone" type="phone" :inputLabel="$t('table.phone')"
+            :inputPlaceholder="$t('modalField.phone')" :icon="phoneIcon" :mode="mode" hasAsterisk />
+
+          <ProfileInputs v-model:inputData="form.website" type="website" inputLabel="Website" inputPlaceholder="Website"
+            :icon="globeIcon" :mode="mode" hasAsterisk />
+
+          <ProfileInputs v-model:inputData="form.zipCode" type="zipCode" :inputLabel="$t('table.zipCode')"
+            :inputPlaceholder="$t('modalField.zipCode')" :icon="locationIcon" :mode="mode" hasAsterisk />
+
+          <ProfileInputs v-model:inputData="form.city" type="city" :inputLabel="$t('table.city')"
+            :inputPlaceholder="$t('modalField.select') + ' ' + $t('table.city')" :icon="cityIcon" :mode="mode"
+            hasAsterisk isDropDown />
 
         </div>
 
         <div>
 
-          <div class="grid grid-cols-2">
-
-            <ProfileInputs v-model:inputData="form.name" :inputLabel="$t('table.fullName')" :inputPlaceholder="'Voer ' + $t('table.fullName') + ' in'" :icon="buildingIcon" mustFill hasAsterisk :validationMessage="$t('table.fullName') + ' ' + $t('modalField.error')" :mode="mode" />
-
-            <ProfileInputs v-model:inputData="form.email" type="email" :inputLabel="$t('table.email')" inputPlaceholder="info@youmai.com" :icon="emailIcon" :mode="mode" hasAsterisk />
-            
-            <ProfileInputs v-model:inputData="form.phone" type="phone" :inputLabel="$t('table.phone')" :inputPlaceholder="$t('modalField.phone')" :icon="phoneIcon" :mode="mode" hasAsterisk />
-            
-            <ProfileInputs v-model:inputData="form.website" type="website" inputLabel="Website" inputPlaceholder="Website" :icon="globeIcon" :mode="mode" hasAsterisk />
-
-            <ProfileInputs v-model:inputData="form.zipCode" type="zipCode" :inputLabel="$t('table.zipCode')" :inputPlaceholder="$t('modalField.zipCode')" :icon="locationIcon" :mode="mode" hasAsterisk />
-
-            <ProfileInputs v-model:inputData="form.city" type="city" :inputLabel="$t('table.city')" :inputPlaceholder="$t('modalField.select') + ' ' + $t('table.city')" :icon="cityIcon" :mode="mode" hasAsterisk isDropDown />
-            
-          </div>
-
-          <div>
-
-            <ProfileInputs v-model:inputData="form.address" :inputLabel="$t('table.address')" :inputPlaceholder="$t('modalField.address')" :icon="locationIcon" :mode="mode" />
-
-          </div>
-
-          <div class="grid grid-cols-2">
-
-            <ProfileInputs v-model:inputData="form.repName" :inputLabel="'School ' + $t('table.representative').toLowerCase() + ' ' + $t('table.name').toLowerCase()" :inputPlaceholder="$t('modalField.rName')" :icon="personIcon" :mode="mode" />
-            
-            <ProfileInputs v-model:inputData="form.repEmail" type="email" :inputLabel="'School ' + $t('table.representative').toLowerCase() + ' ' + $t('table.email').toLowerCase()" :inputPlaceholder="$t('modalField.rEmail')" :icon="emailIcon" :mode="mode" />
-            
-            <ProfileInputs v-model:inputData="form.repPhone" type="phone" :inputLabel="'School ' + $t('table.representative').toLowerCase() + ' ' + $t('table.phone').toLowerCase()" :inputPlaceholder="$t('modalField.rPhone')" :icon="phoneIcon" :mode="mode"  />
-          
-          </div>
+          <ProfileInputs v-model:inputData="form.address" :inputLabel="$t('table.address')"
+            :inputPlaceholder="$t('modalField.address')" :icon="locationIcon" :mode="mode" />
 
         </div>
 
-        <div v-if="(mode === 'edit')" class="flex justify-start mt-10">
+        <div class="grid grid-cols-2">
 
-          <FormButtons @cancel="cancelEdit" white />
+          <ProfileInputs v-model:inputData="form.repName"
+            :inputLabel="'School ' + $t('table.representative').toLowerCase() + ' ' + $t('table.name').toLowerCase()"
+            :inputPlaceholder="$t('modalField.rName')" :icon="personIcon" :mode="mode" />
 
-          <FormButtons @save="handleSave" orange />
+          <ProfileInputs v-model:inputData="form.repEmail" type="email"
+            :inputLabel="'School ' + $t('table.representative').toLowerCase() + ' ' + $t('table.email').toLowerCase()"
+            :inputPlaceholder="$t('modalField.rEmail')" :icon="emailIcon" :mode="mode" />
+
+          <ProfileInputs v-model:inputData="form.repPhone" type="phone"
+            :inputLabel="'School ' + $t('table.representative').toLowerCase() + ' ' + $t('table.phone').toLowerCase()"
+            :inputPlaceholder="$t('modalField.rPhone')" :icon="phoneIcon" :mode="mode" />
 
         </div>
 
-      </form>
+      </div>
+
+      <div v-if="(mode === 'edit')" class="flex justify-start mt-10">
+
+        <FormButtons @cancel="cancelEdit" white />
+
+        <FormButtons @save="handleSave" orange />
+
+      </div>
+
+    </form>
 
   </div>
 

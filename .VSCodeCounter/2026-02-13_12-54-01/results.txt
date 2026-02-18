@@ -1,0 +1,224 @@
+Date : 2026-02-13 12:54:01
+Directory : c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main
+Total : 140 files,  7898 codes, 62 comments, 3625 blanks, all 11585 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| vue        |         86 |      4,625 |         42 |      3,330 |      7,997 |
+| JSON       |          2 |      2,261 |          0 |          2 |      2,263 |
+| JavaScript |         12 |        518 |         11 |        231 |        760 |
+| XML        |         37 |        436 |          9 |          9 |        454 |
+| PostCSS    |          1 |         42 |          0 |         39 |         81 |
+| HTML       |          1 |         13 |          0 |         11 |         24 |
+| Markdown   |          1 |          3 |          0 |          3 |          6 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                                    | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                       |        140 |      7,898 |         62 |      3,625 |     11,585 |
+| . (Files)                                                                                                                               |          5 |      2,283 |          1 |         18 |      2,302 |
+| public                                                                                                                                  |          1 |          1 |          0 |          0 |          1 |
+| src                                                                                                                                     |        134 |      5,614 |         61 |      3,607 |      9,282 |
+| src (Files)                                                                                                                             |          4 |        270 |          1 |        101 |        372 |
+| src\assets                                                                                                                              |         36 |        435 |          9 |          9 |        453 |
+| src\components                                                                                                                          |         93 |      4,858 |         46 |      3,481 |      8,385 |
+| src\components\clubspage                                                                                                                |         10 |        608 |          0 |        460 |      1,068 |
+| src\components\clubspage\atoms                                                                                                          |          5 |        251 |          0 |        174 |        425 |
+| src\components\clubspage\molecules                                                                                                      |          3 |        278 |          0 |        228 |        506 |
+| src\components\clubspage\organisms                                                                                                      |          1 |         69 |          0 |         50 |        119 |
+| src\components\clubspage\templates                                                                                                      |          1 |         10 |          0 |          8 |         18 |
+| src\components\courtspage                                                                                                               |         10 |        617 |          1 |        452 |      1,070 |
+| src\components\courtspage\atoms                                                                                                         |          5 |        279 |          0 |        190 |        469 |
+| src\components\courtspage\molecules                                                                                                     |          3 |        262 |          1 |        208 |        471 |
+| src\components\courtspage\organisms                                                                                                     |          1 |         66 |          0 |         46 |        112 |
+| src\components\courtspage\templates                                                                                                     |          1 |         10 |          0 |          8 |         18 |
+| src\components\dashboard                                                                                                                |          5 |        160 |          0 |         95 |        255 |
+| src\components\dashboard\atoms                                                                                                          |          4 |         93 |          0 |         71 |        164 |
+| src\components\dashboard\templates                                                                                                      |          1 |         67 |          0 |         24 |         91 |
+| src\components\hashtagspage                                                                                                             |         12 |        567 |         41 |        420 |      1,028 |
+| src\components\hashtagspage\atoms                                                                                                       |          6 |        275 |         41 |        180 |        496 |
+| src\components\hashtagspage\molecules                                                                                                   |          4 |        229 |          0 |        196 |        425 |
+| src\components\hashtagspage\organisms                                                                                                   |          1 |         53 |          0 |         36 |         89 |
+| src\components\hashtagspage\templates                                                                                                   |          1 |         10 |          0 |          8 |         18 |
+| src\components\header                                                                                                                   |          3 |         46 |          0 |         41 |         87 |
+| src\components\header\atoms                                                                                                             |          2 |         20 |          0 |         18 |         38 |
+| src\components\header\molecules                                                                                                         |          1 |         26 |          0 |         23 |         49 |
+| src\components\languagetoggle                                                                                                           |          1 |         34 |          0 |         29 |         63 |
+| src\components\login                                                                                                                    |          4 |        136 |          0 |        106 |        242 |
+| src\components\login\atoms                                                                                                              |          2 |         37 |          0 |         27 |         64 |
+| src\components\login\molecules                                                                                                          |          1 |         89 |          0 |         71 |        160 |
+| src\components\login\templates                                                                                                          |          1 |         10 |          0 |          8 |         18 |
+| src\components\playerspage                                                                                                              |         11 |        738 |          0 |        513 |      1,251 |
+| src\components\playerspage\atoms                                                                                                        |          6 |        346 |          0 |        230 |        576 |
+| src\components\playerspage\molecules                                                                                                    |          3 |        313 |          0 |        225 |        538 |
+| src\components\playerspage\organisms                                                                                                    |          1 |         69 |          0 |         50 |        119 |
+| src\components\playerspage\templates                                                                                                    |          1 |         10 |          0 |          8 |         18 |
+| src\components\profilepage                                                                                                              |          6 |        292 |          0 |        194 |        486 |
+| src\components\profilepage\atoms                                                                                                        |          3 |        173 |          0 |        108 |        281 |
+| src\components\profilepage\molecules                                                                                                    |          1 |         99 |          0 |         71 |        170 |
+| src\components\profilepage\organisms                                                                                                    |          1 |          8 |          0 |          7 |         15 |
+| src\components\profilepage\templates                                                                                                    |          1 |         12 |          0 |          8 |         20 |
+| src\components\stores                                                                                                                   |          8 |        240 |          4 |        157 |        401 |
+| src\components\trainerspage                                                                                                             |         11 |        688 |          0 |        510 |      1,198 |
+| src\components\trainerspage\atoms                                                                                                       |          6 |        305 |          0 |        226 |        531 |
+| src\components\trainerspage\molecules                                                                                                   |          3 |        297 |          0 |        221 |        518 |
+| src\components\trainerspage\organisms                                                                                                   |          1 |         76 |          0 |         55 |        131 |
+| src\components\trainerspage\templates                                                                                                   |          1 |         10 |          0 |          8 |         18 |
+| src\components\trainingspage                                                                                                            |         12 |        732 |          0 |        504 |      1,236 |
+| src\components\trainingspage\atoms                                                                                                      |          7 |        384 |          0 |        249 |        633 |
+| src\components\trainingspage\molecules                                                                                                  |          3 |        260 |          0 |        190 |        450 |
+| src\components\trainingspage\organisms                                                                                                  |          1 |         78 |          0 |         57 |        135 |
+| src\components\trainingspage\templates                                                                                                  |          1 |         10 |          0 |          8 |         18 |
+| src\router                                                                                                                              |          1 |         51 |          5 |         16 |         72 |
++-----------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                                                | language   | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\README.md                                                      | Markdown   |          3 |          0 |          3 |          6 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\index.html                                                     | HTML       |         13 |          0 |         11 |         24 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\package-lock.json                                              | JSON       |      2,237 |          0 |          1 |      2,238 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\package.json                                                   | JSON       |         24 |          0 |          1 |         25 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\public\vite.svg                                                | XML        |          1 |          0 |          0 |          1 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\App.vue                                                    | vue        |          7 |          0 |          6 |         13 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\activateIcon.svg                                    | XML        |          6 |          0 |          0 |          6 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\arrowDownIcon.svg                                   | XML        |          4 |          0 |          0 |          4 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\buildingIcon.svg                                    | XML        |          4 |          0 |          0 |          4 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\calendarIcon.svg                                    | XML        |         13 |          0 |          0 |         13 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\cameraIcon.svg                                      | XML        |          5 |          0 |          0 |          5 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\cityIcon.svg                                        | XML        |         47 |          1 |          1 |         49 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\clockIcon.svg                                       | XML        |          4 |          0 |          0 |          4 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\clubsIcon.svg                                       | XML        |         21 |          1 |          0 |         22 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\courtIcon.svg                                       | XML        |         12 |          1 |          1 |         14 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\crossIcon.svg                                       | XML        |          4 |          0 |          0 |          4 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\dashboardIcon.svg                                   | XML        |          2 |          0 |          0 |          2 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\deactivateIcon.svg                                  | XML        |          9 |          0 |          0 |          9 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\editIcon.svg                                        | XML        |          5 |          0 |          0 |          5 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\emailIcon.svg                                       | XML        |          5 |          0 |          0 |          5 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\flagIcon.svg                                        | XML        |          4 |          0 |          0 |          4 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\flagPersonIcon.svg                                  | XML        |         15 |          0 |          0 |         15 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\globeIcon.svg                                       | XML        |          2 |          0 |          0 |          2 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\hashIcon.svg                                        | XML        |          4 |          0 |          0 |          4 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\importIcon.svg                                      | XML        |          4 |          0 |          0 |          4 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\locationIcon.svg                                    | XML        |          5 |          0 |          0 |          5 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\magnifyingGlassIcon.svg                             | XML        |          2 |          0 |          0 |          2 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\nl.svg                                              | XML        |         17 |          1 |          0 |         18 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\passwordIcon.svg                                    | XML        |          4 |          0 |          0 |          4 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\personIcon.svg                                      | XML        |          2 |          0 |          0 |          2 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\phoneIcon.svg                                       | XML        |          4 |          0 |          0 |          4 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\playerIcon.svg                                      | XML        |         49 |          1 |          1 |         51 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\plusIcon.svg                                        | XML        |         13 |          1 |          3 |         17 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\recycleBinIcon.svg                                  | XML        |         18 |          1 |          1 |         20 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\rightArrowIcon.svg                                  | XML        |          4 |          0 |          0 |          4 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\signOutIcon.svg                                     | XML        |          2 |          0 |          0 |          2 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\tennis-shielf.svg                                   | XML        |          1 |          0 |          0 |          1 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\tennisLogo.svg                                      | XML        |         10 |          0 |          1 |         11 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\trainerIcon.svg                                     | XML        |         34 |          1 |          1 |         36 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\trainingsIcon.svg                                   | XML        |          4 |          0 |          0 |          4 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\uk.svg                                              | XML        |         84 |          1 |          0 |         85 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\assets\waitingIcon.svg                                     | XML        |         12 |          0 |          0 |         12 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\clubspage\atoms\ClubFooter.vue                  | vue        |         30 |          0 |         28 |         58 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\clubspage\atoms\ClubInputs.vue                  | vue        |        132 |          0 |         81 |        213 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\clubspage\atoms\EmptyTab.vue                    | vue        |         11 |          0 |         10 |         21 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\clubspage\atoms\FormButtons.vue                 | vue        |         25 |          0 |         15 |         40 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\clubspage\atoms\ImageSubmitButton.vue           | vue        |         53 |          0 |         40 |         93 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\clubspage\molecules\ClubInformation.vue         | vue        |        145 |          0 |        101 |        246 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\clubspage\molecules\ClubsTable.vue              | vue        |         96 |          0 |         91 |        187 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\clubspage\molecules\Tabs.vue                    | vue        |         37 |          0 |         36 |         73 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\clubspage\organisms\Clubs.vue                   | vue        |         69 |          0 |         50 |        119 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\clubspage\templates\ClubsPage.vue               | vue        |         10 |          0 |          8 |         18 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\courtspage\atoms\ArchivedTab.vue                | vue        |         11 |          0 |         10 |         21 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\courtspage\atoms\CourtInputs.vue                | vue        |        152 |          0 |         85 |        237 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\courtspage\atoms\CourtsFooter.vue               | vue        |         30 |          0 |         28 |         58 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\courtspage\atoms\FormButtons.vue                | vue        |         25 |          0 |         15 |         40 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\courtspage\atoms\ImageSubmitButton.vue          | vue        |         61 |          0 |         52 |        113 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\courtspage\molecules\CourtInformation.vue       | vue        |        129 |          0 |         81 |        210 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\courtspage\molecules\CourtsTable.vue            | vue        |         96 |          1 |         91 |        188 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\courtspage\molecules\Tabs.vue                   | vue        |         37 |          0 |         36 |         73 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\courtspage\organisms\Courts.vue                 | vue        |         66 |          0 |         46 |        112 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\courtspage\templates\CourtsPage.vue             | vue        |         10 |          0 |          8 |         18 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\dashboard\atoms\Icons.vue                       | vue        |         46 |          0 |         28 |         74 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\dashboard\atoms\SchoolAdmin.vue                 | vue        |         19 |          0 |         16 |         35 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\dashboard\atoms\SignOut.vue                     | vue        |         15 |          0 |         14 |         29 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\dashboard\atoms\TennisFoodLogo.vue              | vue        |         13 |          0 |         13 |         26 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\dashboard\templates\Dashboard.vue               | vue        |         67 |          0 |         24 |         91 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\hashtagspage\atoms\ArchivedTab.vue              | vue        |         11 |          0 |         10 |         21 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\hashtagspage\atoms\Dropdown.vue                 | vue        |         58 |          0 |         20 |         78 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\hashtagspage\atoms\FormButtons.vue              | vue        |         35 |         41 |         22 |         98 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\hashtagspage\atoms\HashtagInputs.vue            | vue        |         80 |          0 |         48 |        128 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\hashtagspage\atoms\HashtagsFooter.vue           | vue        |         30 |          0 |         28 |         58 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\hashtagspage\atoms\ImageSubmitButton.vue        | vue        |         61 |          0 |         52 |        113 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\hashtagspage\molecules\ConfirmationBox.vue      | vue        |         33 |          0 |         29 |         62 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\hashtagspage\molecules\HashtagInformation.vue   | vue        |         83 |          0 |         65 |        148 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\hashtagspage\molecules\HashtagsTable.vue        | vue        |         76 |          0 |         66 |        142 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\hashtagspage\molecules\Tabs.vue                 | vue        |         37 |          0 |         36 |         73 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\hashtagspage\organisms\Hashtags.vue             | vue        |         53 |          0 |         36 |         89 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\hashtagspage\templates\HashtagsPage.vue         | vue        |         10 |          0 |          8 |         18 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\header\atoms\ImportIcon.vue                     | vue        |         11 |          0 |         10 |         21 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\header\atoms\SearchBar.vue                      | vue        |          9 |          0 |          8 |         17 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\header\molecules\Header.vue                     | vue        |         26 |          0 |         23 |         49 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\languagetoggle\LanguageToggle.vue               | vue        |         34 |          0 |         29 |         63 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\login\atoms\FormInput.vue                       | vue        |         29 |          0 |         20 |         49 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\login\atoms\InstructorPage.vue                  | vue        |          8 |          0 |          7 |         15 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\login\molecules\LoginField.vue                  | vue        |         89 |          0 |         71 |        160 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\login\templates\LoginPage.vue                   | vue        |         10 |          0 |          8 |         18 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\playerspage\atoms\Dropdown.vue                  | vue        |         58 |          0 |         20 |         78 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\playerspage\atoms\EmptyTab.vue                  | vue        |         11 |          0 |         10 |         21 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\playerspage\atoms\FormButtons.vue               | vue        |         25 |          0 |         15 |         40 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\playerspage\atoms\ImageSubmitButton.vue         | vue        |         61 |          0 |         52 |        113 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\playerspage\atoms\PlayerInputs.vue              | vue        |        161 |          0 |        105 |        266 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\playerspage\atoms\PlayersFooter.vue             | vue        |         30 |          0 |         28 |         58 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\playerspage\molecules\PlayerInformation.vue     | vue        |        180 |          0 |         99 |        279 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\playerspage\molecules\PlayersTable.vue          | vue        |         96 |          0 |         90 |        186 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\playerspage\molecules\Tabs.vue                  | vue        |         37 |          0 |         36 |         73 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\playerspage\organisms\Players.vue               | vue        |         69 |          0 |         50 |        119 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\playerspage\templates\PlayersPage.vue           | vue        |         10 |          0 |          8 |         18 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\profilepage\atoms\FormButtons.vue               | vue        |         25 |          0 |         15 |         40 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\profilepage\atoms\ImageSubmitButton.vue         | vue        |         50 |          0 |         41 |         91 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\profilepage\atoms\ProfileInputs.vue             | vue        |         98 |          0 |         52 |        150 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\profilepage\molecules\AccountInfo.vue           | vue        |         99 |          0 |         71 |        170 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\profilepage\organisms\Profile.vue               | vue        |          8 |          0 |          7 |         15 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\profilepage\templates\ProfilePage.vue           | vue        |         12 |          0 |          8 |         20 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\stores\clubStore.js                             | JavaScript |         53 |          0 |         29 |         82 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\stores\courtStore.js                            | JavaScript |         32 |          4 |         21 |         57 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\stores\hashtagStore.js                          | JavaScript |         43 |          0 |         33 |         76 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\stores\languageStore.js                         | JavaScript |         12 |          0 |         10 |         22 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\stores\playerStore.js                           | JavaScript |         38 |          0 |         20 |         58 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\stores\profileStore.js                          | JavaScript |         24 |          0 |         12 |         36 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\stores\trainerStore.js                          | JavaScript |         19 |          0 |         16 |         35 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\stores\trainingStore.js                         | JavaScript |         19 |          0 |         16 |         35 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainerspage\atoms\EmptyTab.vue                 | vue        |         17 |          0 |         16 |         33 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainerspage\atoms\FormButtons.vue              | vue        |         25 |          0 |         15 |         40 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainerspage\atoms\ImageSubmitButton.vue        | vue        |         61 |          0 |         52 |        113 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainerspage\atoms\NoDataTab.vue                | vue        |         11 |          0 |         10 |         21 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainerspage\atoms\TrainerInputs.vue            | vue        |        161 |          0 |        105 |        266 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainerspage\atoms\TrainersFooter.vue           | vue        |         30 |          0 |         28 |         58 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainerspage\molecules\Tabs.vue                 | vue        |         37 |          0 |         36 |         73 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainerspage\molecules\TrainerInformation.vue   | vue        |        164 |          0 |         95 |        259 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainerspage\molecules\TrainersTable.vue        | vue        |         96 |          0 |         90 |        186 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainerspage\organisms\Trainers.vue             | vue        |         76 |          0 |         55 |        131 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainerspage\templates\TrainersPage.vue         | vue        |         10 |          0 |          8 |         18 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainingspage\atoms\ArchivedTab.vue             | vue        |         11 |          0 |         10 |         21 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainingspage\atoms\Dropdown.vue                | vue        |         58 |          0 |         20 |         78 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainingspage\atoms\EmptyTab.vue                | vue        |         17 |          0 |         16 |         33 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainingspage\atoms\FormButtons.vue             | vue        |         25 |          0 |         15 |         40 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainingspage\atoms\ImageSubmitButton.vue       | vue        |         61 |          0 |         52 |        113 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainingspage\atoms\TrainingInputs.vue          | vue        |        182 |          0 |        108 |        290 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainingspage\atoms\TrainingsFooter.vue         | vue        |         30 |          0 |         28 |         58 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainingspage\molecules\Tabs.vue                | vue        |         37 |          0 |         36 |         73 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainingspage\molecules\TrainingInformation.vue | vue        |        141 |          0 |         84 |        225 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainingspage\molecules\TrainingsTable.vue      | vue        |         82 |          0 |         70 |        152 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainingspage\organisms\Trainings.vue           | vue        |         78 |          0 |         57 |        135 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\components\trainingspage\templates\TrainingsPage.vue       | vue        |         10 |          0 |          8 |         18 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\i18n.js                                                    | JavaScript |        209 |          1 |         53 |        263 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\main.js                                                    | JavaScript |         12 |          0 |          3 |         15 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\router\index.js                                            | JavaScript |         51 |          5 |         16 |         72 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\src\style.css                                                  | PostCSS    |         42 |          0 |         39 |         81 |
+| c:\Users\aaliy\OneDrive\Desktop\Javascript\Vue Projects\tennis-food-main\vite.config.js                                                 | JavaScript |          6 |          1 |          2 |          9 |
+| Total                                                                                                                                   |            |      7,898 |         62 |      3,625 |     11,585 |
++-----------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

@@ -1,0 +1,842 @@
+{
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/vite.config.js": {
+    "language": "JavaScript",
+    "code": 6,
+    "comment": 1,
+    "blank": 2
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/style.css": {
+    "language": "PostCSS",
+    "code": 42,
+    "comment": 0,
+    "blank": 39
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/public/vite.svg": {
+    "language": "XML",
+    "code": 1,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/i18n.js": {
+    "language": "JavaScript",
+    "code": 209,
+    "comment": 1,
+    "blank": 53
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/main.js": {
+    "language": "JavaScript",
+    "code": 12,
+    "comment": 0,
+    "blank": 3
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/README.md": {
+    "language": "Markdown",
+    "code": 3,
+    "comment": 0,
+    "blank": 3
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/App.vue": {
+    "language": "vue",
+    "code": 7,
+    "comment": 0,
+    "blank": 6
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/package.json": {
+    "language": "JSON",
+    "code": 24,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/router/index.js": {
+    "language": "JavaScript",
+    "code": 51,
+    "comment": 5,
+    "blank": 16
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/index.html": {
+    "language": "HTML",
+    "code": 13,
+    "comment": 0,
+    "blank": 11
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/clockIcon.svg": {
+    "language": "XML",
+    "code": 4,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/cameraIcon.svg": {
+    "language": "XML",
+    "code": 5,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/buildingIcon.svg": {
+    "language": "XML",
+    "code": 4,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/cityIcon.svg": {
+    "language": "XML",
+    "code": 47,
+    "comment": 1,
+    "blank": 1
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/clubsIcon.svg": {
+    "language": "XML",
+    "code": 21,
+    "comment": 1,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/courtIcon.svg": {
+    "language": "XML",
+    "code": 12,
+    "comment": 1,
+    "blank": 1
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/activateIcon.svg": {
+    "language": "XML",
+    "code": 6,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/calendarIcon.svg": {
+    "language": "XML",
+    "code": 13,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/crossIcon.svg": {
+    "language": "XML",
+    "code": 4,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/package-lock.json": {
+    "language": "JSON",
+    "code": 2237,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/dashboardIcon.svg": {
+    "language": "XML",
+    "code": 2,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/arrowDownIcon.svg": {
+    "language": "XML",
+    "code": 4,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/deactivateIcon.svg": {
+    "language": "XML",
+    "code": 9,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/stores/clubStore.js": {
+    "language": "JavaScript",
+    "code": 53,
+    "comment": 0,
+    "blank": 29
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/hashIcon.svg": {
+    "language": "XML",
+    "code": 4,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/locationIcon.svg": {
+    "language": "XML",
+    "code": 5,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/importIcon.svg": {
+    "language": "XML",
+    "code": 4,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/flagPersonIcon.svg": {
+    "language": "XML",
+    "code": 15,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/globeIcon.svg": {
+    "language": "XML",
+    "code": 2,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/editIcon.svg": {
+    "language": "XML",
+    "code": 5,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/flagIcon.svg": {
+    "language": "XML",
+    "code": 4,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/languagetoggle/LanguageToggle.vue": {
+    "language": "vue",
+    "code": 34,
+    "comment": 0,
+    "blank": 29
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/stores/playerStore.js": {
+    "language": "JavaScript",
+    "code": 38,
+    "comment": 0,
+    "blank": 20
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/nl.svg": {
+    "language": "XML",
+    "code": 17,
+    "comment": 1,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/emailIcon.svg": {
+    "language": "XML",
+    "code": 5,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/stores/trainingStore.js": {
+    "language": "JavaScript",
+    "code": 19,
+    "comment": 0,
+    "blank": 16
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/stores/profileStore.js": {
+    "language": "JavaScript",
+    "code": 24,
+    "comment": 0,
+    "blank": 12
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/stores/trainerStore.js": {
+    "language": "JavaScript",
+    "code": 19,
+    "comment": 0,
+    "blank": 16
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/magnifyingGlassIcon.svg": {
+    "language": "XML",
+    "code": 2,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/tennis-shielf.svg": {
+    "language": "XML",
+    "code": 1,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/personIcon.svg": {
+    "language": "XML",
+    "code": 2,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/signOutIcon.svg": {
+    "language": "XML",
+    "code": 2,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/playerIcon.svg": {
+    "language": "XML",
+    "code": 49,
+    "comment": 1,
+    "blank": 1
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/plusIcon.svg": {
+    "language": "XML",
+    "code": 13,
+    "comment": 1,
+    "blank": 3
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/phoneIcon.svg": {
+    "language": "XML",
+    "code": 4,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/rightArrowIcon.svg": {
+    "language": "XML",
+    "code": 4,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainingspage/atoms/TrainingsFooter.vue": {
+    "language": "vue",
+    "code": 30,
+    "comment": 0,
+    "blank": 28
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainingspage/atoms/FormButtons.vue": {
+    "language": "vue",
+    "code": 25,
+    "comment": 0,
+    "blank": 15
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainingspage/atoms/ImageSubmitButton.vue": {
+    "language": "vue",
+    "code": 61,
+    "comment": 0,
+    "blank": 52
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainingspage/atoms/TrainingInputs.vue": {
+    "language": "vue",
+    "code": 182,
+    "comment": 0,
+    "blank": 108
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainingspage/atoms/Dropdown.vue": {
+    "language": "vue",
+    "code": 58,
+    "comment": 0,
+    "blank": 20
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/recycleBinIcon.svg": {
+    "language": "XML",
+    "code": 18,
+    "comment": 1,
+    "blank": 1
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainingspage/atoms/ArchivedTab.vue": {
+    "language": "vue",
+    "code": 11,
+    "comment": 0,
+    "blank": 10
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainingspage/atoms/EmptyTab.vue": {
+    "language": "vue",
+    "code": 17,
+    "comment": 0,
+    "blank": 16
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/passwordIcon.svg": {
+    "language": "XML",
+    "code": 4,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/login/atoms/FormInput.vue": {
+    "language": "vue",
+    "code": 29,
+    "comment": 0,
+    "blank": 20
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/uk.svg": {
+    "language": "XML",
+    "code": 84,
+    "comment": 1,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/waitingIcon.svg": {
+    "language": "XML",
+    "code": 12,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/trainerIcon.svg": {
+    "language": "XML",
+    "code": 34,
+    "comment": 1,
+    "blank": 1
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/login/atoms/InstructorPage.vue": {
+    "language": "vue",
+    "code": 8,
+    "comment": 0,
+    "blank": 7
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/trainingsIcon.svg": {
+    "language": "XML",
+    "code": 4,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/assets/tennisLogo.svg": {
+    "language": "XML",
+    "code": 10,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/login/molecules/LoginField.vue": {
+    "language": "vue",
+    "code": 89,
+    "comment": 0,
+    "blank": 71
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainingspage/molecules/TrainingsTable.vue": {
+    "language": "vue",
+    "code": 82,
+    "comment": 0,
+    "blank": 70
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/login/templates/LoginPage.vue": {
+    "language": "vue",
+    "code": 10,
+    "comment": 0,
+    "blank": 8
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainingspage/molecules/TrainingInformation.vue": {
+    "language": "vue",
+    "code": 141,
+    "comment": 0,
+    "blank": 84
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/playerspage/molecules/PlayerInformation.vue": {
+    "language": "vue",
+    "code": 180,
+    "comment": 0,
+    "blank": 99
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/playerspage/templates/PlayersPage.vue": {
+    "language": "vue",
+    "code": 10,
+    "comment": 0,
+    "blank": 8
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/playerspage/molecules/PlayersTable.vue": {
+    "language": "vue",
+    "code": 96,
+    "comment": 0,
+    "blank": 90
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainingspage/molecules/Tabs.vue": {
+    "language": "vue",
+    "code": 37,
+    "comment": 0,
+    "blank": 36
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/playerspage/molecules/Tabs.vue": {
+    "language": "vue",
+    "code": 37,
+    "comment": 0,
+    "blank": 36
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainingspage/organisms/Trainings.vue": {
+    "language": "vue",
+    "code": 78,
+    "comment": 0,
+    "blank": 57
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainingspage/templates/TrainingsPage.vue": {
+    "language": "vue",
+    "code": 10,
+    "comment": 0,
+    "blank": 8
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/playerspage/organisms/Players.vue": {
+    "language": "vue",
+    "code": 69,
+    "comment": 0,
+    "blank": 50
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/stores/languageStore.js": {
+    "language": "JavaScript",
+    "code": 12,
+    "comment": 0,
+    "blank": 10
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/stores/hashtagStore.js": {
+    "language": "JavaScript",
+    "code": 43,
+    "comment": 0,
+    "blank": 33
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/stores/courtStore.js": {
+    "language": "JavaScript",
+    "code": 32,
+    "comment": 4,
+    "blank": 21
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/profilepage/atoms/FormButtons.vue": {
+    "language": "vue",
+    "code": 25,
+    "comment": 0,
+    "blank": 15
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/profilepage/molecules/AccountInfo.vue": {
+    "language": "vue",
+    "code": 99,
+    "comment": 0,
+    "blank": 71
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/profilepage/atoms/ImageSubmitButton.vue": {
+    "language": "vue",
+    "code": 50,
+    "comment": 0,
+    "blank": 41
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainerspage/templates/TrainersPage.vue": {
+    "language": "vue",
+    "code": 10,
+    "comment": 0,
+    "blank": 8
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/profilepage/atoms/ProfileInputs.vue": {
+    "language": "vue",
+    "code": 98,
+    "comment": 0,
+    "blank": 52
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/playerspage/atoms/ImageSubmitButton.vue": {
+    "language": "vue",
+    "code": 61,
+    "comment": 0,
+    "blank": 52
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainerspage/atoms/ImageSubmitButton.vue": {
+    "language": "vue",
+    "code": 61,
+    "comment": 0,
+    "blank": 52
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainerspage/organisms/Trainers.vue": {
+    "language": "vue",
+    "code": 76,
+    "comment": 0,
+    "blank": 55
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/playerspage/atoms/FormButtons.vue": {
+    "language": "vue",
+    "code": 25,
+    "comment": 0,
+    "blank": 15
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/playerspage/atoms/EmptyTab.vue": {
+    "language": "vue",
+    "code": 11,
+    "comment": 0,
+    "blank": 10
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainerspage/atoms/TrainersFooter.vue": {
+    "language": "vue",
+    "code": 30,
+    "comment": 0,
+    "blank": 28
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainerspage/atoms/TrainerInputs.vue": {
+    "language": "vue",
+    "code": 161,
+    "comment": 0,
+    "blank": 105
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/playerspage/atoms/PlayersFooter.vue": {
+    "language": "vue",
+    "code": 30,
+    "comment": 0,
+    "blank": 28
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainerspage/atoms/NoDataTab.vue": {
+    "language": "vue",
+    "code": 11,
+    "comment": 0,
+    "blank": 10
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainerspage/atoms/FormButtons.vue": {
+    "language": "vue",
+    "code": 25,
+    "comment": 0,
+    "blank": 15
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainerspage/molecules/TrainersTable.vue": {
+    "language": "vue",
+    "code": 96,
+    "comment": 0,
+    "blank": 90
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainerspage/molecules/TrainerInformation.vue": {
+    "language": "vue",
+    "code": 164,
+    "comment": 0,
+    "blank": 95
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainerspage/atoms/EmptyTab.vue": {
+    "language": "vue",
+    "code": 17,
+    "comment": 0,
+    "blank": 16
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/playerspage/atoms/PlayerInputs.vue": {
+    "language": "vue",
+    "code": 161,
+    "comment": 0,
+    "blank": 105
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/trainerspage/molecules/Tabs.vue": {
+    "language": "vue",
+    "code": 37,
+    "comment": 0,
+    "blank": 36
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/courtspage/atoms/ArchivedTab.vue": {
+    "language": "vue",
+    "code": 11,
+    "comment": 0,
+    "blank": 10
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/playerspage/atoms/Dropdown.vue": {
+    "language": "vue",
+    "code": 58,
+    "comment": 0,
+    "blank": 20
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/header/molecules/Header.vue": {
+    "language": "vue",
+    "code": 26,
+    "comment": 0,
+    "blank": 23
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/profilepage/templates/ProfilePage.vue": {
+    "language": "vue",
+    "code": 12,
+    "comment": 0,
+    "blank": 8
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/courtspage/atoms/CourtsFooter.vue": {
+    "language": "vue",
+    "code": 30,
+    "comment": 0,
+    "blank": 28
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/courtspage/molecules/CourtInformation.vue": {
+    "language": "vue",
+    "code": 129,
+    "comment": 0,
+    "blank": 81
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/courtspage/atoms/ImageSubmitButton.vue": {
+    "language": "vue",
+    "code": 61,
+    "comment": 0,
+    "blank": 52
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/header/atoms/SearchBar.vue": {
+    "language": "vue",
+    "code": 9,
+    "comment": 0,
+    "blank": 8
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/courtspage/molecules/CourtsTable.vue": {
+    "language": "vue",
+    "code": 96,
+    "comment": 1,
+    "blank": 91
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/courtspage/atoms/FormButtons.vue": {
+    "language": "vue",
+    "code": 25,
+    "comment": 0,
+    "blank": 15
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/courtspage/atoms/CourtInputs.vue": {
+    "language": "vue",
+    "code": 152,
+    "comment": 0,
+    "blank": 85
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/clubspage/molecules/Tabs.vue": {
+    "language": "vue",
+    "code": 37,
+    "comment": 0,
+    "blank": 36
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/courtspage/molecules/Tabs.vue": {
+    "language": "vue",
+    "code": 37,
+    "comment": 0,
+    "blank": 36
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/header/atoms/ImportIcon.vue": {
+    "language": "vue",
+    "code": 11,
+    "comment": 0,
+    "blank": 10
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/clubspage/organisms/Clubs.vue": {
+    "language": "vue",
+    "code": 69,
+    "comment": 0,
+    "blank": 50
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/courtspage/organisms/Courts.vue": {
+    "language": "vue",
+    "code": 66,
+    "comment": 0,
+    "blank": 46
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/clubspage/molecules/ClubInformation.vue": {
+    "language": "vue",
+    "code": 145,
+    "comment": 0,
+    "blank": 101
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/clubspage/molecules/ClubsTable.vue": {
+    "language": "vue",
+    "code": 96,
+    "comment": 0,
+    "blank": 91
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/courtspage/templates/CourtsPage.vue": {
+    "language": "vue",
+    "code": 10,
+    "comment": 0,
+    "blank": 8
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/clubspage/atoms/FormButtons.vue": {
+    "language": "vue",
+    "code": 25,
+    "comment": 0,
+    "blank": 15
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/dashboard/templates/Dashboard.vue": {
+    "language": "vue",
+    "code": 67,
+    "comment": 0,
+    "blank": 24
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/clubspage/atoms/ImageSubmitButton.vue": {
+    "language": "vue",
+    "code": 53,
+    "comment": 0,
+    "blank": 40
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/clubspage/atoms/ClubFooter.vue": {
+    "language": "vue",
+    "code": 30,
+    "comment": 0,
+    "blank": 28
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/clubspage/atoms/ClubInputs.vue": {
+    "language": "vue",
+    "code": 132,
+    "comment": 0,
+    "blank": 81
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/dashboard/atoms/SchoolAdmin.vue": {
+    "language": "vue",
+    "code": 19,
+    "comment": 0,
+    "blank": 16
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/clubspage/atoms/EmptyTab.vue": {
+    "language": "vue",
+    "code": 11,
+    "comment": 0,
+    "blank": 10
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/profilepage/organisms/Profile.vue": {
+    "language": "vue",
+    "code": 8,
+    "comment": 0,
+    "blank": 7
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/clubspage/templates/ClubsPage.vue": {
+    "language": "vue",
+    "code": 10,
+    "comment": 0,
+    "blank": 8
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/dashboard/atoms/TennisFoodLogo.vue": {
+    "language": "vue",
+    "code": 13,
+    "comment": 0,
+    "blank": 13
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/hashtagspage/organisms/Hashtags.vue": {
+    "language": "vue",
+    "code": 53,
+    "comment": 0,
+    "blank": 36
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/dashboard/atoms/Icons.vue": {
+    "language": "vue",
+    "code": 46,
+    "comment": 0,
+    "blank": 28
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/dashboard/atoms/SignOut.vue": {
+    "language": "vue",
+    "code": 15,
+    "comment": 0,
+    "blank": 14
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/hashtagspage/templates/HashtagsPage.vue": {
+    "language": "vue",
+    "code": 10,
+    "comment": 0,
+    "blank": 8
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/hashtagspage/atoms/HashtagsFooter.vue": {
+    "language": "vue",
+    "code": 30,
+    "comment": 0,
+    "blank": 28
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/hashtagspage/atoms/FormButtons.vue": {
+    "language": "vue",
+    "code": 35,
+    "comment": 41,
+    "blank": 22
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/hashtagspage/molecules/HashtagsTable.vue": {
+    "language": "vue",
+    "code": 76,
+    "comment": 0,
+    "blank": 66
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/hashtagspage/atoms/HashtagInputs.vue": {
+    "language": "vue",
+    "code": 80,
+    "comment": 0,
+    "blank": 48
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/hashtagspage/atoms/Dropdown.vue": {
+    "language": "vue",
+    "code": 58,
+    "comment": 0,
+    "blank": 20
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/hashtagspage/atoms/ArchivedTab.vue": {
+    "language": "vue",
+    "code": 11,
+    "comment": 0,
+    "blank": 10
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/hashtagspage/atoms/ImageSubmitButton.vue": {
+    "language": "vue",
+    "code": 61,
+    "comment": 0,
+    "blank": 52
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/hashtagspage/molecules/ConfirmationBox.vue": {
+    "language": "vue",
+    "code": 33,
+    "comment": 0,
+    "blank": 29
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/hashtagspage/molecules/HashtagInformation.vue": {
+    "language": "vue",
+    "code": 83,
+    "comment": 0,
+    "blank": 65
+  },
+  "file:///c%3A/Users/aaliy/OneDrive/Desktop/Javascript/Vue%20Projects/tennis-food-main/src/components/hashtagspage/molecules/Tabs.vue": {
+    "language": "vue",
+    "code": 37,
+    "comment": 0,
+    "blank": 36
+  }
+}

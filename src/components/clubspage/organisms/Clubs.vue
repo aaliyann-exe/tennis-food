@@ -1,77 +1,77 @@
 <script setup>
 
-    import { ref, computed } from 'vue';
-    import { useClubStore } from '/src/components/stores/clubStore';
+import { ref, computed } from 'vue';
+import { useClubStore } from '/src/components/stores/clubStore';
 
-    import ClubsTable from '/src/components/clubspage/molecules/ClubsTable.vue';
-    import ClubInformation from '/src/components/clubspage/molecules/ClubInformation.vue';
-    import ClubFooter from '/src/components/clubspage/atoms/ClubFooter.vue';
-    import Tabs from '/src/components/clubspage/molecules/Tabs.vue';
-    import EmptyTab from '/src/components/clubspage/atoms/EmptyTab.vue';
-    import Header from '/src/components/header/molecules/Header.vue';
+import ClubsTable from '/src/components/clubspage/molecules/ClubsTable.vue';
+import ClubInformation from '/src/components/clubspage/molecules/ClubInformation.vue';
+import ClubFooter from '/src/components/clubspage/atoms/ClubFooter.vue';
+import Tabs from '/src/components/clubspage/molecules/Tabs.vue';
+import EmptyTab from '/src/components/clubspage/atoms/EmptyTab.vue';
+import Header from '/src/components/header/molecules/Header.vue';
 
-    const clubStore = useClubStore();
-    const clubModalVisible = ref(false);
-    const clubMode = ref('create');
-    const selectedClub = ref(null);
-    const isArchivedTab = ref(false);
-    const activeClubs = computed( () => clubStore.clubs.filter(club => club.status === true) );
-    const archivedClubs = computed( () => clubStore.clubs.filter(club => club.status === false) );
+const clubStore = useClubStore();
+const clubModalVisible = ref(false);
+const clubMode = ref('create');
+const selectedClub = ref(null);
+const isArchivedTab = ref(false);
+const activeClubs = computed(() => clubStore.clubs.filter(club => club.status === true));
+const archivedClubs = computed(() => clubStore.clubs.filter(club => club.status === false));
 
-    const toggleModal = () => {
+const toggleModal = () => {
 
-        clubModalVisible.value = !clubModalVisible.value;
+    clubModalVisible.value = !clubModalVisible.value;
 
-        if(!clubModalVisible.value) {
+    if (!clubModalVisible.value) {
 
-            selectedClub.value = null;
+        selectedClub.value = null;
 
-        }
+    }
 
-    };
+};
 
-    const handleSaveClub = () => {
+const handleSaveClub = () => {
 
-        clubModalVisible.value = false;
+    clubModalVisible.value = false;
 
-    };
+};
 
-    const createClub = () => {
+const createClub = () => {
 
-        selectedClub.value = {};
-        clubMode.value = 'create';
-        clubModalVisible.value = true;
+    selectedClub.value = {};
+    clubMode.value = 'create';
+    clubModalVisible.value = true;
 
-    };
+};
 
-    const viewClub = (club) => {
+const viewClub = (club) => {
 
-        selectedClub.value = club;
-        clubMode.value = 'view';
-        clubModalVisible.value = true;
+    selectedClub.value = club;
+    clubMode.value = 'view';
+    clubModalVisible.value = true;
 
-    };
+};
 
-    const editClub = (club) => {
+const editClub = (club) => {
 
-        selectedClub.value = club;
-        clubMode.value = 'edit';
-        clubModalVisible.value = true;
+    selectedClub.value = club;
+    clubMode.value = 'edit';
+    clubModalVisible.value = true;
 
-    };
+};
 
-    const toggleClubStatus = (club) => {
+const toggleClubStatus = (club) => {
 
-        const updatedClub = {
+    const updatedClub = {
 
-            ...club,
-            status: !club.status,
-
-        };
-
-        clubStore.updateClub(updatedClub);
+        ...club,
+        status: !club.status,
 
     };
+
+    clubStore.updateClub(updatedClub);
+
+};
 
 </script>
 
@@ -81,14 +81,14 @@
 
         <Header :text="$t('dashboard.clubs')" @create="createClub" />
 
-        <Tabs v-model:show-archived="isArchivedTab"/>
+        <Tabs v-model:show-archived="isArchivedTab" />
 
         <div v-if="!isArchivedTab">
 
             <div v-if="(activeClubs.length > 0)">
 
                 <ClubsTable :clubs="activeClubs" @view="viewClub" @edit="editClub" @toggle-status="toggleClubStatus" />
-                
+
                 <ClubFooter />
 
             </div>
@@ -102,8 +102,9 @@
 
             <div v-if="(archivedClubs.length > 0)">
 
-                <ClubsTable :clubs="archivedClubs" @view="viewClub" @edit="editClub" @toggle-status="toggleClubStatus" />
-                
+                <ClubsTable :clubs="archivedClubs" @view="viewClub" @edit="editClub"
+                    @toggle-status="toggleClubStatus" />
+
                 <ClubFooter />
 
             </div>
@@ -112,7 +113,8 @@
 
         </div>
 
-        <ClubInformation v-if="clubModalVisible" @close="toggleModal" @save="handleSaveClub" @edit="editClub" :mode="clubMode" :clubData="selectedClub" />
+        <ClubInformation v-if="clubModalVisible" @close="toggleModal" @save="handleSaveClub" @edit="editClub"
+            :mode="clubMode" :clubData="selectedClub" />
 
     </div>
 

@@ -1,6 +1,6 @@
 <script setup>
 
-    import LanguageToggle from './components/languagetoggle/LanguageToggle.vue';
+import LanguageToggle from './components/languagetoggle/LanguageToggle.vue';
 
 </script>
 

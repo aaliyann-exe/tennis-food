@@ -1,30 +1,30 @@
 <script setup>
 
-    import { computed, watch } from 'vue';
-    import { useI18n } from 'vue-i18n';
-    import { useLanguageStore } from '/src/components/stores/languageStore.js';
+import { computed, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useLanguageStore } from '/src/components/stores/languageStore.js';
 
-    import uk from '/src/assets/uk.svg';
-    import nl from '/src/assets/nl.svg';
+import uk from '/src/assets/uk.svg';
+import nl from '/src/assets/nl.svg';
 
-    const { locale } = useI18n();
-    const languageStore = useLanguageStore();
+const { locale } = useI18n();
+const languageStore = useLanguageStore();
 
-    locale.value = languageStore.currentLocale;
+locale.value = languageStore.currentLocale;
 
-    watch( () => languageStore.currentLocale, (newLocale) => {
+watch(() => languageStore.currentLocale, (newLocale) => {
 
-        locale.value = newLocale;
+    locale.value = newLocale;
 
-    });
+});
 
-    const isDutch = computed( () => languageStore.currentLocale === 'nl' );
+const isDutch = computed(() => languageStore.currentLocale === 'nl');
 
-    const toggleLanguage = () => {
+const toggleLanguage = () => {
 
-        languageStore.toggle();
+    languageStore.toggle();
 
-    };
+};
 
 </script>
 
@@ -34,23 +34,25 @@
 
         <div class="justify-end flex items-center gap-3 text-xs">
 
-            <span :class="( !isDutch ? 'text-slate-900 ' : 'text-slate-400 ') + 'text-sm font-semibold'">
+            <span :class="(!isDutch ? 'text-slate-900 ' : 'text-slate-400 ') + 'text-sm font-semibold'">
 
                 ENG
 
             </span>
-            
-            <div @click="toggleLanguage" class="w-20 h-10 bg-slate-100 rounded-full p-1 flex items-center cursor-pointer relative shadow-inner">
 
-                <div :class="( isDutch ? 'translate-x-10 ' : 'translate-x-0 ') + 'bg-white w-8 h-8 rounded-full shadow-md flex items-center justify-center'">
-                    
+            <div @click="toggleLanguage"
+                class="w-20 h-10 bg-slate-100 rounded-full p-1 flex items-center cursor-pointer relative shadow-inner">
+
+                <div
+                    :class="(isDutch ? 'translate-x-10 ' : 'translate-x-0 ') + 'bg-white w-8 h-8 rounded-full shadow-md flex items-center justify-center'">
+
                     <img :src="isDutch ? nl : uk" class="w-5 h-5 object-cover rounded-full" alt="flag">
 
                 </div>
 
             </div>
-            
-            <span :class="( isDutch ? 'text-slate-900 ' : 'text-slate-400 ') + 'text-sm font-semibold'">
+
+            <span :class="(isDutch ? 'text-slate-900 ' : 'text-slate-400 ') + 'text-sm font-semibold'">
 
                 NL
 

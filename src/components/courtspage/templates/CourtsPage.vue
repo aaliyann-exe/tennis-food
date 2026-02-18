@@ -1,7 +1,7 @@
 <script setup>
 
-    import Dashboard from '/src/components/dashboard/templates/Dashboard.vue';
-    import Courts from '/src/components/courtspage/organisms/Courts.vue';
+import Dashboard from '/src/components/dashboard/templates/Dashboard.vue';
+import Courts from '/src/components/courtspage/organisms/Courts.vue';
 
 </script>
 

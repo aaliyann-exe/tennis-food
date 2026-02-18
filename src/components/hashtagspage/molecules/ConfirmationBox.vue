@@ -1,26 +1,26 @@
 <script setup>
 
-  import FormButtons from '../atoms/FormButtons.vue';
+import FormButtons from '../atoms/FormButtons.vue';
 
-  const props = defineProps({
+const props = defineProps({
 
     title: {
         type: String,
         default: '',
     },
 
-  });
+});
 
-  const emits = defineEmits(['confirm', 'cancel']);
+const emits = defineEmits(['confirm', 'cancel']);
 
 </script>
 
 <template>
 
     <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/18">
-        
+
         <div class="h-max w-150 bg-white shadow-sm rounded-[40px] p-10">
-            
+
             <div class="mb-4">
 
                 <div class="flex items-center justify-center w-8 h-8 border-2 border-primary rounded-full">
@@ -49,9 +49,9 @@
 
             <div class="flex gap-4 items-center">
 
-                <FormButtons @save="$emit('confirm')" yes class="flex-1" />
+                <FormButtons @save="$emit('confirm')" orange text="Yes" class="flex-1" />
 
-                <FormButtons @cancel="$emit('cancel')" no class="flex-1" />
+                <FormButtons @cancel="$emit('cancel')" white text="No" class="flex-1" />
 
             </div>
 

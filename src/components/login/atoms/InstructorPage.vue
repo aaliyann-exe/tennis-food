@@ -1,6 +1,6 @@
 <script setup>
-  
-  import tennisInstructor from '/src/assets/tennisInstructor.png';
+
+import tennisInstructor from '/src/assets/tennisInstructor.png';
 
 </script>
 

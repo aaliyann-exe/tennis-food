@@ -1,29 +1,29 @@
 <script setup>
 
-  import viewIcon from '/src/assets/viewIcon.png';
-  import editIcon from '/src/assets/editIcon.svg';
-  import activateIcon from '/src/assets/activateIcon.svg';
-  import deactivateIcon from '/src/assets/deactivateIcon.svg';
+import viewIcon from '/src/assets/viewIcon.png';
+import editIcon from '/src/assets/editIcon.svg';
+import activateIcon from '/src/assets/activateIcon.svg';
+import deactivateIcon from '/src/assets/deactivateIcon.svg';
 
-  const props = defineProps({
+const props = defineProps({
 
-    players: {
+  players: {
 
-      type: Array,
-      required: true,
-      default: () => [],
+    type: Array,
+    required: true,
+    default: () => [],
 
-    },
+  },
 
-  });
+});
 
-  const emits = defineEmits(['view', 'edit', 'toggle-status']);
+const emits = defineEmits(['view', 'edit', 'toggle-status']);
 
-  const handleToggleStatus = (player) => {
+const handleToggleStatus = (player) => {
 
-    emits('toggle-status', player);
+  emits('toggle-status', player);
 
-  };
+};
 
 </script>
 
@@ -38,7 +38,7 @@
         <thead>
 
           <tr class="text-lg tracking-wider uppercase border-b border-gray-200 font-extralight bg-other">
-            
+
             <th class="px-6 py-4 w-[35%]">
 
               <div class="flex items-center gap-2">
@@ -47,14 +47,15 @@
 
                   <button class="hover:bg-[#ffd4c7] rounded-full p-0.5 cursor-pointer"><span>▲</span></button>
 
-                  <button class="hover:bg-[#ffd4c7] rounded-full p-0.5 cursor-pointer"><span class="opacity-20">▼</span></button>
+                  <button class="hover:bg-[#ffd4c7] rounded-full p-0.5 cursor-pointer"><span
+                      class="opacity-20">▼</span></button>
 
                 </span>
 
                 <span>
 
                   {{ $t('player.player') }} {{ $t('table.name') }}
-            
+
                 </span>
 
               </div>
@@ -78,7 +79,7 @@
               {{ $t('table.actions') }}
 
             </th>
-            
+
           </tr>
 
         </thead>
@@ -93,28 +94,29 @@
 
                 <div v-if="player.pfp" class="shrink-0 w-10 h-10 overflow-hidden rounded-full">
 
-                   <img :src="player.pfp" alt="Player logo" class="object-cover w-full h-full" />
+                  <img :src="player.pfp" alt="Player logo" class="object-cover w-full h-full" />
 
                 </div>
 
-                <div v-else class="flex shrink-0 items-center justify-center w-10 h-10 text-sm font-bold rounded-full text-secondary bg-primary">
+                <div v-else
+                  class="flex shrink-0 items-center justify-center w-10 h-10 text-sm font-bold rounded-full text-secondary bg-primary">
 
                   {{ player.initials }}
 
-                </div> 
+                </div>
 
                 <div class="flex flex-col min-w-0">
 
                   <span class="text-sm font-medium">
-                    
-                    {{ player.fName + ' ' + player.lName}}
-                  
+
+                    {{ player.fName + ' ' + player.lName }}
+
                   </span>
 
                   <span class="text-xs text-primary">
-                    
+
                     {{ player.email }}
-                  
+
                   </span>
 
                 </div>
@@ -131,14 +133,16 @@
 
             <td class="px-6 py-4 text-right">
 
-              <span v-if="player.status" class="inline-block text-center w-24 py-1 text-xs font-medium border rounded-full text-active-dark bg-active border-active-dark">
-                
+              <span v-if="player.status"
+                class="inline-block text-center w-24 py-1 text-xs font-medium border rounded-full text-active-dark bg-active border-active-dark">
+
                 {{ $t('table.active') }}
 
               </span>
 
-              <span v-else class="inline-block text-center w-24 py-1 text-xs font-medium border rounded-full text-inactive-dark bg-inactive border-inactive-dark">
-                
+              <span v-else
+                class="inline-block text-center w-24 py-1 text-xs font-medium border rounded-full text-inactive-dark bg-inactive border-inactive-dark">
+
                 {{ $t('table.inactive') }}
 
               </span>
@@ -161,14 +165,16 @@
 
                 </button>
 
-                <button class="cursor-pointer" @click="handleToggleStatus(player)" :title="(player.status ? $t('table.deactivate'): $t('table.activate'))">
+                <button class="cursor-pointer" @click="handleToggleStatus(player)"
+                  :title="(player.status ? $t('table.deactivate') : $t('table.activate'))">
 
-                  <img :src="(player.status ? deactivateIcon : activateIcon)" :class="(player.status ? 'opacity-100 ' : '') + 'w-5 h-5'" />
+                  <img :src="(player.status ? deactivateIcon : activateIcon)"
+                    :class="(player.status ? 'opacity-100 ' : '') + 'w-5 h-5'" />
 
                 </button>
 
               </div>
-              
+
             </td>
 
           </tr>

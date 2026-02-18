@@ -1,81 +1,64 @@
 @import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
+  --font-sans: "Urbanist", sans-serif;
 
-    --font-sans: "Urbanist", sans-serif;
+  --color-primary: #fe6226;
 
-    --color-primary: #fe6226;
+  --color-primary-active: #ff5412;
 
-    --color-primary-active: #ff5412;
+  --color-secondary: #ffffff;
 
-    --color-secondary: #ffffff;
+  --color-active: #daf8e6;
 
-    --color-active: #daf8e6;
+  --color-active-dark: #4ade80;
 
-    --color-active-dark: #4ade80;
+  --color-inactive: #fee2e2;
 
-    --color-inactive: #fee2e2;
+  --color-inactive-dark: #ff1616;
 
-    --color-inactive-dark: #ff1616;
+  --color-other: #f2f3f5;
 
-    --color-other: #f2f3f5;
-    
-    --color-primary-outline: #fff7f5;
+  --color-primary-outline: #fff7f5;
 
-    --color-icons: #6f7375;
+  --color-icons: #6f7375;
 
-    --color-error: #b91c1c;
-
+  --color-error: #b91c1c;
 }
 
 .goog-te-banner-frame {
-    
-    display: none !important;
-    
+  display: none !important;
 }
 
 .goog-te-banner-frame.skiptranslate {
-    
-    display: none !important;
-    
+  display: none !important;
 }
 
 .goog-text-highlight {
-    
-    background-color: transparent !important;
-    box-shadow: none !important;
-    
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
 body {
-    
-    top: 0px !important; 
-    position: static !important; 
-    
+  top: 0px !important;
+  position: static !important;
 }
 
 .goog-logo-link {
-    
-    display: none !important;
-    
+  display: none !important;
 }
 
 .goog-te-gadget {
-    
-    color: transparent !important;
-    
+  color: transparent !important;
 }
 
-#goog-gt-tt, .goog-te-balloon-frame {
-    
-    display: none !important;
-    
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
 }
 
 .VIpgJd-ZVi9od-ORHb-OEVmcd {
-    
-    display: none !important;
-    
+  display: none !important;
 }

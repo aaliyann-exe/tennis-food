@@ -1,78 +1,78 @@
 <script setup>
 
-    import { ref, computed } from 'vue';
-    import { usePlayerStore } from '/src/components/stores/playerStore';
+import { ref, computed } from 'vue';
+import { usePlayerStore } from '/src/components/stores/playerStore';
 
-    import PlayersTable from '../molecules/PlayersTable.vue';
-    import PlayerInformation from '../molecules/PlayerInformation.vue';
-    import PlayersFooter from '../atoms/PlayersFooter.vue';
+import PlayersTable from '../molecules/PlayersTable.vue';
+import PlayerInformation from '../molecules/PlayerInformation.vue';
+import PlayersFooter from '../atoms/PlayersFooter.vue';
 
-    import Tabs from '../molecules/Tabs.vue';
-    import EmptyTab from '../atoms/EmptyTab.vue';
-    import Header from '/src/components/header/molecules/Header.vue';
+import Tabs from '../molecules/Tabs.vue';
+import EmptyTab from '../atoms/EmptyTab.vue';
+import Header from '/src/components/header/molecules/Header.vue';
 
-    const playerStore = usePlayerStore();
-    const playerModalVisible = ref(false);
-    const playerMode = ref('create');
-    const selectedPlayer = ref(null);
-    const isArchivedTab = ref(false);
-    const activePlayers = computed( () => playerStore.players.filter(player => player.status === true) );
-    const archivedPlayers = computed( () => playerStore.players.filter(player => player.status === false) );
+const playerStore = usePlayerStore();
+const playerModalVisible = ref(false);
+const playerMode = ref('create');
+const selectedPlayer = ref(null);
+const isArchivedTab = ref(false);
+const activePlayers = computed(() => playerStore.players.filter(player => player.status === true));
+const archivedPlayers = computed(() => playerStore.players.filter(player => player.status === false));
 
-    const toggleModal = () => {
+const toggleModal = () => {
 
-        playerModalVisible.value = !playerModalVisible.value;
+    playerModalVisible.value = !playerModalVisible.value;
 
-        if(!playerModalVisible.value) {
+    if (!playerModalVisible.value) {
 
-            selectedPlayer.value = null;
+        selectedPlayer.value = null;
 
-        }
+    }
 
-    };
+};
 
-    const handleSavePlayer = () => {
+const handleSavePlayer = () => {
 
-        playerModalVisible.value = false;
+    playerModalVisible.value = false;
 
-    };
+};
 
-    const createPlayer = () => {
+const createPlayer = () => {
 
-        selectedPlayer.value = {};
-        playerMode.value = 'create';
-        playerModalVisible.value = true;
+    selectedPlayer.value = {};
+    playerMode.value = 'create';
+    playerModalVisible.value = true;
 
-    };
+};
 
-    const viewPlayer = (player) => {
+const viewPlayer = (player) => {
 
-        selectedPlayer.value = player;
-        playerMode.value = 'view';
-        playerModalVisible.value = true;
+    selectedPlayer.value = player;
+    playerMode.value = 'view';
+    playerModalVisible.value = true;
 
-    };
+};
 
-    const editPlayer = (player) => {
+const editPlayer = (player) => {
 
-        selectedPlayer.value = player;
-        playerMode.value = 'edit';
-        playerModalVisible.value = true;
+    selectedPlayer.value = player;
+    playerMode.value = 'edit';
+    playerModalVisible.value = true;
 
-    };
+};
 
-    const togglePlayerStatus = (player) => {
+const togglePlayerStatus = (player) => {
 
-        const updatedPlayer = {
+    const updatedPlayer = {
 
-            ...player,
-            status: !player.status,
-
-        };
-
-        playerStore.updatePlayer(updatedPlayer);
+        ...player,
+        status: !player.status,
 
     };
+
+    playerStore.updatePlayer(updatedPlayer);
+
+};
 
 </script>
 
@@ -82,14 +82,15 @@
 
         <Header :text="$t('dashboard.players')" @create="createPlayer" />
 
-        <Tabs v-model:show-archived="isArchivedTab"/>
+        <Tabs v-model:show-archived="isArchivedTab" />
 
         <div v-if="!isArchivedTab">
 
             <div v-if="(archivedPlayers.length > 0)">
 
-                <PlayersTable :players="activePlayers" @view="viewPlayer" @edit="editPlayer" @toggle-status="togglePlayerStatus" />
-                
+                <PlayersTable :players="activePlayers" @view="viewPlayer" @edit="editPlayer"
+                    @toggle-status="togglePlayerStatus" />
+
                 <PlayersFooter />
 
             </div>
@@ -102,8 +103,9 @@
 
             <div v-if="(archivedPlayers.length > 0)">
 
-                <PlayersTable :players="archivedPlayers" @view="viewPlayer" @edit="editPlayer" @toggle-status="togglePlayerStatus" />
-                
+                <PlayersTable :players="archivedPlayers" @view="viewPlayer" @edit="editPlayer"
+                    @toggle-status="togglePlayerStatus" />
+
                 <PlayersFooter />
 
             </div>
@@ -112,7 +114,8 @@
 
         </div>
 
-        <PlayerInformation v-if="playerModalVisible" @close="toggleModal" @save="handleSavePlayer" @edit="editPlayer" :mode="playerMode" :playerData="selectedPlayer" />
+        <PlayerInformation v-if="playerModalVisible" @close="toggleModal" @save="handleSavePlayer" @edit="editPlayer"
+            :mode="playerMode" :playerData="selectedPlayer" />
 
     </div>
 

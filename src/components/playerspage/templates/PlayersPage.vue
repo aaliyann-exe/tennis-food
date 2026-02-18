@@ -1,7 +1,7 @@
 <script setup>
 
-    import Dashboard from '/src/components/dashboard/templates/Dashboard.vue';
-    import Players from '/src/components/playerspage/organisms/Players.vue';
+import Dashboard from '/src/components/dashboard/templates/Dashboard.vue';
+import Players from '/src/components/playerspage/organisms/Players.vue';
 
 </script>
 

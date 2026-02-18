@@ -1,6 +1,6 @@
 <script setup>
 
-    import AccountInfo from '../molecules/AccountInfo.vue';
+import AccountInfo from '../molecules/AccountInfo.vue';
 
 </script>
 
@@ -11,5 +11,5 @@
         <AccountInfo />
 
     </div>
-    
+
 </template>

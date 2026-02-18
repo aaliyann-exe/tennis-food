@@ -1,22 +1,16 @@
-import { defineStore } from 'pinia';
-import { watch, ref } from 'vue';
+import { defineStore } from "pinia";
+import { watch, ref } from "vue";
 
-export const useLanguageStore = defineStore('languageStore', () => {
-    
-    const currentLocale = ref(localStorage.getItem('locale-language') || 'en');
+export const useLanguageStore = defineStore("languageStore", () => {
+  const currentLocale = ref(localStorage.getItem("locale-language") || "en");
 
-    watch(currentLocale, (newLocale) => {
-        
-        localStorage.setItem('locale-language', newLocale);
+  watch(currentLocale, (newLocale) => {
+    localStorage.setItem("locale-language", newLocale);
+  });
 
-    });
+  const toggle = () => {
+    currentLocale.value = currentLocale.value === "en" ? "nl" : "en";
+  };
 
-    const toggle = () => {
-
-        currentLocale.value = ( (currentLocale.value === 'en') ? 'nl' : 'en' );
-        
-    };
-
-    return ( { currentLocale, toggle } );
-    
-})
+  return { currentLocale, toggle };
+});

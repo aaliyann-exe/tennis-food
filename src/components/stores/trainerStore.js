@@ -1,35 +1,23 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
-export const useTrainerStore = defineStore('trainerStore', {
-
+export const useTrainerStore = defineStore("trainerStore", {
   state: () => ({
-
-    trainers: [], 
-
+    trainers: [],
   }),
 
   actions: {
-
     addTrainer(trainer) {
-
       this.trainers.unshift({ ...trainer, id: Date.now() });
-
     },
 
     updateTrainer(updatedTrainer) {
+      const index = this.trainers.findIndex((t) => t.id === updatedTrainer.id);
 
-      const index = this.trainers.findIndex(t => t.id === updatedTrainer.id);
-      
       if (index !== -1) {
-
         this.trainers.splice(index, 1, updatedTrainer);
-
       } else {
-
         console.error("Trainer id not found ", updatedTrainer);
-
       }
-
-    }
-  }
-})
+    },
+  },
+});

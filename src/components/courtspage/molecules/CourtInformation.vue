@@ -1,36 +1,29 @@
 <script setup>
+import { reactive, watch } from "vue";
+import { useCourtStore } from "/src/components/stores/courtStore";
+import { useI18n } from "vue-i18n";
 
-import { reactive, watch } from 'vue';
-import { useCourtStore } from '/src/components/stores/courtStore';
-import { useI18n } from 'vue-i18n';
+import clubsIcon from "/src/assets/clubsIcon.svg";
+import crossIcon from "/src/assets/crossIcon.svg";
+import editIcon from "/src/assets/editIcon.svg";
+import cityIcon from "/src/assets/cityIcon.svg";
 
-import clubsIcon from '/src/assets/clubsIcon.svg';
-import crossIcon from '/src/assets/crossIcon.svg';
-import editIcon from '/src/assets/editIcon.svg';
-import cityIcon from '/src/assets/cityIcon.svg';
+import CourtInputs from "../atoms/CourtInputs.vue";
+import FormButtons from "../atoms/FormButtons.vue";
+import ImageSubmitButton from "../atoms/ImageSubmitButton.vue";
 
-import CourtInputs from '../atoms/CourtInputs.vue';
-import FormButtons from '../atoms/FormButtons.vue';
-import ImageSubmitButton from '../atoms/ImageSubmitButton.vue';
-
-const emit = defineEmits(['close', 'save', 'edit']);
+const emit = defineEmits(["close", "save", "edit"]);
 
 const props = defineProps({
-
   mode: {
-
     type: String,
-    default: 'create',
-
+    default: "create",
   },
 
   courtData: {
-
     type: Object,
     default: () => ({}),
-
   },
-
 });
 
 const courtStore = useCourtStore();
@@ -38,71 +31,60 @@ const courtStore = useCourtStore();
 const { t } = useI18n();
 
 const getInitials = (name) => {
-
-  if (!name)
-    return 'TF';
-
+  if (!name) return "TF";
   else
-    return name.split('').map(word => word[0]).join('').toUpperCase().slice(0, 2);
-
+    return name
+      .split("")
+      .map((word) => word[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
 };
 
 const form = reactive({
-
   pfp: null,
-  name: '',
-  type: '',
-  environment: '',
-  school: '',
-  club: '',
+  name: "",
+  type: "",
+  environment: "",
+  school: "",
+  club: "",
   status: true,
-  initials: '',
-
+  initials: "",
 });
 
 const fillForm = () => {
-
-  if (props.mode === 'create') {
-
+  if (props.mode === "create") {
     form.pfp = null;
-    form.name = '';
-    form.type = '';
-    form.environment = '';
-    form.school = '';
-    form.club = '';
+    form.name = "";
+    form.type = "";
+    form.environment = "";
+    form.school = "";
+    form.club = "";
     form.status = true;
-    form.initials = '';
-
+    form.initials = "";
   } else if (props.courtData) {
-
     form.pfp = props.courtData.pfp || null;
-    form.name = props.courtData.name || '';
-    form.type = props.courtData.type || '';
-    form.environment = props.courtData.environment || '';
-    form.school = props.courtData.school === 'N/A' ? '' : (props.courtData.school || '');
-    form.club = props.courtData.clubs || '';
+    form.name = props.courtData.name || "";
+    form.type = props.courtData.type || "";
+    form.environment = props.courtData.environment || "";
+    form.school =
+      props.courtData.school === "N/A" ? "" : props.courtData.school || "";
+    form.club = props.courtData.clubs || "";
     form.status = props.courtData.status;
     form.initials = props.courtData.initials;
-
   }
-
 };
 
 watch(() => props.courtData, fillForm, { immediate: true });
 
 const handleImageUpload = (image) => {
-
   form.pfp = image;
-
 };
 
 const handleSave = () => {
-
-  if (!form.name)
-    return;
+  if (!form.name) return;
 
   const courtObject = {
-
     ...props.courtData,
     pfp: form.pfp,
     name: form.name,
@@ -112,116 +94,186 @@ const handleSave = () => {
     club: form.club,
     status: form.status,
     initials: getInitials(form.name),
-
   };
 
-  if (props.mode === 'create') {
+  if (props.mode === "create") {
     courtStore.addCourt(courtObject);
-  } else if (props.mode === 'edit') {
+  } else if (props.mode === "edit") {
     courtStore.updateCourt(courtObject);
   }
 
-  emit('save', courtObject);
-
+  emit("save", courtObject);
 };
 
-const types = [t('court.hard'), t('court.clay'), t('court.grass'), t('court.synthetic'), t('court.other')];
-const environments = [t('court.indoor'), t('court.outdoor')];
-const schools = ['Royal Dutch Tennis'];
-const clubs = ['Netherlands Tennis Club', 'Ace Tennis Club School', 'Ace Tennis Club 2', 'New Club 37'];
-
+const types = [
+  t("court.hard"),
+  t("court.clay"),
+  t("court.grass"),
+  t("court.synthetic"),
+  t("court.other"),
+];
+const environments = [t("court.indoor"), t("court.outdoor")];
+const schools = ["Royal Dutch Tennis"];
+const clubs = [
+  "Netherlands Tennis Club",
+  "Ace Tennis Club School",
+  "Ace Tennis Club 2",
+  "New Club 37",
+];
 </script>
 
 <template>
-
-  <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-
-    <div class="max-h-[95vh] overflow-y-auto bg-white shadow-xl rounded-2xl w-220">
-
+  <div
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+  >
+    <div
+      class="max-h-[95vh] overflow-y-auto bg-white shadow-xl rounded-2xl w-220"
+    >
       <div class="flex items-center justify-between py-5">
-
         <div class="flex flex-col">
+          <h2
+            v-if="props.mode === 'create'"
+            class="mt-2 ml-10 text-4xl font-semibold"
+          >
+            {{ $t("court.court") + " " + $t("table.information") }}
+          </h2>
 
+          <h2
+            v-if="props.mode === 'view'"
+            class="mt-2 ml-10 text-4xl font-semibold"
+          >
+            {{ props.courtData.name }}
+          </h2>
 
-          <h2 v-if="(props.mode === 'create')" class="mt-2 ml-10 text-4xl font-semibold">{{ $t('court.court') + ' ' +
-            $t('table.information') }}</h2>
-
-          <h2 v-if="(props.mode === 'view')" class="mt-2 ml-10 text-4xl font-semibold">{{ props.courtData.name }}</h2>
-
-          <h2 v-if="(props.mode === 'edit')" class="mt-2 ml-10 text-4xl font-semibold">{{ props.courtData.name }} <span
-              class="text-[20px]"> ( {{ $t('table.edit') }} )</span></h2>
-
+          <h2
+            v-if="props.mode === 'edit'"
+            class="mt-2 ml-10 text-4xl font-semibold"
+          >
+            {{ props.courtData.name }}
+            <span class="text-[20px]"> ( {{ $t("table.edit") }} )</span>
+          </h2>
         </div>
 
         <div class="flex items-center gap-4">
-
-          <button v-if="props.mode === 'view'" class="relative cursor-pointer left-40"
-            @click="$emit('edit', props.courtObject)">
-
+          <button
+            v-if="props.mode === 'view'"
+            class="relative cursor-pointer left-40"
+            @click="$emit('edit', props.courtObject)"
+          >
             <img :src="editIcon" class="w-6 h-6 opacity-50" />
-
           </button>
-
         </div>
 
-        <button @click="$emit('close')"
-          class="text-2xl text-gray-400 relative right-6 cursor-pointer hover:text-gray-600">
-
-          <img :src="crossIcon" class="w-10 h-10 opacity-40">
-
+        <button
+          @click="$emit('close')"
+          class="text-2xl text-gray-400 relative right-6 cursor-pointer hover:text-gray-600"
+        >
+          <img :src="crossIcon" class="w-10 h-10 opacity-40" />
         </button>
-
       </div>
 
-      <hr class="mx-10 opacity-20">
+      <hr class="mx-10 opacity-20" />
 
-      <form @submit.prevent="handleSave" :class="((props.mode === 'view') ? 'cursor-not-allowed ' : '') + 'p-8'">
-
+      <form
+        @submit.prevent="handleSave"
+        :class="(props.mode === 'view' ? 'cursor-not-allowed ' : '') + 'p-8'"
+      >
         <div class="flex">
-
-          <ImageSubmitButton :name="form.name" :image="form.pfp" @image-uploaded="handleImageUpload"
-            :mode="props.mode" />
-
+          <ImageSubmitButton
+            :name="form.name"
+            :image="form.pfp"
+            @image-uploaded="handleImageUpload"
+            :mode="props.mode"
+          />
         </div>
 
         <div class="grid grid-cols-2">
+          <CourtInputs
+            v-model:inputData="form.name"
+            :inputLabel="$t('table.name')"
+            :inputPlaceholder="$t('table.name')"
+            mustFill
+            hasAsterisk
+            :validationMessage="
+              $t('court.court') +
+              ' ' +
+              $t('table.name') +
+              ' ' +
+              $t('modalField.error')
+            "
+            :mode="props.mode"
+          />
 
-          <CourtInputs v-model:inputData="form.name" :inputLabel="$t('table.name')" :inputPlaceholder="$t('table.name')"
-            mustFill hasAsterisk
-            :validationMessage="$t('court.court') + ' ' + $t('table.name') + ' ' + $t('modalField.error')"
-            :mode="props.mode" />
+          <CourtInputs
+            v-model:inputData="form.type"
+            inputLabel="Type"
+            inputPlaceholder="Type"
+            mustFill
+            hasAsterisk
+            :validationMessage="
+              $t('court.court') + ' ' + 'type' + ' ' + 'modalField.error'
+            "
+            isDropDown
+            :options="types"
+            :mode="props.mode"
+          />
 
-          <CourtInputs v-model:inputData="form.type" inputLabel="Type" inputPlaceholder="Type" mustFill hasAsterisk
-            :validationMessage="$t('court.court') + ' ' + 'type' + ' ' + 'modalField.error'" isDropDown :options="types"
-            :mode="props.mode" />
+          <CourtInputs
+            v-model:inputData="form.environment"
+            type="environment"
+            :inputLabel="$t('court.environment')"
+            :inputPlaceholder="
+              $t('modalField.select') +
+              ' ' +
+              $t('court.court').toLowerCase() +
+              ' ' +
+              $t('court.environment').toLowerCase()
+            "
+            mustFill
+            hasAsterisk
+            :isDisabled="props.mode === 'view'"
+            validationMessage="Court environment is required"
+            isDropDown
+            :options="environments"
+            :mode="props.mode"
+          />
 
-          <CourtInputs v-model:inputData="form.environment" type="environment" :inputLabel="$t('court.environment')"
-            :inputPlaceholder="$t('modalField.select') + ' ' + $t('court.court').toLowerCase() + ' ' + $t('court.environment').toLowerCase()"
-            mustFill hasAsterisk :isDisabled="(props.mode === 'view')" validationMessage="Court environment is required"
-            isDropDown :options="environments" :mode="props.mode" />
+          <CourtInputs
+            v-model:inputData="form.school"
+            type="school"
+            inputLabel="School"
+            inputPlaceholder="Enter school number"
+            :icon="cityIcon"
+            isDisabled
+            isDropDown
+            :options="schools"
+            :mode="props.mode"
+          />
 
-          <CourtInputs v-model:inputData="form.school" type="school" inputLabel="School"
-            inputPlaceholder="Enter school number" :icon="cityIcon" isDisabled isDropDown :options="schools"
-            :mode="props.mode" />
-
-          <CourtInputs v-model:inputData="form.club" inputLabel="Club"
-            :inputPlaceholder="$t('modalField.select') + ' Club'" :icon="clubsIcon" mustFill hasAsterisk isDropDown
-            :options="clubs" :mode="props.mode" />
-
+          <CourtInputs
+            v-model:inputData="form.club"
+            inputLabel="Club"
+            :inputPlaceholder="$t('modalField.select') + ' Club'"
+            :icon="clubsIcon"
+            mustFill
+            hasAsterisk
+            isDropDown
+            :options="clubs"
+            :mode="props.mode"
+          />
         </div>
 
-        <div v-if="(props.mode !== 'view')" class="flex mt-10">
-
+        <div v-if="props.mode !== 'view'" class="flex mt-10">
           <FormButtons @click="$emit('close')" white />
 
-          <FormButtons :text="((props.mode === 'edit') ? $t('table.update') : $t('table.save'))" orange />
-
+          <FormButtons
+            :text="
+              props.mode === 'edit' ? $t('table.update') : $t('table.save')
+            "
+            orange
+          />
         </div>
-
       </form>
-
     </div>
-
   </div>
-
 </template>

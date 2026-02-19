@@ -1,4 +1,6 @@
 import { defineStore } from "pinia";
+import i18n from "/src/i18n.js";
+
 import schoolAdminIcon from "/src/assets/schoolAdminIcon.jpg";
 
 export const usePlayerStore = defineStore("playerStore", {
@@ -12,14 +14,30 @@ export const usePlayerStore = defineStore("playerStore", {
         email: "mu128190@gmail.com",
         phone: "+31234937493",
         dob: "01-01-2004",
-        ageGroup: "19-30y",
+        ageGroup: i18n.global.t("player.a18"),
         address: "Keizersgracht 125, Amsterdam",
-        city: "",
         zipCode: "1015 CJ",
         school: "Royal Dutch Tennis",
         club: "Netherlands Tennis Club",
         level: "National (level 3)",
         status: true,
+      },
+
+      {
+        id: 2,
+        initials: "TF",
+        fName: "James",
+        lName: "Miller",
+        email: "james.miller@yopmail.com",
+        phone: "+31 6 900001",
+        dob: "09-03-2020",
+        ageGroup: "Under 12y",
+        address: "Player Street 1",
+        city: "Amsterdam",
+        zipCode: "1000AA",
+        school: "Royal Dutch Tennis",
+        club: "Netherlands Tennis Club",
+        status: false,
       },
     ],
   }),

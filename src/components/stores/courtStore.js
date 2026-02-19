@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
-// import { useI18n } from 'vue-i18n';
-import courtPfp from "/src/assets/courtPfp.jpg";
+import i18n from "/src/i18n.js";
 
-// const { t } = useI18n()
+import courtPfp from "/src/assets/courtPfp.jpg";
 
 export const useCourtStore = defineStore("courtStore", {
   state: () => ({
@@ -13,8 +12,8 @@ export const useCourtStore = defineStore("courtStore", {
         name: "Centre Court Amsterdam",
         type: "Hard",
         environment: "Indoor",
-        // type: t('court.hard'),
-        // environment: t('court.indoor'),
+        type: i18n.global.t("court.hard"),
+        environment: i18n.global.t("court.indoor"),
         school: "Royal Dutch Tennis",
         club: "Netherlands Tennis Club",
         status: true,

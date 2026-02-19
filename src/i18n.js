@@ -65,6 +65,8 @@ const messages = {
       dob: "Date of Birth",
       ageGroup: "Age Group",
       playerLevel: "Player Level",
+      delete: "Delete",
+      createdBy: "Created By",
     },
 
     modalField: {
@@ -79,6 +81,10 @@ const messages = {
       select: "Select",
       type: "Type",
       dob: "dd/mm/yy",
+      yes: "Yes",
+      no: "No",
+      deleteConfirmation:
+        "Are you sure you want to delete this hashtag? This action cannot be undone.",
     },
 
     player: {
@@ -172,6 +178,8 @@ const messages = {
       dob: "Geboortedatum",
       ageGroup: "Leeftijdsgroep",
       playerLevel: "Spelersniveau",
+      delete: "Verwijderen",
+      createdBy: "Gemaakt Door",
     },
 
     modalField: {
@@ -185,6 +193,10 @@ const messages = {
       error: "is verplicht",
       select: "Selecteer",
       dob: "dd/mm/jj",
+      yes: "Ja",
+      no: "Nee",
+      deleteConfirmation:
+        "Weet je zeker dat je deze hashtag wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
     },
 
     player: {

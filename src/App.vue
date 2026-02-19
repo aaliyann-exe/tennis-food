@@ -1,13 +1,9 @@
 <script setup>
-
-import LanguageToggle from './components/languagetoggle/LanguageToggle.vue';
-
+import LanguageToggle from "./components/languagetoggle/LanguageToggle.vue";
 </script>
 
 <template>
+  <LanguageToggle />
 
-    <LanguageToggle />
-
-    <router-view />
-
+  <router-view />
 </template>

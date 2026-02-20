@@ -85,7 +85,7 @@ router.beforeEach((to, from, next) => {
     (to.path === "/login" || to.path === "/") &&
     loginStore.isLoggedIn
   ) {
-    next("/clubs");
+    next("/dashboard");
   } else {
     next();
   }

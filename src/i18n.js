@@ -26,6 +26,30 @@ const messages = {
       signout: "Sign out",
     },
 
+    dashboardPage: {
+      this: "This",
+      usageQuality: "Usage Quality",
+      schoolLabel: "School Label",
+      vsLastPeriod: "vs last period",
+      engagement: "Engagement",
+      videosWatched: "Videos watched",
+      trainerActivityHeading: "Usage by Trainers per Activity Category",
+      usageScore: "Usage Score",
+      good: "Good",
+      overallCoverage: "Overall coverage",
+      engagementDistribution: "Engagement Distribution",
+      avgPlayerScore: "Average Player Engagement Score",
+      highlyEngagedPlayer: "Highly Engaged Players",
+      engagementLevelDistribution: "Engagement Level Distribution",
+      outstanding: "Outstanding",
+      high: "High",
+      moderate: "Moderate",
+      limited: "Limited",
+      low: "Low",
+      usersAgeCategory: "Users by age category",
+      analysis: "Analysis",
+    },
+
     tab: {
       search: "Search",
       active: "Active",
@@ -67,6 +91,7 @@ const messages = {
       playerLevel: "Player Level",
       delete: "Delete",
       createdBy: "Created By",
+      total: "Total",
     },
 
     modalField: {
@@ -139,6 +164,30 @@ const messages = {
       signout: "Meld u af",
     },
 
+    dashboardPage: {
+      this: "Deze",
+      usageQuality: "Gebruikskwaliteit",
+      schoolLabel: "Schoollabel",
+      vsLastPeriod: "versus vorige periode",
+      engagement: "Betrokkenheid",
+      videosWatched: "Video's bekeken",
+      trainerActivityHeading: "Gebruik door Trainers per Activiteitscategorie",
+      usageScore: "Gebruiksscore",
+      good: "Goed",
+      overallCoverage: "Totale dekking",
+      engagementDistribution: "Betrokkenheidsverdeling",
+      avgPlayerScore: "Gemiddelde Speler Betrokkenheidsscore",
+      highlyEngagedPlayer: "Gemiddelde Speler Betrokkenheidsscore",
+      engagementLevelDistribution: "Betrokkenheidsniveau Verdeling",
+      outstanding: "Uitstekend",
+      high: "Hoog",
+      moderate: "Matig",
+      limited: "Beperkt",
+      low: "Laag",
+      usersAgeCategory: "Gebruikers per leeftijdscategorie",
+      analysis: "Analyse",
+    },
+
     tab: {
       search: "Zoeken",
       active: "Actief",
@@ -180,6 +229,7 @@ const messages = {
       playerLevel: "Spelersniveau",
       delete: "Verwijderen",
       createdBy: "Gemaakt Door",
+      total: "Totaal",
     },
 
     modalField: {

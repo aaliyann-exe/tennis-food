@@ -54,7 +54,7 @@ const handleLogin = () => {
   if (errorMessage.value === "" && email.value && password.value) {
     if (email.value === "t@f.com" && password.value === "t@1234") {
       loginStore.login();
-      router.push("/clubs");
+      router.push("/dashboard");
     } else {
       invalidMessage.value = "Invalid email or password.";
     }

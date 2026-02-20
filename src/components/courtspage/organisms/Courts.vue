@@ -63,7 +63,12 @@ const toggleCourtStatus = (court) => {
 
 <template>
   <div class="w-full bg-other flexbox">
-    <Header :text="$t('dashboard.courts')" @create="createCourt" />
+    <Header
+      :text="$t('dashboard.courts')"
+      searchBar
+      addButton
+      @create="createCourt"
+    />
 
     <Tabs v-model:show-archived="isArchivedTab" />
 

@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { usePlayerStore } from "/src/components/stores/playerStore";
+import { useI18n } from "vue-i18n";
 
 import PlayersTable from "../molecules/PlayersTable.vue";
 import PlayerInformation from "../molecules/PlayerInformation.vue";
@@ -9,17 +10,39 @@ import PlayersFooter from "../atoms/PlayersFooter.vue";
 import Tabs from "../molecules/Tabs.vue";
 import EmptyTab from "../atoms/EmptyTab.vue";
 import Header from "/src/components/header/molecules/Header.vue";
+import FilterDropdown from "/src/components/header/atoms/FilterDropdown.vue";
+
+const { t } = useI18n();
 
 const playerStore = usePlayerStore();
 const playerModalVisible = ref(false);
 const playerMode = ref("create");
 const selectedPlayer = ref(null);
 const isArchivedTab = ref(false);
+
+const selectedAgeGroup = ref(t("player.all"));
+const ageGroupOptions = [
+  t("player.all"),
+  t("player.u12"),
+  t("player.a12"),
+  t("player.a18"),
+  t("player.a30"),
+  t("player.a50"),
+];
+
+const filteredPlayers = computed(() => {
+  if (selectedAgeGroup.value === "All") return playerStore.players;
+
+  return playerStore.players.filter(
+    (player) => player.ageGroup === selectedAgeGroup.value,
+  );
+});
+
 const activePlayers = computed(() =>
-  playerStore.players.filter((player) => player.status === true),
+  filteredPlayers.value.filter((player) => player.status === true),
 );
 const archivedPlayers = computed(() =>
-  playerStore.players.filter((player) => player.status === false),
+  filteredPlayers.value.filter((player) => player.status === false),
 );
 
 const toggleModal = () => {
@@ -64,7 +87,21 @@ const togglePlayerStatus = (player) => {
 
 <template>
   <div class="w-full bg-other flexbox">
-    <Header :text="$t('dashboard.players')" @create="createPlayer" />
+    <Header
+      :text="$t('dashboard.players')"
+      @create="createPlayer"
+      searchBar
+      importButton
+      addButton
+    >
+      <template #filters>
+        <FilterDropdown
+          :label="$t('table.ageGroup')"
+          :options="ageGroupOptions"
+          v-model="selectedAgeGroup"
+        />
+      </template>
+    </Header>
 
     <Tabs v-model:show-archived="isArchivedTab" />
 

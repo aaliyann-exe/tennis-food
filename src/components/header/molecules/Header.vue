@@ -10,7 +10,17 @@ defineProps({
     required: true,
   },
 
-  dashboard: {
+  searchBar: {
+    type: Boolean,
+    required: false,
+  },
+
+  importButton: {
+    type: Boolean,
+    required: false,
+  },
+
+  addButton: {
     type: Boolean,
     required: false,
   },
@@ -21,17 +31,19 @@ defineEmits(["create"]);
 
 <template>
   <div class="flex items-center justify-between mt-20 px-4">
-    <h1 class="text-4xl font-semibold truncate">
+    <h1 class="text-4xl font-semibold">
       {{ text }}
     </h1>
 
-    <div class="flex items-center">
-      <SearchBar />
+    <div class="flex items-center gap-4">
+      <slot name="filters"></slot>
 
-      <ImportIcon v-if="!dashboard" />
+      <SearchBar v-if="searchBar" />
+
+      <ImportIcon v-if="importButton" />
 
       <button
-        v-if="!dashboard"
+        v-if="addButton"
         @click="$emit('create')"
         class="flex items-center justify-center w-12 h-12 ml-5 rounded-full cursor-pointer bg-primary hover:bg-primary-active shrink-0"
       >

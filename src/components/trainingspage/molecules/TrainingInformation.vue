@@ -1,11 +1,15 @@
 <script setup>
-import { ref, reactive, onMounted, watch } from "vue";
+import { reactive, onMounted, watch } from "vue";
 import { useTrainingStore } from "/src/components/stores/trainingStore";
 import { useHashtagStore } from "/src/components/stores/hashtagStore.js";
 
 import clubsIcon from "/src/assets/clubsIcon.svg";
 import personIcon from "/src/assets/personIcon.svg";
+import emailIcon from "/src/assets/emailIcon.svg";
+import phoneIcon from "/src/assets/phoneIcon.svg";
 import buildingIcon from "/src/assets/buildingIcon.svg";
+import locationIcon from "/src/assets/locationIcon.svg";
+import cityIcon from "/src/assets/cityIcon.svg";
 import crossIcon from "/src/assets/crossIcon.svg";
 import editIcon from "/src/assets/editIcon.svg";
 import calendarIcon from "/src/assets/calendarIcon.svg";

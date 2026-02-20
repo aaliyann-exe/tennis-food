@@ -63,7 +63,13 @@ const toggleClubStatus = (club) => {
 
 <template>
   <div class="w-full bg-other flexbox">
-    <Header :text="$t('dashboard.clubs')" @create="createClub" />
+    <Header
+      :text="$t('dashboard.clubs')"
+      searchBar
+      importButton
+      addButton
+      @create="createClub"
+    />
 
     <Tabs v-model:show-archived="isArchivedTab" />
 

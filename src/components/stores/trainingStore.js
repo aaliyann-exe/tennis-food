@@ -12,7 +12,7 @@ export const useTrainingStore = defineStore("trainingStore", {
 
     updateTraining(updatedTraining) {
       const index = this.trainings.findIndex(
-        (c) => c.id === updatedTraining.id,
+        (t) => t.id === updatedTraining.id,
       );
 
       if (index !== -1) {

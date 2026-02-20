@@ -1,5 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
+import { onClickOutside } from "@vueuse/core";
+
 import arrowDownIcon from "/src/assets/arrowDownIcon.svg";
 
 const props = defineProps({
@@ -108,6 +110,7 @@ const hasError = computed(() => {
 // DROPDOWN STUFF
 
 const isOpen = ref(false);
+const dropdownRef = ref(null);
 
 const toggleDropdown = () => {
   if (isReadOnly.value) return;
@@ -120,6 +123,10 @@ const selectOption = (option) => {
   isOpen.value = false;
   fieldTouched.value = true;
 };
+
+onClickOutside(dropdownRef, () => {
+  isOpen.value = false;
+});
 
 //DROPDOWN STUFF CLOSE
 
@@ -168,7 +175,7 @@ const errorMessage = computed(() => {
       <span v-if="props.hasAsterisk" class="text-primary">*</span>
     </label>
 
-    <div v-if="isDropDown" class="relative">
+    <div v-if="isDropDown" class="relative" ref="dropdownRef">
       <div
         @click="toggleDropdown"
         :class="

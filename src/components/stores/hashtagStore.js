@@ -35,7 +35,7 @@ export const useHashtagStore = defineStore("hashtagStore", {
     },
 
     updateHashtag(updatedHashtag) {
-      const index = this.hashtags.findIndex((c) => c.id === updatedHashtag.id);
+      const index = this.hashtags.findIndex((h) => hl.id === updatedHashtag.id);
 
       if (index !== -1) {
         this.hashtags.splice(index, 1, updatedHashtag);

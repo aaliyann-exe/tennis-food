@@ -54,7 +54,12 @@ const deleteHashtag = (hashtag) => {
 
 <template>
   <div class="w-full bg-other flexbox">
-    <Header :text="$t('dashboard.hashtags')" @create="createHashtag" />
+    <Header
+      :text="$t('dashboard.hashtags')"
+      searchBar
+      addButton
+      @create="createHashtag"
+    />
 
     <div>
       <HashtagsTable

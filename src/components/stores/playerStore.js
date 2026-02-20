@@ -31,7 +31,7 @@ export const usePlayerStore = defineStore("playerStore", {
         email: "james.miller@yopmail.com",
         phone: "+31 6 900001",
         dob: "09-03-2020",
-        ageGroup: "Under 12y",
+        ageGroup: i18n.global.t("player.u12"),
         address: "Player Street 1",
         city: "Amsterdam",
         zipCode: "1000AA",

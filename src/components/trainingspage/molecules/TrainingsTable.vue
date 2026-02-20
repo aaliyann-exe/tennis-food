@@ -8,14 +8,14 @@ const props = defineProps({
   trainings: {
     type: Array,
     required: true,
-    default: [],
+    default: () => [],
   },
 });
 
 const emits = defineEmits(["view", "edit", "toggle-status"]);
 
 const handleToggleStatus = (training) => {
-  emits("toggle-status", trainer);
+  emits("toggle-status", training);
 };
 </script>
 
@@ -42,7 +42,7 @@ const handleToggleStatus = (training) => {
                 </button>
               </span>
 
-              TRAINER NAME
+              TRAINING NAME
             </th>
 
             <th class="px-6 py-4">PHONE</th>
@@ -57,18 +57,18 @@ const handleToggleStatus = (training) => {
 
         <tbody class="divide-y divide-gray-300">
           <tr
-            v-for="(trainer, index) in props.trainers"
+            v-for="(training, index) in props.trainings"
             :key="index"
             class="hover:bg-other"
           >
             <td class="px-6 py-4">
               <div class="flex items-center gap-4">
                 <div
-                  v-if="trainer.pfp"
+                  v-if="training.pfp"
                   class="w-10 h-10 overflow-hidden rounded-full"
                 >
                   <img
-                    :src="trainer.pfp"
+                    :src="training.pfp"
                     alt="Club logo"
                     class="object-cover w-full h-full"
                   />
@@ -78,38 +78,38 @@ const handleToggleStatus = (training) => {
                   v-else
                   class="flex items-center justify-center w-10 h-10 text-sm font-bold rounded-full text-secondary bg-primary"
                 >
-                  {{ trainer.initials }}
+                  {{ training.initials }}
                 </div>
 
                 <div class="flex flex-col">
                   <span class="text-sm font-medium">{{
-                    trainer.fName + " " + trainer.lName
+                    training.fName + " " + training.lName
                   }}</span>
 
                   <span class="text-xs truncate text-primary max-w-50">{{
-                    trainer.email
+                    training.email
                   }}</span>
                 </div>
               </div>
             </td>
 
             <td class="px-6 py-4 text-sm font-medium">
-              {{ trainer.phone }}
+              {{ training.phone }}
             </td>
 
             <td class="px-6 py-4">
               <span
-                v-if="trainer.status"
+                v-if="training.status"
                 class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-active-dark bg-active border-active-dark"
               >
-                Active
+                {{ $t("table.active") }}
               </span>
 
               <span
                 v-else
                 class="relative px-6 py-1 text-xs font-medium border rounded-full left-60 text-inactive-dark bg-inactive border-inactive-dark"
               >
-                Inactive
+                {{ $t("table.inactive") }}
               </span>
             </td>
 
@@ -117,24 +117,28 @@ const handleToggleStatus = (training) => {
               <div class="flex items-center justify-end gap-3 opacity-50">
                 <button
                   class="cursor-pointer"
-                  @click="$emit('view', trainer)"
-                  title="View"
+                  @click="$emit('view', training)"
+                  :title="$t('table.view')"
                 >
                   <img :src="viewIcon" class="w-5 h-5" />
                 </button>
 
                 <button
                   class="cursor-pointer"
-                  @click="$emit('edit', trainer)"
-                  title="Edit"
+                  @click="$emit('edit', training)"
+                  :title="$t('table.edit')"
                 >
                   <img :src="editIcon" class="w-5 h-5" />
                 </button>
 
                 <button
                   class="cursor-pointer"
-                  @click="handleToggleStatus(trainer)"
-                  :title="trainer.status ? 'Deactivate' : 'Activate'"
+                  @click="handleToggleStatus(training)"
+                  :title="
+                    training.status
+                      ? $t('table.deactivate')
+                      : $t('table.activate')
+                  "
                 >
                   <img
                     :src="training.status ? deactivateIcon : activateIcon"

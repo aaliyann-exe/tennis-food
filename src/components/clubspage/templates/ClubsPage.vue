@@ -5,8 +5,6 @@ import Clubs from "/src/components/clubspage/organisms/Clubs.vue";
 
 <template>
   <div class="flex">
-    <Dashboard />
-
     <Clubs />
   </div>
 </template>

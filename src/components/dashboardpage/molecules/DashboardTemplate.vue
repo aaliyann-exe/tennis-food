@@ -37,7 +37,7 @@ import tennisIcon from "/src/assets/tennisIcon.svg";
           special
         />
         <Box
-          :title="$t('table.active') + ' Players'"
+          :title="$t('table.active') + ' ' + $t('player.players')"
           :activeCount="1"
           :totalCount="2"
           :icon="recordIcon"

@@ -5,8 +5,6 @@ import Courts from "/src/components/courtspage/organisms/Courts.vue";
 
 <template>
   <div class="flex">
-    <Dashboard />
-
     <Courts />
   </div>
 </template>

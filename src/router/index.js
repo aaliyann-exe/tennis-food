@@ -10,6 +10,7 @@ import HashtagsPage from "/src/components/hashtagspage/templates/HashtagsPage.vu
 import CourtsPage from "/src/components/courtspage/templates/CourtsPage.vue";
 import TrainingsPage from "/src/components/trainingspage/templates/TrainingsPage.vue";
 import ProfilePage from "/src/components/profilepage/templates/ProfilePage.vue";
+import NotFoundPage from "/src/components/404page/templates/NotFoundPage.vue";
 
 const routes = [
   {
@@ -67,6 +68,13 @@ const routes = [
   {
     path: "/profile",
     component: ProfilePage,
+    meta: { requiresLogin: true },
+  },
+
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: NotFoundPage,
     meta: { requiresLogin: true },
   },
 ];

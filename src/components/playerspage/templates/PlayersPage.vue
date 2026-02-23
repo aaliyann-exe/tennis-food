@@ -5,8 +5,6 @@ import Players from "/src/components/playerspage/organisms/Players.vue";
 
 <template>
   <div class="flex">
-    <Dashboard />
-
     <Players />
   </div>
 </template>

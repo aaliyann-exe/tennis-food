@@ -5,8 +5,6 @@ import Profile from "/src/components/profilepage/organisms/Profile.vue";
 
 <template>
   <div class="flex">
-    <Dashboard />
-
     <div class="w-full">
       <Profile />
     </div>

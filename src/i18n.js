@@ -139,6 +139,14 @@ const messages = {
       outdoor: "Outdoor",
       environment: "Environment",
     },
+
+    notFound: {
+      title: "Page Not Found",
+      label:
+        "Sorry, the page you are looking for doesn't exist or has been moved.",
+      home: "Go to Home",
+      back: "Go Back",
+    },
   },
 
   nl: {
@@ -177,7 +185,7 @@ const messages = {
       overallCoverage: "Totale dekking",
       engagementDistribution: "Betrokkenheidsverdeling",
       avgPlayerScore: "Gemiddelde Speler Betrokkenheidsscore",
-      highlyEngagedPlayer: "Gemiddelde Speler Betrokkenheidsscore",
+      highlyEngagedPlayer: "Hoog Betrokken Spelers",
       engagementLevelDistribution: "Betrokkenheidsniveau Verdeling",
       outstanding: "Uitstekend",
       high: "Hoog",
@@ -275,6 +283,13 @@ const messages = {
       indoor: "Binnen",
       outdoor: "Buiten",
       environment: "Omgeving",
+    },
+
+    notFound: {
+      title: "Pagina niet gevonden",
+      label: "Sorry, de pagina die je zoekt bestaat niet of is verplaatst.",
+      home: "Ga naar Home",
+      back: "Ga Terug",
     },
   },
 };

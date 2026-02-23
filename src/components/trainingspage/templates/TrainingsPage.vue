@@ -5,8 +5,6 @@ import Trainings from "/src/components/trainingspage/organisms/Trainings.vue";
 
 <template>
   <div class="flex">
-    <Dashboard />
-
     <Trainings />
   </div>
 </template>

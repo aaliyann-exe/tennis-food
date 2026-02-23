@@ -1,30 +1,46 @@
 <script setup>
 import { computed } from "vue";
 import { usePlayerStore } from "/src/components/stores/playerStore";
+import { useI18n } from "vue-i18n";
 
 import statsIcon from "/src/assets/statsIcon.svg";
 import calendarIcon from "/src/assets/calendarIcon.svg";
+
+const { t } = useI18n();
 
 const playerStore = usePlayerStore();
 
 const levels = [
   {
     key: "outstanding",
-    label: "Outstanding",
+    label: t("dashboardPage.outstanding"),
     color: "bg-green-500",
     weight: 5,
   },
-
   {
     key: "high",
-    label: "High",
+    label: t("dashboardPage.high"),
     color: "bg-emerald-400",
     weight: 4,
   },
-
-  { key: "moderate", label: "Moderate", color: "bg-yellow-400", weight: 3 },
-  { key: "limited", label: "Limited", color: "bg-orange-400", weight: 2 },
-  { key: "low", label: "Low", color: "bg-red-500", weight: 1 },
+  {
+    key: "moderate",
+    label: t("dashboardPage.moderate"),
+    color: "bg-yellow-400",
+    weight: 3,
+  },
+  {
+    key: "limited",
+    label: t("dashboardPage.limited"),
+    color: "bg-orange-400",
+    weight: 2,
+  },
+  {
+    key: "low",
+    label: t("dashboardPage.low"),
+    color: "bg-red-500",
+    weight: 1,
+  },
 ];
 
 const stats = computed(() => {
@@ -72,7 +88,7 @@ const getPercentage = (count) => {
     </div>
 
     <h3 class="text-2xl font-semibold text-gray-800 flex items-center gap-2">
-      Player Engagement Distribution
+      {{ $t("player.player") }} {{ $t("dashboardPage.engagementDistribution") }}
       <button class="cursor-pointer">
         <div class="flex items-center justify-center">
           <div
@@ -87,13 +103,13 @@ const getPercentage = (count) => {
     <div class="grid grid-cols-2 gap-4 mt-6">
       <div class="bg-orange-50 p-4 rounded-xl text-center">
         <p class="text-sm font-normal opacity-70 mb-1">
-          Average Player Engagement Score
+          {{ $t("dashboardPage.avgPlayerScore") }}
         </p>
         <p class="text-3xl font-bold text-gray-800">{{ stats.average }}/5</p>
       </div>
       <div class="bg-green-50 p-4 rounded-xl text-center">
         <p class="text-sm font-normal opacity-70 mb-1">
-          Highly Engaged Players (≥4)
+          {{ $t("dashboardPage.highlyEngagedPlayer") }} (≥4)
         </p>
         <p class="text-3xl font-bold text-green-600">
           {{ stats.highlyEngagedPct }}%
@@ -103,7 +119,7 @@ const getPercentage = (count) => {
 
     <div class="mt-8 space-y-5">
       <h4 class="text-lg font-semibold text-gray-800">
-        Engagement Level Distribution
+        {{ $t("dashboardPage.engagementLevelDistribution") }}
       </h4>
 
       <div v-for="level in levels" :key="level.key" class="space-y-1">
@@ -122,7 +138,8 @@ const getPercentage = (count) => {
             </button>
           </div>
           <span class="text-gray-600">
-            {{ stats.counts[level.key] || 0 }} players ({{
+            {{ stats.counts[level.key] || 0 }}
+            {{ $t("player.players").toLowerCase() }} ({{
               getPercentage(stats.counts[level.key])
             }}%)
           </span>

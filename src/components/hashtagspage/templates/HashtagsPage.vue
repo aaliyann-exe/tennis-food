@@ -5,8 +5,6 @@ import Hashtags from "/src/components/hashtagspage/organisms/Hashtags.vue";
 
 <template>
   <div class="flex">
-    <Dashboard />
-
     <Hashtags />
   </div>
 </template>

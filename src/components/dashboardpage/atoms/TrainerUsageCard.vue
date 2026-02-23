@@ -19,7 +19,7 @@ import calendarIcon from "/src/assets/calendarIcon.svg";
     </div>
 
     <h3 class="text-2xl font-semibold text-gray-800 flex items-center gap-2">
-      Usage by Trainers per Activity Category
+      {{ $t("dashboardPage.trainerActivityHeading") }}
       <button class="cursor-pointer">
         <div class="flex items-center justify-center">
           <div
@@ -33,10 +33,14 @@ import calendarIcon from "/src/assets/calendarIcon.svg";
 
     <div class="mt-1 flex items-center gap-2">
       <span class="text-sm font-medium text-gray-500"
-        >School Trainer Usage Score:</span
+        >School Trainer {{ $t("dashboardPage.usageScore") }}:</span
       >
-      <span class="text-sm font-semibold text-green-600">Good (0)</span>
+      <span class="text-sm font-semibold text-green-600"
+        >{{ $t("dashboardPage.good") }} (0)</span
+      >
     </div>
-    <p class="text-xs text-gray-400 mt-1">Overall coverage : 0.0%</p>
+    <p class="text-xs text-gray-400 mt-1">
+      {{ $t("dashboardPage.overallCoverage") }} : 0.0%
+    </p>
   </div>
 </template>

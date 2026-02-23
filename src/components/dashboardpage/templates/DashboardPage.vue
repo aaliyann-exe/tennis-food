@@ -5,8 +5,6 @@ import Dashboard from "/src/components/dashboard/templates/Dashboard.vue";
 
 <template>
   <div class="flex">
-    <!-- <Dashboard /> -->
-
     <DashboardTemplate />
   </div>
 </template>

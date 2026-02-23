@@ -48,10 +48,10 @@ const inactiveCount = props.totalCount - props.activeCount;
 
 <template>
   <div
-    class="w-full max-w-[18rem] h-60 bg-white p-6 rounded-[2.5rem] border border-gray-200 flex flex-col"
+    class="w-full max-w-[18rem] h-60 bg-white p-6 rounded-3xl border border-gray-200 flex flex-col"
   >
     <div class="mb-4">
-      <img :src="icon" class="h-10 w-10 object-contain" />
+      <img :src="icon" class="h-12 w-12 object-contain" />
     </div>
 
     <div class="flex items-center gap-2 mb-1">

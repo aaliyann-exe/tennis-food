@@ -1,6 +1,8 @@
 <script setup>
 import Header from "/src/components/header/molecules/Header.vue";
 import Box from "../atoms/Box.vue";
+import TrainerUsageCard from "../atoms/TrainerUsageCard.vue";
+import PlayerStatsCard from "../atoms/PlayerStatsCard.vue";
 
 import recordIcon from "/src/assets/recordIcon.svg";
 import starIcon from "/src/assets/starIcon.svg";
@@ -15,8 +17,8 @@ import tennisIcon from "/src/assets/tennisIcon.svg";
   <div class="min-h-screen w-full bg-gray-50">
     <Header text="Dashboard" dashboard />
 
-    <div class="max-w-350 mx-auto p-6">
-      <div class="flex flex-nowrap justify-center gap-4 overflow-x-hidden">
+    <div class="max-w-360 mx-auto p-6">
+      <div class="flex flex-nowrap justify-center gap-4 overflow-x-hidden mb-8">
         <Box
           :title="$t('table.active') + ' Trainers'"
           :activeCount="0"
@@ -48,6 +50,10 @@ import tennisIcon from "/src/assets/tennisIcon.svg";
           :icon="cogwheelIcon"
           special
         />
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+        <TrainerUsageCard />
+        <PlayerStatsCard />
       </div>
     </div>
   </div>

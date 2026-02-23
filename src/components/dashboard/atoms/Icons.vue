@@ -3,26 +3,11 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 
 const props = defineProps({
-  icon: {
-    type: String,
-    required: false,
-  },
-
-  text: {
-    type: String,
-    required: true,
-  },
-
-  path: {
-    type: String,
-    required: true,
-    default: "",
-  },
-
-  selected: {
-    type: Boolean,
-    required: false,
-  },
+  icon: { type: String, required: false },
+  activeIcon: { type: String, required: false },
+  text: { type: String, required: true },
+  path: { type: String, required: true, default: "" },
+  selected: { type: Boolean, required: false },
 });
 
 const route = useRoute();
@@ -55,16 +40,13 @@ const isActive = computed(() => {
       >
         <span class="mr-3">
           <img
-            :src="icon"
+            :src="isActive ? activeIcon : icon"
             :alt="text + ' Icon'"
-            :class="
-              (isActive ? 'opacity-100 ' : 'opacity-50 ') +
-              'inline w-5 h-5 transition-opacity'
-            "
+            :class="(isActive ? '' : 'opacity-50 ') + 'inline w-5 h-5'"
           />
         </span>
 
-        <span :class="isActive ? 'text-primary font-medium text-[16px]' : ''">
+        <span :class="isActive ? 'text-primary' : ''">
           {{ text }}
         </span>
       </div>

@@ -1,9 +1,13 @@
 <script setup>
 import LanguageToggle from "./components/languagetoggle/LanguageToggle.vue";
+import Dashboard from "./components/dashboard/templates/Dashboard.vue";
 </script>
 
 <template>
-  <LanguageToggle />
+  <div class="flex">
+    <Dashboard />
+    <LanguageToggle />
 
-  <router-view />
+    <router-view />
+  </div>
 </template>

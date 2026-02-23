@@ -21,6 +21,7 @@ export const usePlayerStore = defineStore("playerStore", {
         club: "Netherlands Tennis Club",
         level: "National (level 3)",
         status: true,
+        engagement: "low",
       },
 
       {
@@ -38,6 +39,7 @@ export const usePlayerStore = defineStore("playerStore", {
         school: "Royal Dutch Tennis",
         club: "Netherlands Tennis Club",
         status: false,
+        engagement: "low",
       },
     ],
   }),

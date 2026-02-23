@@ -20,7 +20,6 @@ import { router } from "../../../router";
           <span class="text-sm font-medium text-gray-900 leading-tight"
             >Royal</span
           >
-
           <span class="text-primary text-xs"
             >School {{ $t("dashboard.admin") }}</span
           >

@@ -1,4 +1,5 @@
 <script setup>
+import Tooltip from "../atoms/Tooltip.vue";
 import { computed } from "vue";
 
 const props = defineProps({
@@ -38,6 +39,10 @@ const props = defineProps({
     type: Number,
     default: 0,
   },
+  tooltip: {
+    type: String,
+    default: "",
+  },
 });
 
 const activePercentage = computed(
@@ -59,15 +64,17 @@ const inactiveCount = props.totalCount - props.activeCount;
         {{ props.title }}
       </h3>
 
-      <button class="cursor-pointer">
-        <div class="flex items-center justify-center">
-          <div
-            class="flex h-3 w-3 items-center justify-center rounded-full border border-gray-600 bg-none"
-          >
-            <span class="text-[8px] font-bold text-gray-600">i</span>
+      <Tooltip :text="props.tooltip">
+        <button class="cursor-pointer">
+          <div class="flex items-center justify-center">
+            <div
+              class="flex h-3 w-3 items-center justify-center rounded-full border border-gray-600 bg-none"
+            >
+              <span class="text-[8px] font-bold text-gray-600">i</span>
+            </div>
           </div>
-        </div>
-      </button>
+        </button>
+      </Tooltip>
     </div>
 
     <div class="flex items-baseline gap-2 mb-1">

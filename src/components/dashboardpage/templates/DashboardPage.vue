@@ -1,6 +1,5 @@
 <script setup>
-import DashboardTemplate from "../molecules/DashboardTemplate.vue";
-import Dashboard from "/src/components/dashboard/templates/Dashboard.vue";
+import DashboardTemplate from "../organisms/DashboardTemplate.vue";
 </script>
 
 <template>

@@ -10,7 +10,7 @@ const { t } = useI18n();
 
 const playerStore = usePlayerStore();
 
-const levels = [
+const levels = computed(() => [
   {
     key: "outstanding",
     label: t("dashboardPage.outstanding"),
@@ -41,7 +41,7 @@ const levels = [
     color: "bg-red-500",
     weight: 1,
   },
-];
+]);
 
 const stats = computed(() => {
   const total = playerStore.players.length;
@@ -55,7 +55,7 @@ const stats = computed(() => {
     const level = p.engagement?.toLowerCase() || "low";
     if (counts[level] !== undefined) {
       counts[level]++;
-      const weight = levels.find((l) => l.key === level)?.weight || 1;
+      const weight = levels.value.find((l) => l.key === level)?.weight || 1;
       totalScore += weight;
     }
   });
@@ -79,7 +79,7 @@ const getPercentage = (count) => {
 <template>
   <div class="bg-white rounded-3xl p-6 border border-gray-200 h-full">
     <div class="flex justify-between items-start mb-6">
-      <img :src="statsIcon" alt="Engagement" class="h-12 w-12 object-contain" />
+      <img :src="statsIcon" alt="Stats Icon" class="h-12 w-12 object-contain" />
       <button
         class="border border-gray-200 hover:bg-gray-50 hover:cursor-pointer rounded-full p-3"
       >
@@ -145,7 +145,7 @@ const getPercentage = (count) => {
           </span>
         </div>
         <div
-          class="w-full bg-gray-200 rounded-full h-8 overflow-hidden cursor-pointer"
+          class="w-full bg-gray-200 rounded-lg h-8 overflow-hidden cursor-pointer"
         >
           <div
             :class="[

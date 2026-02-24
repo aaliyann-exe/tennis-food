@@ -1,16 +1,14 @@
 <script setup>
 import Header from "/src/components/header/molecules/Header.vue";
-import Box from "../atoms/Box.vue";
-import TrainerUsageCard from "../atoms/TrainerUsageCard.vue";
-import PlayerStatsCard from "../atoms/PlayerStatsCard.vue";
+import Box from "../molecules/Box.vue";
+import TrainerUsageCard from "../molecules/TrainerUsageCard.vue";
+import PlayerStatsCard from "../molecules/PlayerStatsCard.vue";
+import UsersByAgeCard from "../molecules/UsersByAgeCard.vue";
+import HashtagAnalysisCard from "../molecules/HashtagAnalysisCard.vue";
 
 import recordIcon from "/src/assets/recordIcon.svg";
 import starIcon from "/src/assets/starIcon.svg";
 import cogwheelIcon from "/src/assets/cogwheelIcon.svg";
-import hashtagIcon from "/src/assets/hashtagIcon.svg";
-import peopleIcon from "/src/assets/peopleIcon.svg";
-import statsIcon from "/src/assets/statsIcon.svg";
-import tennisIcon from "/src/assets/tennisIcon.svg";
 </script>
 
 <template>
@@ -24,6 +22,7 @@ import tennisIcon from "/src/assets/tennisIcon.svg";
           :activeCount="0"
           :totalCount="0"
           :givenPercentage="0"
+          :tooltip="$t('tooltip.activeTrainers')"
           :icon="recordIcon"
         />
         <Box
@@ -54,6 +53,8 @@ import tennisIcon from "/src/assets/tennisIcon.svg";
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
         <TrainerUsageCard />
         <PlayerStatsCard />
+        <UsersByAgeCard />
+        <HashtagAnalysisCard />
       </div>
     </div>
   </div>

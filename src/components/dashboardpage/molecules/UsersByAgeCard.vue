@@ -3,10 +3,20 @@ import { computed } from "vue";
 import { usePlayerStore } from "/src/components/stores/playerStore";
 import { useI18n } from "vue-i18n";
 
+import Tooltip from "../atoms/Tooltip.vue";
+
 import groupIcon from "/src/assets/groupIcon.svg";
 import calendarIcon from "/src/assets/calendarIcon.svg";
 
+const props = defineProps({
+  tooltip: {
+    type: String,
+    default: "",
+  },
+});
+
 const { t } = useI18n();
+
 const playerStore = usePlayerStore();
 
 const categories = computed(() => [
@@ -57,15 +67,7 @@ const getPercentage = (count) => {
       class="text-2xl font-semibold text-gray-800 flex items-center gap-2 mb-12"
     >
       {{ $t("dashboardPage.usersByAgeCategory") }}
-      <button class="cursor-pointer">
-        <div class="flex items-center justify-center">
-          <div
-            class="flex h-4 w-4 items-center justify-center rounded-full border-2 border-gray-500 bg-none"
-          >
-            <span class="text-[10px] font-bold text-gray-500">i</span>
-          </div>
-        </div>
-      </button>
+      <Tooltip :text="props.tooltip" />
     </h3>
 
     <div class="space-y-6 flex-1 flex flex-col justify-center">

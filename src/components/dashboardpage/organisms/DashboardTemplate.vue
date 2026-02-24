@@ -16,7 +16,7 @@ import cogwheelIcon from "/src/assets/cogwheelIcon.svg";
     <Header text="Dashboard" dashboard />
 
     <div class="max-w-360 mx-auto p-6">
-      <div class="flex flex-nowrap justify-center gap-4 overflow-x-hidden mb-8">
+      <div class="flex flex-nowrap justify-center gap-4 mb-8">
         <Box
           :title="$t('table.active') + ' Trainers'"
           :activeCount="0"
@@ -32,6 +32,7 @@ import cogwheelIcon from "/src/assets/cogwheelIcon.svg";
           :label="
             $t('dashboardPage.schoolLabel') + ': ' + $t('dashboardPage.low')
           "
+          :tooltip="$t('tooltip.trainersUsageQuality')"
           :icon="starIcon"
           special
         />
@@ -39,6 +40,7 @@ import cogwheelIcon from "/src/assets/cogwheelIcon.svg";
           :title="$t('table.active') + ' ' + $t('player.players')"
           :activeCount="1"
           :totalCount="2"
+          :tooltip="$t('tooltip.activePlayers')"
           :icon="recordIcon"
         />
         <Box
@@ -46,15 +48,16 @@ import cogwheelIcon from "/src/assets/cogwheelIcon.svg";
           :activeCount="1"
           :totalCount="5"
           :label="$t('dashboardPage.videosWatched') + ' 0%'"
+          :tooltip="$t('tooltip.playersEngagement')"
           :icon="cogwheelIcon"
           special
         />
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-        <TrainerUsageCard />
-        <PlayerStatsCard />
-        <UsersByAgeCard />
-        <HashtagAnalysisCard />
+        <TrainerUsageCard :tooltip="$t('tooltip.trainersUsageQuality')" />
+        <PlayerStatsCard :tooltip="$t('tooltip.playersEngagement')" />
+        <UsersByAgeCard :tooltip="$t('tooltip.usersAgeCategory')" />
+        <HashtagAnalysisCard :tooltip="$t('tooltip.hashtagsAnalysis')" />
       </div>
     </div>
   </div>

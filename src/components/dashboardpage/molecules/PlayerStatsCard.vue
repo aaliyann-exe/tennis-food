@@ -3,8 +3,17 @@ import { computed } from "vue";
 import { usePlayerStore } from "/src/components/stores/playerStore";
 import { useI18n } from "vue-i18n";
 
+import Tooltip from "../atoms/Tooltip.vue";
+
 import statsIcon from "/src/assets/statsIcon.svg";
 import calendarIcon from "/src/assets/calendarIcon.svg";
+
+const props = defineProps({
+  tooltip: {
+    type: String,
+    default: "",
+  },
+});
 
 const { t } = useI18n();
 
@@ -89,15 +98,7 @@ const getPercentage = (count) => {
 
     <h3 class="text-2xl font-semibold text-gray-800 flex items-center gap-2">
       {{ $t("player.player") }} {{ $t("dashboardPage.engagementDistribution") }}
-      <button class="cursor-pointer">
-        <div class="flex items-center justify-center">
-          <div
-            class="flex h-4 w-4 items-center justify-center rounded-full border-2 border-gray-500 bg-none"
-          >
-            <span class="text-[10px] font-bold text-gray-500">i</span>
-          </div>
-        </div>
-      </button>
+      <Tooltip :text="props.tooltip" />
     </h3>
 
     <div class="grid grid-cols-2 gap-4 mt-6">

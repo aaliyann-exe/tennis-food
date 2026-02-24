@@ -64,17 +64,7 @@ const inactiveCount = props.totalCount - props.activeCount;
         {{ props.title }}
       </h3>
 
-      <Tooltip :text="props.tooltip">
-        <button class="cursor-pointer">
-          <div class="flex items-center justify-center">
-            <div
-              class="flex h-3 w-3 items-center justify-center rounded-full border border-gray-600 bg-none"
-            >
-              <span class="text-[8px] font-bold text-gray-600">i</span>
-            </div>
-          </div>
-        </button>
-      </Tooltip>
+      <Tooltip :text="props.tooltip" />
     </div>
 
     <div class="flex items-baseline gap-2 mb-1">

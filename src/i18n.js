@@ -54,16 +54,16 @@ const messages = {
 
     tooltip: {
       activeTrainers:
-        "Actieve trainer = heeft ten minste 1 video geüpload in de geselecteerde periode.",
+        "Active trainer = uploaded at least 1 video in the selected period.",
       trainersUsageQuality:
-        "Trainer gebruiksscore is gebaseerd op genormaliseerde metrieken: Gemiddeld aantal video's per speler per training en Dekking. Categorieën: Intensief (≥1.5), Goed (≥1.0), Regelmatig (0.8-1.0), Onregelmatig (0.5-0.8), Laag (<0.5).",
+        "Trainer usage score is based on normalized metrics: Average videos per player per training and Coverage. Categories: Intensive (≥1.5), Good (≥1.0), Regular (0.8-1.0), Irregular (0.5-0.8), Low (<0.5).",
       activePlayers:
-        "Actieve speler = heeft ten minste 1 video bekeken in de geselecteerde periode.",
+        "Active player = watched at least 1 video in the selected period.",
       playersEngagement:
-        "Engagement score = gemiddelde van View Rate (video's bekeken/ontvangen) en CTR (melding geopend/verzonden).",
+        "Engagement score = average of View Rate (videos watched/received) and CTR (notification opened/sent).",
       usersAgeCategory:
-        "Verdeling van actieve spelers over leeftijdsgroepen. Klik op een categorie om individuele spelers te bekijken.",
-      hashtagsAnalysis: `Hashtags worden door trainers aan video's toegevoegd. Analyse toont de meest frequente en trending trefwoorden. Klik op "Meer tonen" om de volledige lijst van hashtags te bekijken.`,
+        "Distribution of active players across age groups. Click on a category to view individual players.",
+      hashtagsAnalysis: `Hashtags are added by the trainers to videos. Analysis shows the most frequent and trending keywords. Click on "Show more" to view full list of hashtags.`,
     },
 
     tab: {
@@ -216,16 +216,16 @@ const messages = {
 
     tooltip: {
       activeTrainers:
-        "Active trainer = uploaded at least 1 video in the selected period.",
+        "Actieve trainer = heeft ten minste 1 video geüpload in de geselecteerde periode.",
       trainersUsageQuality:
-        "Trainer usage score is based on normalized metrics: Average videos per player per training and Coverage. Categories: Intensive (≥1.5), Good (≥1.0), Regular (0.8-1.0), Irregular (0.5-0.8), Low (<0.5).",
+        "Trainer gebruiksscore is gebaseerd op genormaliseerde metrieken: Gemiddeld aantal video's per speler per training en Dekking. Categorieën: Intensief (≥1.5), Goed (≥1.0), Regelmatig (0.8-1.0), Onregelmatig (0.5-0.8), Laag (<0.5).",
       activePlayers:
-        "Active player = watched at least 1 video in the selected period.",
+        "Actieve speler = heeft ten minste 1 video bekeken in de geselecteerde periode.",
       playersEngagement:
-        "Engagement score = average of View Rate (videos watched/received) and CTR (notification opened/sent).",
+        "Engagement score = gemiddelde van View Rate (video's bekeken/ontvangen) en CTR (melding geopend/verzonden).",
       usersAgeCategory:
-        "Distribution of active players across age groups. Click on a category to view individual players.",
-      hashtagsAnalysis: `Hashtags are added by the trainers to videos. Analysis shows the most frequent and trending keywords. Click on "Show more" to view full list of hashtags.`,
+        "Verdeling van actieve spelers over leeftijdsgroepen. Klik op een categorie om individuele spelers te bekijken.",
+      hashtagsAnalysis: `Hashtags worden door trainers aan video's toegevoegd. Analyse toont de meest frequente en trending trefwoorden. Klik op "Meer tonen" om de volledige lijst van hashtags te bekijken.`,
     },
 
     tab: {

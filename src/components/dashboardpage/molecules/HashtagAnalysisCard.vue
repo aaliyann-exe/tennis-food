@@ -1,7 +1,18 @@
 <script setup>
 import { useHashtagStore } from "/src/components/stores/hashtagStore";
+
+import Tooltip from "../atoms/Tooltip.vue";
+
 import hashtagIcon from "/src/assets/hashtagIcon.svg";
 import calendarIcon from "/src/assets/calendarIcon.svg";
+import arrowDownIcon from "/src/assets/arrowDownIcon.svg";
+
+const props = defineProps({
+  tooltip: {
+    type: String,
+    default: "",
+  },
+});
 
 const hashtagStore = useHashtagStore();
 </script>
@@ -11,19 +22,21 @@ const hashtagStore = useHashtagStore();
     class="bg-white rounded-3xl p-6 border border-gray-200 h-full flex flex-col"
   >
     <div class="flex justify-between items-start mb-6">
-      <div
-        class="bg-orange-50 p-3 rounded-2xl text-orange-600 font-bold text-xl"
-      >
-        #
-      </div>
+      <img
+        :src="hashtagIcon"
+        alt="Hashtag Icon"
+        class="h-12 w-12 object-contain"
+      />
       <div class="flex gap-2">
         <select
-          class="bg-white border border-gray-200 rounded-full px-4 py-2 text-sm outline-none"
+          class="bg-secondary border border-gray-200 text-center justify-center rounded-full px-auto py-2 text-sm outline-none"
         >
           <option>{{ $t("player.all") }}</option>
           <option>{{ $t("dashboardPage.mostUsedHashtags") }}</option>
           <option>{{ $t("dashboardPage.leastUsedHashtags") }}</option>
         </select>
+        <!-- <img :src="arrowDownIcon" class="w-3 relative right-10" /> -->
+
         <button
           class="border border-gray-200 hover:bg-gray-50 rounded-full p-3"
         >
@@ -36,15 +49,7 @@ const hashtagStore = useHashtagStore();
       class="text-2xl font-semibold text-gray-800 flex items-center gap-2 mb-4"
     >
       Hashtag {{ $t("dashboardPage.analysis") }}
-      <button class="cursor-pointer">
-        <div class="flex items-center justify-center">
-          <div
-            class="flex h-4 w-4 items-center justify-center rounded-full border-2 border-gray-500 bg-none"
-          >
-            <span class="text-[10px] font-bold text-gray-500">i</span>
-          </div>
-        </div>
-      </button>
+      <Tooltip :text="props.tooltip" />
     </h3>
 
     <div class="mt-4 border-t border-gray-100">

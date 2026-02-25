@@ -44,6 +44,14 @@ export const usePlayerStore = defineStore("playerStore", {
     ],
   }),
 
+  getters: {
+    activePlayers: (state) =>
+      state.players.filter((p) => p.status === true).length,
+    inactivePlayers: (state) =>
+      state.players.filter((p) => p.status === false).length,
+    totalPlayers: (state) => state.players.length,
+  },
+
   actions: {
     addPlayer(player) {
       this.players.unshift({ ...player, id: Date.now() });

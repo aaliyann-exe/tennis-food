@@ -44,7 +44,7 @@ const toggleLanguage = () => {
         <div
           :class="
             (isDutch ? 'translate-x-10 ' : 'translate-x-0 ') +
-            'bg-white w-8 h-8 rounded-full shadow-md flex items-center justify-center'
+            'bg-white w-8 h-8 rounded-full shadow-md flex items-center justify-center transition-transform duration-400'
           "
         >
           <img

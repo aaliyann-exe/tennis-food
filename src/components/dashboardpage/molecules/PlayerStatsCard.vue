@@ -24,31 +24,26 @@ const levels = computed(() => [
     key: "outstanding",
     label: t("dashboardPage.outstanding"),
     color: "bg-green-500",
-    weight: 5,
   },
   {
     key: "high",
     label: t("dashboardPage.high"),
     color: "bg-emerald-400",
-    weight: 4,
   },
   {
     key: "moderate",
     label: t("dashboardPage.moderate"),
     color: "bg-yellow-400",
-    weight: 3,
   },
   {
     key: "limited",
     label: t("dashboardPage.limited"),
     color: "bg-orange-400",
-    weight: 2,
   },
   {
     key: "low",
     label: t("dashboardPage.low"),
     color: "bg-red-500",
-    weight: 1,
   },
 ]);
 
@@ -64,8 +59,6 @@ const stats = computed(() => {
     const level = p.engagement?.toLowerCase() || "low";
     if (counts[level] !== undefined) {
       counts[level]++;
-      const weight = levels.value.find((l) => l.key === level)?.weight || 1;
-      totalScore += weight;
     }
   });
 
@@ -106,7 +99,9 @@ const getPercentage = (count) => {
         <p class="text-sm font-normal opacity-70 mb-1">
           {{ $t("dashboardPage.avgPlayerScore") }}
         </p>
-        <p class="text-3xl font-bold text-gray-800">{{ stats.average }}/5</p>
+        <p class="text-3xl font-bold text-gray-800">
+          {{ playerStore.activePlayers }}/{{ playerStore.totalPlayers }}
+        </p>
       </div>
       <div class="bg-green-50 p-4 rounded-xl text-center">
         <p class="text-sm font-normal opacity-70 mb-1">

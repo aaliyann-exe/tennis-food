@@ -5,6 +5,14 @@ export const useTrainerStore = defineStore("trainerStore", {
     trainers: [],
   }),
 
+  getters: {
+    activeTrainers: (state) =>
+      state.trainers.filter((t) => t.status === true).length,
+    inactiveTrainers: (state) =>
+      state.trainers.filter((t) => t.status === false).length,
+    totalTrainers: (state) => state.trainers.length,
+  },
+
   actions: {
     addTrainer(trainer) {
       this.trainers.unshift({ ...trainer, id: Date.now() });

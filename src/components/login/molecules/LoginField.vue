@@ -2,6 +2,7 @@
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useLoginStore } from "/src/components/stores/loginStore";
+import { useProfileStore } from "/src/components/stores/profileStore";
 
 import tennisLogo from "/src/assets/tennisLogo.svg";
 import emailIcon from "/src/assets/emailIcon.svg";
@@ -11,6 +12,8 @@ import viewIcon from "/src/assets/viewIcon.png";
 
 import FormInput from "/src/components/login/atoms/FormInput.vue";
 
+import Button from "../atoms/Button.vue";
+
 const email = ref("");
 const password = ref("");
 const showPassword = ref(false);
@@ -19,6 +22,7 @@ const passwordTouched = ref(false);
 
 const router = useRouter();
 const loginStore = useLoginStore();
+const profileStore = useProfileStore();
 
 const errorMessage = computed(() => {
   const emailValid = /^\S+@\S+\.\S+$/.test(email.value);
@@ -42,6 +46,13 @@ const errorMessage = computed(() => {
 
   if (!passValid) return "Password must have at least 1 special character!";
 
+  if (
+    email.value !== profileStore.profile.email &&
+    password.value !== profileStore.profile.password
+  ) {
+    invalidMessage.value = "Invalid email or password.";
+  }
+
   return "";
 });
 
@@ -52,11 +63,12 @@ const handleLogin = () => {
   passwordTouched.value = true;
 
   if (errorMessage.value === "" && email.value && password.value) {
-    if (email.value === "t@f.com" && password.value === "t@1234") {
+    if (
+      email.value === profileStore.profile.email &&
+      password.value === profileStore.profile.password
+    ) {
       loginStore.login();
       router.push("/dashboard");
-    } else {
-      invalidMessage.value = "Invalid email or password.";
     }
   }
 };
@@ -66,8 +78,6 @@ const handleLogin = () => {
   <div
     class="w-full lg:w-1/2 flex flex-col items-center justify-center px-8 md:px-24 bg-white relative container2"
   >
-    <LanguageToggle />
-
     <div class="w-130">
       <div class="flex justify-center mb-12">
         <img :src="tennisLogo" alt="Logo" class="w-19 h-19" />
@@ -123,18 +133,15 @@ const handleLogin = () => {
           </p>
         </div>
 
-        <button
-          type="submit"
-          class="w-full bg-[#ff5a1f] hover:bg-[#de5223] text-white font-medium py-3 rounded-lg active:bg-[#d33500] transition-all"
-        >
-          {{ $t("login.signin") }}
-        </button>
+        <Button />
 
-        <div class="text-center mt-2">
-          <a href="#" class="text-gray-500 text-10 hover:text-[#ff5a1f]">
+        <router-link to="/forgot-password">
+          <div
+            class="text-center mt-2 text-gray-500 font-small hover:text-primary"
+          >
             {{ $t("login.forgotPass") }}
-          </a>
-        </div>
+          </div>
+        </router-link>
       </form>
     </div>
   </div>

@@ -1,5 +1,18 @@
 <script setup>
 import magnifyingGlassIcon from "/src/assets/magnifyingGlassIcon.svg";
+
+const props = defineProps({
+  modelValue: {
+    type: String,
+    required: true,
+  },
+});
+
+const emit = defineEmits(["search"]);
+
+const handleSearch = (e) => {
+  emit("search", e.target.value);
+};
 </script>
 
 <template>
@@ -8,6 +21,8 @@ import magnifyingGlassIcon from "/src/assets/magnifyingGlassIcon.svg";
   >
     <input
       :placeholder="$t('tab.search') + '...'"
+      :value="modelValue"
+      @input="handleSearch"
       class="placeholder:text-gray-200 w-full text-primary border-secondary outline-none bg-transparent"
     />
 

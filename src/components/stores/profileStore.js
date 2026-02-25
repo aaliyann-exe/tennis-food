@@ -6,7 +6,8 @@ export const useProfileStore = defineStore("profileStore", {
     profile: {
       pfp: schoolAdminIcon,
       name: "Royal",
-      email: "tennis@food.com",
+      email: "t@f.com",
+      password: "t@1234",
       phone: "+31612345678",
       website: "",
       zipCode: "",

@@ -33,10 +33,7 @@ const isActive = computed(() => {
 
     <router-link :to="pagePath" class="no-underline">
       <div
-        :class="
-          (isActive ? 'bg-primary-outline ' : '') +
-          'py-3 px-2 ml-8 w-60 rounded-lg text-sm font-normal transition-colors hover:bg-primary-outline hover:text-primary cursor-pointer'
-        "
+        class="py-3 px-2 ml-8 w-60 rounded-lg text-sm font-normal transition-colors hover:bg-primary-outline hover:text-primary cursor-pointer"
       >
         <span class="mr-3">
           <img

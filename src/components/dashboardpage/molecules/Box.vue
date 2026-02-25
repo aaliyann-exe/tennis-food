@@ -1,6 +1,9 @@
 <script setup>
-import Tooltip from "../atoms/Tooltip.vue";
 import { computed } from "vue";
+import { usePlayerStore } from "/src/components/stores/playerStore";
+import { useTrainerStore } from "/src/components/stores/trainerStore.js";
+
+import Tooltip from "../atoms/Tooltip.vue";
 
 const props = defineProps({
   special: {
@@ -19,36 +22,39 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  activeCount: {
-    type: Number,
-    default: 0,
-  },
-  totalCount: {
-    type: Number,
-    default: 0,
-  },
-  weeklyChange: {
-    type: Number,
-    default: 0,
-  },
-  givenCount: {
-    type: Number,
-    default: 0,
-  },
-  givenPercentage: {
-    type: Number,
-    default: 0,
+  secondLabel: {
+    type: String,
+    default: "Trainers",
   },
   tooltip: {
     type: String,
     default: "",
   },
+  isTrainer: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-const activePercentage = computed(
-  () => (props.activeCount / props.totalCount) * 100,
+const playerStore = usePlayerStore();
+const trainerStore = useTrainerStore();
+
+const activeCount = computed(() =>
+  props.isTrainer ? trainerStore.activeTrainers : playerStore.activePlayers,
 );
-const inactiveCount = props.totalCount - props.activeCount;
+
+const inactiveCount = computed(() =>
+  props.isTrainer ? trainerStore.inactiveTrainers : playerStore.inactivePlayers,
+);
+
+const totalCount = computed(() =>
+  props.isTrainer ? trainerStore.totalTrainers : playerStore.totalPlayers,
+);
+
+const activePercentage = computed(() => {
+  if (totalCount.value === 0) return 0;
+  return ((activeCount.value / totalCount.value) * 100).toFixed(0);
+});
 </script>
 
 <template>
@@ -59,7 +65,7 @@ const inactiveCount = props.totalCount - props.activeCount;
       <img :src="icon" class="h-12 w-12 object-contain" />
     </div>
 
-    <div class="flex items-center gap-2 mb-1">
+    <div class="flex items-center gap-2">
       <h3 class="text-base font-medium text-gray-900 leading-tight">
         {{ props.title }}
       </h3>
@@ -67,35 +73,33 @@ const inactiveCount = props.totalCount - props.activeCount;
       <Tooltip :text="props.tooltip" />
     </div>
 
-    <div class="flex items-baseline gap-2 mb-1">
-      <span class="text-4xl font-semibold text-black">
-        {{ props.activeCount }}<span v-if="special">/{{ totalCount }}</span>
+    <div class="flex items-baseline gap-2">
+      <span class="text-3xl font-semibold text-black">
+        {{ activeCount }}<span v-if="special">/{{ totalCount }}</span>
       </span>
       <span v-if="!special" class="text-xs font-bold text-gray-900">
-        ({{ props.givenPercentage || activePercentage }}%)
+        ({{ activePercentage }}%)
       </span>
     </div>
 
-    <div v-if="!special" class="text-gray-400 text-xs mb-2">
+    <div v-if="!special" class="text-gray-500 text-sm">
       {{ $t("table.inactive") }}: {{ inactiveCount }}. {{ $t("table.total") }}:
-      {{ props.totalCount }}
+      {{ totalCount }}
     </div>
 
-    <div v-else class="text-gray-400 text-xs mb-2">
+    <div v-else class="text-gray-500 text-sm">
       {{ label }}
       <br />
-      {{ props.givenCount }}
-      <span class="font-bold">({{ props.givenCount }}%)</span> Trainers ≥ 4
+      0
+      <span class="font-bold">(0%)</span> {{ props.secondLabel }} ≥ 4
     </div>
 
-    <div v-if="!special" class="text-slate-600 text-xs pt-2 mt-auto">
-      <span class="mr-1">—</span> {{ props.weeklyChange }}
-      {{ $t("dashboardPage.this") }} Week
+    <div v-if="!special" class="text-slate-800 text-sm pt-2 mt-auto">
+      <span class="mr-1">—</span>0 {{ $t("dashboardPage.this") }} Week
     </div>
 
-    <div v-else class="text-slate-600 text-xs pt-2 mt-auto">
-      <span class="mr-1">—</span> {{ props.weeklyChange }}
-      {{ $t("dashboardPage.vsLastPeriod") }}
+    <div v-else class="text-slate-800 text-sm pt-2 mt-auto">
+      <span class="mr-1">—</span>0 {{ $t("dashboardPage.vsLastPeriod") }}
     </div>
   </div>
 </template>

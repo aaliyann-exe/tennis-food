@@ -7,11 +7,21 @@ const messages = {
     login: {
       login: "Login",
       title: "Streamline your management tasks with ease.",
-      email: "E-mail",
+      email: "Email",
       emailLabel: "User Email",
       password: "Password",
       signin: "Sign In",
       forgotPass: "Forgot Password?",
+      resetPasswordTitle: "Reset Your Password",
+      resetPasswordLabel:
+        "Enter your email address and we'll send you a link to reset your password.",
+      back: "Back",
+      send: "Send",
+      error: "Error",
+      errorLabel: "Email address does not exist in our system",
+      close: "Close",
+      success: "Email sent",
+      successLabel: "An email has been sent to your inbox",
     },
 
     dashboard: {
@@ -174,6 +184,16 @@ const messages = {
       password: "Wachtwoord",
       signin: "Inloggen",
       forgotPass: "Wachtwoord vergeten?",
+      resetPasswordTitle: "Reset Je Wachtwoord",
+      resetPasswordLabel:
+        "Voer je e-mailadres in en we sturen je een link om je wachtwoord te resetten.",
+      back: "Terug",
+      send: "Verzenden",
+      error: "Fout",
+      errorLabel: "E-mailadres bestaat niet in ons systeem",
+      close: "Sluiten",
+      success: "E-mail verzonden",
+      successLabel: "Er is een e-mail naar uw inbox verzonden",
     },
 
     dashboard: {

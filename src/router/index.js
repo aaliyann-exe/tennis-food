@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import { useLoginStore } from "/src/components/stores/loginStore.js";
 
 import LoginPage from "/src/components/login/templates/LoginPage.vue";
+import ForgotPassPage from "/src/components/forgotpassword/templates/ForgotPassPage.vue";
 import DashboardPage from "/src/components/dashboardpage/templates/DashboardPage.vue";
 import ClubsPage from "/src/components/clubspage/templates/ClubsPage.vue";
 import TrainersPage from "/src/components/trainerspage/templates/TrainersPage.vue";
@@ -21,6 +22,11 @@ const routes = [
   {
     path: "/login",
     component: LoginPage,
+  },
+
+  {
+    path: "/forgot-password",
+    component: ForgotPassPage,
   },
 
   {

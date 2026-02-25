@@ -1,4 +1,6 @@
 <script setup>
+import { ref } from "vue";
+
 import ImportIcon from "../atoms/ImportIcon.vue";
 import SearchBar from "../atoms/SearchBar.vue";
 
@@ -24,9 +26,18 @@ defineProps({
     type: Boolean,
     required: false,
   },
+
+  modelValue: {
+    type: String,
+    default: "",
+  },
 });
 
-defineEmits(["create"]);
+const emit = defineEmits(["create", "search"]);
+
+const search = (value) => {
+  emit("search", value);
+};
 </script>
 
 <template>
@@ -38,7 +49,7 @@ defineEmits(["create"]);
     <div class="flex items-center gap-4">
       <slot name="filters"></slot>
 
-      <SearchBar v-if="searchBar" />
+      <SearchBar v-if="searchBar" @search="search" />
 
       <ImportIcon v-if="importButton" />
 

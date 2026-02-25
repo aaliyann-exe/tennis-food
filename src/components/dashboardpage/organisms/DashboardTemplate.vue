@@ -19,35 +19,30 @@ import cogwheelIcon from "/src/assets/cogwheelIcon.svg";
       <div class="flex flex-nowrap justify-center gap-4 mb-8">
         <Box
           :title="$t('table.active') + ' Trainers'"
-          :activeCount="0"
-          :totalCount="0"
-          :givenPercentage="0"
           :tooltip="$t('tooltip.activeTrainers')"
           :icon="recordIcon"
+          isTrainer
         />
         <Box
           :title="'Trainers ' + $t('dashboardPage.usageQuality')"
-          :activeCount="0"
-          :totalCount="5"
           :label="
             $t('dashboardPage.schoolLabel') + ': ' + $t('dashboardPage.low')
           "
+          secondLabel="Trainers"
           :tooltip="$t('tooltip.trainersUsageQuality')"
           :icon="starIcon"
+          isTrainer
           special
         />
         <Box
           :title="$t('table.active') + ' ' + $t('player.players')"
-          :activeCount="1"
-          :totalCount="2"
           :tooltip="$t('tooltip.activePlayers')"
           :icon="recordIcon"
         />
         <Box
           :title="$t('player.players') + ' ' + $t('dashboardPage.engagement')"
-          :activeCount="1"
-          :totalCount="5"
           :label="$t('dashboardPage.videosWatched') + ' 0%'"
+          :secondLabel="$t('player.players')"
           :tooltip="$t('tooltip.playersEngagement')"
           :icon="cogwheelIcon"
           special

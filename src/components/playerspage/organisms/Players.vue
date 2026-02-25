@@ -30,19 +30,37 @@ const ageGroupOptions = [
   t("player.a50"),
 ];
 
+const searchValue = ref("");
+
+const searchPlayer = (search) => {
+  searchValue.value = search;
+};
+
 const filteredPlayers = computed(() => {
-  if (selectedAgeGroup.value === "All") return playerStore.players;
+  if (selectedAgeGroup.value === t("player.all")) {
+    return playerStore.players;
+  }
 
   return playerStore.players.filter(
     (player) => player.ageGroup === selectedAgeGroup.value,
   );
 });
 
+const searchedPlayers = computed(() => {
+  const query = searchValue.value.toLowerCase().trim();
+
+  if (!query) return filteredPlayers.value;
+
+  return filteredPlayers.value.filter((player) =>
+    player.fName.toLowerCase().includes(query),
+  );
+});
+
 const activePlayers = computed(() =>
-  filteredPlayers.value.filter((player) => player.status === true),
+  searchedPlayers.value.filter((player) => player.status === true),
 );
 const archivedPlayers = computed(() =>
-  filteredPlayers.value.filter((player) => player.status === false),
+  searchedPlayers.value.filter((player) => player.status === false),
 );
 
 const toggleModal = () => {
@@ -89,7 +107,9 @@ const togglePlayerStatus = (player) => {
   <div class="w-full bg-other flexbox">
     <Header
       :text="$t('dashboard.players')"
+      :modelValue="searchValue"
       @create="createPlayer"
+      @search="searchPlayer"
       searchBar
       importButton
       addButton

@@ -6,7 +6,6 @@ import { useI18n } from "vue-i18n";
 import PlayersTable from "../molecules/PlayersTable.vue";
 import PlayerInformation from "../molecules/PlayerInformation.vue";
 import PlayersFooter from "../atoms/PlayersFooter.vue";
-
 import Tabs from "../molecules/Tabs.vue";
 import EmptyTab from "../atoms/EmptyTab.vue";
 import Header from "/src/components/header/molecules/Header.vue";
@@ -19,16 +18,6 @@ const playerModalVisible = ref(false);
 const playerMode = ref("create");
 const selectedPlayer = ref(null);
 const isArchivedTab = ref(false);
-
-const selectedAgeGroup = ref(t("player.all"));
-const ageGroupOptions = [
-  t("player.all"),
-  t("player.u12"),
-  t("player.a12"),
-  t("player.a18"),
-  t("player.a30"),
-  t("player.a50"),
-];
 
 const searchValue = ref("");
 
@@ -47,7 +36,7 @@ const filteredPlayers = computed(() => {
 });
 
 const searchedPlayers = computed(() => {
-  const query = searchValue.value.toLowerCase().trim();
+  const query = searchValue.value.toLowerCase();
 
   if (!query) return filteredPlayers.value;
 
@@ -57,11 +46,31 @@ const searchedPlayers = computed(() => {
 });
 
 const activePlayers = computed(() =>
-  searchedPlayers.value.filter((player) => player.status === true),
+  isNormalOrder.value
+    ? searchedPlayers.value.filter((player) => player.status === true)
+    : searchedPlayers.value
+        .filter((player) => player.status === true)
+        .reverse(),
 );
+
 const archivedPlayers = computed(() =>
-  searchedPlayers.value.filter((player) => player.status === false),
+  isNormalOrder.value
+    ? searchedPlayers.value.filter((player) => player.status === false)
+    : searchedPlayers.value
+        .filter((player) => player.status === false)
+        .reverse(),
 );
+
+const selectedAgeGroup = ref(t("player.all"));
+
+const ageGroupOptions = [
+  t("player.all"),
+  t("player.u12"),
+  t("player.a12"),
+  t("player.a18"),
+  t("player.a30"),
+  t("player.a50"),
+];
 
 const toggleModal = () => {
   playerModalVisible.value = !playerModalVisible.value;
@@ -101,6 +110,8 @@ const togglePlayerStatus = (player) => {
 
   playerStore.updatePlayer(updatedPlayer);
 };
+
+const isNormalOrder = ref(true);
 </script>
 
 <template>
@@ -108,11 +119,11 @@ const togglePlayerStatus = (player) => {
     <Header
       :text="$t('dashboard.players')"
       :modelValue="searchValue"
-      @create="createPlayer"
-      @search="searchPlayer"
       searchBar
       importButton
       addButton
+      @create="createPlayer"
+      @search="searchPlayer"
     >
       <template #filters>
         <FilterDropdown
@@ -126,12 +137,14 @@ const togglePlayerStatus = (player) => {
     <Tabs v-model:show-archived="isArchivedTab" />
 
     <div v-if="!isArchivedTab">
-      <div v-if="archivedPlayers.length > 0">
+      <div v-if="activePlayers.length > 0">
         <PlayersTable
           :players="activePlayers"
           @view="viewPlayer"
           @edit="editPlayer"
           @toggle-status="togglePlayerStatus"
+          @normal-order="isNormalOrder = true"
+          @reverse-order="isNormalOrder = false"
         />
 
         <PlayersFooter />
@@ -147,6 +160,8 @@ const togglePlayerStatus = (player) => {
           @view="viewPlayer"
           @edit="editPlayer"
           @toggle-status="togglePlayerStatus"
+          @normal-order="isNormalOrder = true"
+          @reverse-order="isNormalOrder = false"
         />
 
         <PlayersFooter />

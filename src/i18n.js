@@ -84,6 +84,8 @@ const messages = {
       noDataFound: "No Data Found",
       noTrainers: "No trainers found",
       addTrainer: "Add Trainer",
+      noTrainings: "No trainings found",
+      addTraining: "Add Training",
     },
 
     table: {
@@ -256,6 +258,8 @@ const messages = {
       noDataFound: "Geen Gegevens Gevonden",
       noTrainers: "Geen trainers gevonden",
       addTrainer: "Trainer Toevoegen",
+      noTrainings: "Geen trainingen gevonden",
+      addTraining: "Training Toevoegen",
     },
 
     table: {

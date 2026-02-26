@@ -6,7 +6,7 @@ import CourtsTable from "../molecules/CourtsTable.vue";
 import CourtInformation from "../molecules/CourtInformation.vue";
 import CourtsFooter from "../atoms/CourtsFooter.vue";
 import Tabs from "../molecules/Tabs.vue";
-import ArchivedTab from "../atoms/ArchivedTab.vue";
+import EmptyTab from "../atoms/EmptyTab.vue";
 import Header from "/src/components/header/molecules/Header.vue";
 
 const courtStore = useCourtStore();
@@ -14,11 +14,28 @@ const courtModalVisible = ref(false);
 const courtMode = ref("create");
 const selectedCourt = ref(null);
 const isArchivedTab = ref(false);
+
+const searchValue = ref("");
+
+const searchCourt = (search) => {
+  searchValue.value = search;
+};
+
+const searchedCourts = computed(() => {
+  const query = searchValue.value.toLowerCase();
+
+  if (!query) return courtStore.courts;
+
+  return courtStore.courts.filter((court) =>
+    court.name.toLowerCase().includes(query),
+  );
+});
+
 const activeCourts = computed(() =>
-  courtStore.courts.filter((court) => court.status === true),
+  searchedCourts.value.filter((court) => court.status === true),
 );
 const archivedCourts = computed(() =>
-  courtStore.courts.filter((court) => court.status === false),
+  searchedCourts.value.filter((court) => court.status === false),
 );
 
 const toggleModal = () => {
@@ -62,25 +79,32 @@ const toggleCourtStatus = (court) => {
 </script>
 
 <template>
-  <div class="w-full bg-other flexbox">
+  <div class="w-full h-min bg-other flexbox">
     <Header
       :text="$t('dashboard.courts')"
+      :modelValue="searchValue"
       searchBar
       addButton
       @create="createCourt"
-    />
+      @search="searchCourt"
+    >
+    </Header>
 
     <Tabs v-model:show-archived="isArchivedTab" />
 
     <div v-if="!isArchivedTab">
-      <CourtsTable
-        :courts="activeCourts"
-        @view="viewCourt"
-        @edit="editCourt"
-        @toggle-status="toggleCourtStatus"
-      />
+      <div v-if="activeCourts.length > 0">
+        <CourtsTable
+          :courts="activeCourts"
+          @view="viewCourt"
+          @edit="editCourt"
+          @toggle-status="toggleCourtStatus"
+        />
 
-      <CourtsFooter />
+        <CourtsFooter />
+      </div>
+
+      <EmptyTab v-else />
     </div>
 
     <div v-else>
@@ -95,7 +119,7 @@ const toggleCourtStatus = (court) => {
         <CourtsFooter />
       </div>
 
-      <ArchivedTab v-else />
+      <EmptyTab v-else />
     </div>
 
     <CourtInformation

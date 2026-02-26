@@ -14,11 +14,33 @@ const clubModalVisible = ref(false);
 const clubMode = ref("create");
 const selectedClub = ref(null);
 const isArchivedTab = ref(false);
+
+const searchValue = ref("");
+
+const searchClub = (search) => {
+  searchValue.value = search;
+};
+
+const searchedClubs = computed(() => {
+  const query = searchValue.value.toLowerCase();
+
+  if (!query) return clubStore.clubs;
+
+  return clubStore.clubs.filter((club) =>
+    club.name.toLowerCase().includes(query),
+  );
+});
+
 const activeClubs = computed(() =>
-  clubStore.clubs.filter((club) => club.status === true),
+  isNormalOrder.value
+    ? searchedClubs.value.filter((club) => club.status === true)
+    : searchedClubs.value.filter((club) => club.status === true).reverse(),
 );
+
 const archivedClubs = computed(() =>
-  clubStore.clubs.filter((club) => club.status === false),
+  isNormalOrder.value
+    ? searchedClubs.value.filter((club) => club.status === false)
+    : searchedClubs.value.filter((club) => club.status === false).reverse(),
 );
 
 const toggleModal = () => {
@@ -59,16 +81,20 @@ const toggleClubStatus = (club) => {
 
   clubStore.updateClub(updatedClub);
 };
+
+const isNormalOrder = ref(true);
 </script>
 
 <template>
   <div class="w-full bg-other flexbox">
     <Header
       :text="$t('dashboard.clubs')"
+      :modelValue="searchValue"
       searchBar
       importButton
       addButton
       @create="createClub"
+      @search="searchClub"
     />
 
     <Tabs v-model:show-archived="isArchivedTab" />
@@ -80,6 +106,8 @@ const toggleClubStatus = (club) => {
           @view="viewClub"
           @edit="editClub"
           @toggle-status="toggleClubStatus"
+          @normal-order="isNormalOrder = true"
+          @reverse-order="isNormalOrder = false"
         />
 
         <ClubFooter />
@@ -95,6 +123,8 @@ const toggleClubStatus = (club) => {
           @view="viewClub"
           @edit="editClub"
           @toggle-status="toggleClubStatus"
+          @normal-order="isNormalOrder = true"
+          @reverse-order="isNormalOrder = false"
         />
 
         <ClubFooter />

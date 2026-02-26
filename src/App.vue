@@ -15,7 +15,7 @@ const isNotFound = computed(() => route.name === "NotFound");
 </script>
 
 <template>
-  <div class="min-h-screen w-full flex">
+  <div class="w-full flex">
     <Dashboard v-if="loggedIn && !isNotFound" />
 
     <LanguageToggle v-if="!isNotFound" class="absolute top-4 right-4 z-50" />

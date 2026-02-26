@@ -24,52 +24,54 @@ const router = useRouter();
 const loginStore = useLoginStore();
 const profileStore = useProfileStore();
 
+const hasError = ref(false);
+
 const errorMessage = computed(() => {
   const emailValid = /^\S+@\S+\.\S+$/.test(email.value);
   const passValid = /[!@#$%^&*(),.?":{}|<>]/.test(password.value);
 
   if (emailTouched.value || passwordTouched.value) {
+    hasError.value = true;
     if (!email.value && !password.value)
       return "Email and password are required!";
 
     if (!email.value) return "Email is required!";
 
+    if (!emailValid) return "Please enter a valid email address!";
+
     if (!password.value) return "Password is required!";
+
+    if (password.value.length < 6)
+      return "Password must be at least 6 characters!";
+
+    if (!passValid) return "Password must have at least 1 special character!";
+
+    if (
+      email.value !== profileStore.profile.email ||
+      password.value !== profileStore.profile.password
+    ) {
+      return "Invalid email or password.";
+    }
+
+    if (!emailTouched.value || !passwordTouched.value) return null;
+
+    if (email.value === profileStore.profile.email) hasError.value = false;
+    if (password.value === profileStore.profile.password)
+      hasError.value = false;
   }
-
-  if (!emailTouched.value || !passwordTouched.value) return "";
-
-  if (!emailValid) return "Please enter a valid email address!";
-
-  if (password.value.length < 6)
-    return "Password must be at least 6 characters!";
-
-  if (!passValid) return "Password must have at least 1 special character!";
-
-  if (
-    email.value !== profileStore.profile.email &&
-    password.value !== profileStore.profile.password
-  ) {
-    invalidMessage.value = "Invalid email or password.";
-  }
-
-  return "";
+  return null;
 });
-
-const invalidMessage = ref("");
 
 const handleLogin = () => {
   emailTouched.value = true;
   passwordTouched.value = true;
 
-  if (errorMessage.value === "" && email.value && password.value) {
-    if (
-      email.value === profileStore.profile.email &&
-      password.value === profileStore.profile.password
-    ) {
-      loginStore.login();
-      router.push("/dashboard");
-    }
+  if (
+    email.value === profileStore.profile.email &&
+    password.value === profileStore.profile.password
+  ) {
+    loginStore.login();
+    router.push("/dashboard");
   }
 };
 </script>
@@ -99,7 +101,7 @@ const handleLogin = () => {
           v-model="email"
           :placeholder="$t('login.email')"
           :icon="emailIcon"
-          :hasError="errorMessage.toLowerCase().includes('email')"
+          :hasError="hasError"
           @input-blur="emailTouched = true"
         />
 
@@ -113,7 +115,7 @@ const handleLogin = () => {
           :isPasswordVisible="showPassword"
           :viewIcon="viewIcon"
           :hideIcon="hideIcon"
-          :hasError="errorMessage.toLowerCase().includes('password')"
+          :hasError="hasError"
           @toggle-password="showPassword = !showPassword"
           @input-blur="passwordTouched = true"
         />
@@ -121,15 +123,6 @@ const handleLogin = () => {
         <div :class="['h-4', !errorMessage ? 'hidden' : 'block']">
           <p class="text-red-500 text-sm text-left">
             {{ errorMessage }}
-          </p>
-        </div>
-
-        <div
-          v-if="invalidMessage"
-          :class="['h-4', !invalidMessage ? 'hidden' : 'block']"
-        >
-          <p class="text-red-500 text-sm text-left">
-            {{ invalidMessage }}
           </p>
         </div>
 

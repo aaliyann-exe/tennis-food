@@ -1,4 +1,6 @@
 <script setup>
+import { ref } from "vue";
+
 import viewIcon from "/src/assets/viewIcon.png";
 import editIcon from "/src/assets/editIcon.svg";
 import activateIcon from "/src/assets/activateIcon.svg";
@@ -12,17 +14,35 @@ const props = defineProps({
   },
 });
 
-const emits = defineEmits(["view", "edit", "toggle-status"]);
+const emits = defineEmits([
+  "view",
+  "edit",
+  "toggle-status",
+  "normal-order",
+  "reverse-order",
+]);
 
 const handleToggleStatus = (trainer) => {
   emits("toggle-status", trainer);
 };
+
+const isNormal = ref(true);
+
+const normalOrder = () => {
+  isNormal.value = true;
+  emits("normal-order");
+};
+
+const reverseOrder = () => {
+  isNormal.value = false;
+  emits("reverse-order");
+};
 </script>
 
 <template>
-  <div class="p-6 bg-other">
+  <div class="p-4 bg-other flexbox">
     <div
-      class="overflow-hidden bg-secondary border border-gray-200 rounded-xl min-h-[75vh]"
+      class="overflow-hidden bg-secondary border border-gray-200 rounded-3xl min-h-[76vh]"
     >
       <table class="w-full text-left border-collapse table-fixed">
         <thead>
@@ -34,14 +54,20 @@ const handleToggleStatus = (trainer) => {
                 <span class="flex flex-col text-[10px] leading-tight shrink-0">
                   <button
                     class="hover:bg-[#ffd4c7] rounded-full p-0.5 cursor-pointer"
+                    @click="normalOrder"
                   >
-                    <span>▲</span>
+                    <span :class="isNormal ? 'opacity-100' : 'opacity-20'"
+                      >▲</span
+                    >
                   </button>
 
                   <button
                     class="hover:bg-[#ffd4c7] rounded-full p-0.5 cursor-pointer"
+                    @click="reverseOrder"
                   >
-                    <span class="opacity-20">▼</span>
+                    <span :class="isNormal ? 'opacity-20' : 'opacity-100'"
+                      >▼</span
+                    >
                   </button>
                 </span>
 

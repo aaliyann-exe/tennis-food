@@ -3,9 +3,9 @@ const emits = defineEmits(["add-trainer"]);
 </script>
 
 <template>
-  <div class="flex min-h-screen items-center justify-center bg-gray p-6">
+  <div class="p-4 bg-other flexbox">
     <div
-      class="flex flex-col h-200 w-full max-w-6xl items-center justify-center rounded-xl border border-gray-100 bg-secondary shadow-sm"
+      class="flex flex-col bg-secondary border border-gray-200 rounded-3xl min-h-[76vh] justify-center items-center"
     >
       <h1 class="text-2xl font-semibold">
         {{ $t("tab.noTrainers") }}

@@ -12,7 +12,7 @@ import cogwheelIcon from "/src/assets/cogwheelIcon.svg";
 </script>
 
 <template>
-  <div class="min-h-screen w-full bg-gray-50">
+  <div class="min-h-screen w-full bg-other">
     <Header text="Dashboard" dashboard />
 
     <div class="max-w-360 mx-auto p-6">

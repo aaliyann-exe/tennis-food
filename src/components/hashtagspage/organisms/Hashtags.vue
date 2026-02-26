@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useHashtagStore } from "/src/components/stores/hashtagStore";
-import plusIcon from "/src/assets/plusIcon.svg";
 
 import HashtagsTable from "../molecules/HashtagsTable.vue";
 import HashtagInformation from "../molecules/HashtagInformation.vue";
@@ -10,11 +9,36 @@ import HashtagsFooter from "../atoms/HashtagsFooter.vue";
 import Header from "/src/components/header/molecules/Header.vue";
 
 const hashtagStore = useHashtagStore();
-const hashtags = computed(() => hashtagStore.hashtags);
 const hashtagModalVisible = ref(false);
 const hashtagMode = ref("create");
 const selectedHashtag = ref(null);
 const isOpen = ref(false);
+
+const searchValue = ref("");
+
+const searchHashtag = (search) => {
+  searchValue.value = search;
+};
+
+const isNormalOrder = ref(true);
+
+const searchedHashtags = computed(() => {
+  const query = searchValue.value.toLowerCase();
+
+  if (!query) return hashtagStore.hashtags;
+
+  if (isNormalOrder) {
+    hashtagStore.hashtags.filter((hashtag) =>
+      hashtag.title.toLowerCase().includes(query),
+    );
+  }
+
+  if (!isNormalOrder) {
+    hashtagStore.hashtags.filter((hashtag) =>
+      hashtag.title.toLowerCase().includes(query).reverse(),
+    );
+  }
+});
 
 const toggleModal = () => {
   hashtagModalVisible.value = !hashtagModalVisible.value;
@@ -24,7 +48,7 @@ const toggleModal = () => {
   }
 };
 
-const handleSaveHashtag = (hashtagData) => {
+const handleSaveHashtag = () => {
   hashtagModalVisible.value = false;
 };
 
@@ -56,17 +80,21 @@ const deleteHashtag = (hashtag) => {
   <div class="w-full bg-other flexbox">
     <Header
       :text="$t('dashboard.hashtags')"
+      :modelValue="searchValue"
       searchBar
       addButton
       @create="createHashtag"
+      @search="searchHashtag"
     />
 
     <div>
       <HashtagsTable
-        :hashtags="hashtags"
+        :hashtags="searchedHashtags"
         @view="viewHashtag"
         @edit="editHashtag"
         @delete="deleteHashtag"
+        @normal-order="isNormalOrder = true"
+        @reverse-order="isNormalOrder = false"
       />
 
       <HashtagsFooter />

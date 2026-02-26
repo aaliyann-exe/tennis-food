@@ -83,7 +83,7 @@ const menuItems = computed(() => [
 </script>
 
 <template>
-  <div class="bg-secondary pb-89 min-h-screen">
+  <div class="bg-secondary h-full">
     <TennisFoodLogo />
 
     <Icons

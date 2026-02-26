@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, onMounted, watch } from "vue";
+import { reactive, onMounted, watch } from "vue";
 import { useHashtagStore } from "/src/components/stores/hashtagStore";
 
 import personIcon from "/src/assets/personIcon.svg";
@@ -42,16 +42,13 @@ const fillForm = () => {
     form.creator = "Super Admin";
   } else if (props.hashtagData) {
     form.title = props.hashtagData.title || "";
-    form.creator = props.hashtagData.lName || "Super Admin";
+    form.creator = props.hashtagData.creator || "Super Admin";
   }
 };
 
 watch(() => props.hashtagData, fillForm, { immediate: true });
 
 const handleSave = () => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^(?:\+31|0)[1-9]\d{8}$/;
-
   if (!form.title) return;
 
   const hashtagObject = {
@@ -80,7 +77,7 @@ const handleSave = () => {
           v-if="props.mode === 'create'"
           class="mt-2 ml-12 text-4xl font-semibold"
         >
-          Hashtag Information
+          Hashtag {{ $t("table.information") }}
         </h2>
 
         <h2
@@ -89,7 +86,7 @@ const handleSave = () => {
         >
           {{ props.hashtagData.title
           }}<span v-if="props.mode === 'edit'" class="text-[20px]">
-            ( Edit )
+            ( {{ $t("table.edit") }} )
           </span>
         </h2>
 
@@ -129,10 +126,10 @@ const handleSave = () => {
         </div>
 
         <div v-if="props.mode !== 'view'" class="flex mt-10">
-          <FormButtons @cancel="$emit('close')" white />
+          <FormButtons @click="$emit('close')" white />
 
           <FormButtons
-            @save="handleSave"
+            @click="handleSave"
             :text="
               props.mode === 'edit' ? $t('table.update') : $t('table.save')
             "

@@ -92,8 +92,8 @@ const fillForm = () => {
 
 watch(() => props.trainerData, fillForm, { immediate: true });
 
-const handleImageUpload = (image) => {
-  form.pfp = image;
+const handleImageUpload = (pfp) => {
+  form.pfp = pfp;
 };
 
 const handleSave = () => {

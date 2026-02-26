@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { useHashtagStore } from "/src/components/stores/hashtagStore.js";
+
 import ConfirmationBox from "./ConfirmationBox.vue";
 
 import viewIcon from "/src/assets/viewIcon.png";
@@ -11,26 +11,44 @@ const props = defineProps({
   hashtags: {
     type: Array,
     required: true,
-    default: [],
+    default: () => [],
   },
 });
 
-const emits = defineEmits(["view", "edit", "delete"]);
-
-const hashtagStore = useHashtagStore();
+const emits = defineEmits([
+  "view",
+  "edit",
+  "delete",
+  "normal-order",
+  "reverse-order",
+  "deletion",
+]);
 
 const isOpen = ref(false);
 
 const handleDelete = (hashtag) => {
-  hashtagStore.deleteHashtag(hashtag.id);
+  const newHashtags = props.hashtags.filter((hashtag) => hashtag.id);
   isOpen.value = false;
+  emits;
+};
+
+const isNormal = ref(true);
+
+const normalOrder = () => {
+  isNormal.value = true;
+  emits("normal-order");
+};
+
+const reverseOrder = () => {
+  isNormal.value = false;
+  emits("reverse-order");
 };
 </script>
 
 <template>
-  <div class="p-6 bg-other">
+  <div class="p-6 bg-other flexbox">
     <div
-      class="overflow-hidden bg-secondary border border-gray-200 rounded-xl min-h-[75vh]"
+      class="overflow-y-auto bg-secondary border border-gray-200 rounded-xl max-h-[75vh]"
     >
       <table class="w-full text-left border-collapse table-fixed">
         <thead>
@@ -42,14 +60,20 @@ const handleDelete = (hashtag) => {
                 <span class="flex flex-col text-[10px] leading-tight shrink-0">
                   <button
                     class="hover:bg-[#ffd4c7] rounded-full p-0.5 cursor-pointer"
+                    @click="normalOrder"
                   >
-                    <span>▲</span>
+                    <span :class="isNormal ? 'opacity-100' : 'opacity-20'"
+                      >▲</span
+                    >
                   </button>
 
                   <button
                     class="hover:bg-[#ffd4c7] rounded-full p-0.5 cursor-pointer"
+                    @click="reverseOrder"
                   >
-                    <span class="opacity-20">▼</span>
+                    <span :class="isNormal ? 'opacity-20' : 'opacity-100'"
+                      >▼</span
+                    >
                   </button>
                 </span>
 
@@ -75,8 +99,8 @@ const handleDelete = (hashtag) => {
           >
             <Teleport v-if="isOpen" to="body">
               <ConfirmationBox
-                @confirm="handleDelete(hashtag)"
-                @cancel="isOpen = false"
+                @delete="handleDelete(hashtag)"
+                @close="isOpen = false"
                 :title="hashtag.title"
               />
             </Teleport>

@@ -9,7 +9,7 @@ const props = defineProps({
   },
 });
 
-const emits = defineEmits(["confirm", "cancel"]);
+const emits = defineEmits(["delete", "close"]);
 
 const languageStore = useLanguageStore();
 

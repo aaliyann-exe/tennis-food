@@ -71,7 +71,9 @@ const editHashtag = (hashtag) => {
 };
 
 const deleteHashtag = (hashtag) => {
-  selectedHashtag.value = hashtag;
+  searchedHashtags.value = hashtagStore.hashtags.filter(
+    (h) => h.id !== hashtag.id,
+  );
   isOpen.value = true;
 };
 </script>

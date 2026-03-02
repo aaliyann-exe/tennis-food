@@ -27,9 +27,9 @@ const emits = defineEmits([
 const isOpen = ref(false);
 
 const handleDelete = (hashtag) => {
-  const newHashtags = props.hashtags.filter((hashtag) => hashtag.id);
+  const newHashtags = props.hashtags.filter((h) => h.id !== hashtag.id);
   isOpen.value = false;
-  emits;
+  emits("delete", newHashtags);
 };
 
 const isNormal = ref(true);

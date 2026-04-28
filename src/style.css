@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import 'tailwindcss';
+
+@import 'primeicons/primeicons.css';
+
+@import 'tailwind-scrollbar-hide/v4';
+
+@theme {
+  --font-sans: 'Urbanist', sans-serif;
+}
+
+@plugin "tailwind-scrollbar-hide";
+
+@utility scrollbar-hide {
+  /* IE and Edge */
+  -ms-overflow-style: none;
+
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* Safari and Chrome */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

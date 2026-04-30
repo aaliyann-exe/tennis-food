@@ -10,8 +10,6 @@ export const useMainStore = defineStore('main', () => {
   const courts = ref([])
   const trainings = ref([])
   const isLoading = ref(false)
-
-  // Axios Fetching
   async function fetchData() {
     isLoading.value = true
     try {

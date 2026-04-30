@@ -1,5 +1,5 @@
 <template>
-  <div class="flexbox flex-col gap-4 mt-2">
+  <div class="flex flex-col gap-4 mt-2">
     <div class="flex gap-4">
       <button
         v-for="tab in tabNames"

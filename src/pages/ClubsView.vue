@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gray-100 w-full min-h-screen flexbox">
     <div class="mt-21 px-4 mb-8">
-      <HeaderSection filterBar searchBar importButton addButton>Clubs</HeaderSection>
+      <HeaderSection searchBar importButton addButton>Clubs</HeaderSection>
 
       <TableTab />
     </div>

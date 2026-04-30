@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="flex gap-2">
+  <div class="flexbox flex-col gap-4 mt-2">
+    <div class="flex gap-4">
       <button
         v-for="tab in tabNames"
         :key="tab"
@@ -24,7 +24,7 @@ import { ref } from 'vue'
 import ActiveTab from '@/base/ActiveTab.vue'
 import ArchivedTab from '@/base/ArchivedTab.vue'
 
-const currentTab = ref('ActiveTab')
+const currentTab = ref('Active')
 
 const tabs = {
   ActiveTab,

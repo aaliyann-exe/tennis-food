@@ -10,16 +10,20 @@ export const useMainStore = defineStore('main', () => {
   const courts = ref([])
   const trainings = ref([])
   const isLoading = ref(false)
+
   async function fetchData() {
     isLoading.value = true
     try {
-      const [clubsAPIData, playersAPIData] = await Promise.all([
-        axios.get('https://69f05a2b112e1b968e259a8e.mockapi.io/api/clubs'),
-        axios.get('https://69f05a2b112e1b968e259a8e.mockapi.io/api/players'),
+      const [entitiesAPIData, hashtagAPIData] = await Promise.all([
+        axios.get('https://69f05a2b112e1b968e259a8e.mockapi.io/api/data'),
+        axios.get('https://69f05a2b112e1b968e259a8e.mockapi.io/api/hashtags'),
       ])
-
-      clubs.value = clubsAPIData.data
-      players.value = playersAPIData.data
+      clubs.value = entitiesAPIData.data.clubs
+      trainers.value = entitiesAPIData.data.trainers
+      players.value = entitiesAPIData.data.players
+      courts.value = entitiesAPIData.data.courts
+      trainings.value = entitiesAPIData.data.trainings
+      hashtags.value = hashtagAPIData.data
     } catch (error) {
       console.error('Error fetching data: ', error)
     } finally {
@@ -28,42 +32,31 @@ export const useMainStore = defineStore('main', () => {
   }
 
   // Getters
-  const activeClubs = computed(() => clubs.value.filter((c) => c.status))
-  const inactiveClubs = computed(() => clubs.value.filter((c) => !c.status))
+  const totalEntities = computed((entityName) => entityName.value.length)
+  const activeEntities = computed((entityName) => entityName.value.filter((e) => e.status))
+  const inactiveEntities = computed((entityName) => entityName.value.filter((e) => !e.status))
 
-  const totalPlayers = computed(() => players.value.length)
-  const activePlayers = computed(() => players.value.filter((p) => p.status))
-  const inactivePlayers = computed(() => players.value.filter((p) => !p.status))
-
-  const totalTrainers = computed(() => trainers.value.length)
-  const activeTrainers = computed(() => trainers.value.filter((t) => t.status))
-  const inactiveTrainers = computed(() => trainers.value.filter((t) => !t.status))
-
-  const totalTrainings = computed(() => trainings.value.length)
-  const activeTrainings = computed(() => trainings.value.filter((t) => t.status))
-  const inactiveTrainings = computed(() => trainings.value.filter((t) => !t.status))
-
-  // Trainer Functions
-  function addTrainer(newTrainer) {
-    trainers.value.push(newTrainer)
+  // Functions
+  function toggleEntity(entity) {
+    entity.status = !entity.status
   }
 
-  // Player Functions
-  function addPlayer(newPlayer) {
-    players.value.push(newPlayer)
+  function addEntity(entityName, newEntity) {
+    entityName.value.push(newEntity)
   }
 
   return {
     clubs,
     trainers,
     players,
-    totalTrainers,
-    activeTrainers,
-    totalPlayers,
-    activePlayers,
-    activeClubs,
-    addTrainer,
-    addPlayer,
+    hashtags,
+    courts,
+    trainings,
+    totalEntities,
+    activeEntities,
+    inactiveEntities,
+    toggleEntity,
+    addEntity,
     fetchData,
     isLoading,
   }

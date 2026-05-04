@@ -1,5 +1,5 @@
 <template>
-  <div class="flex scrollbar-hide overflow-y-auto">
+  <div class="flex">
     <Sidebar v-if="$route.meta.sidebar" />
     <LanguageToggle />
     <router-view />

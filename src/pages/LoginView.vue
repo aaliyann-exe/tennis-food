@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-screen">
+  <div class="flex h-screen w-full">
     <div class="hidden lg:block lg:w-1/2">
       <img :src="tennisInstructor" class="h-full w-full object-cover" />
     </div>
@@ -43,7 +43,7 @@
             />
           </div>
 
-          <p class="text-sm text-red-500">{{ errorMessage }}</p>
+          <p v-if="error" class="text-sm text-red-500">{{ errorMessage }}</p>
 
           <Button @click="handleLogin" bgColor="orange" textColor="white" class="w-full">
             {{ $t('login.signin') }}
@@ -61,6 +61,7 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import axios from 'axios'
 
 import InputSimple from '@/base/InputSimple.vue'
 import Button from '@/base/Button.vue'
@@ -80,6 +81,16 @@ const form = reactive({
 
 const error = ref(false)
 const errorMessage = ref('')
+
+const emailDetails = {
+  service_id: 'service_6663',
+  template_id: 'template_1sfi9tm',
+  user_id: 'pA5LYBmru7_WuBy5U',
+  template_params: {
+    to_email: form.email,
+    message: 'You have logged in successfully!',
+  },
+}
 
 const validateEmail = () => {
   if (!form.email && !form.password) {
@@ -123,6 +134,19 @@ const handleLogin = () => {
   const success = auth.login(form.email, form.password)
 
   if (success) {
+    const sendEmailAlert = async () => {
+      try {
+        // await axios.post('http://localhost:3000/send-email')
+        await axios.post('http://localhost:5000/send-email')
+
+        console.log('The server handled it!')
+      } catch (error) {
+        console.error('The server missed the call', error)
+      }
+    }
+
+    sendEmailAlert()
+
     router.push('/dashboard')
     return
   }

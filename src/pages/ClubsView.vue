@@ -9,18 +9,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import HeaderSection from '@/base/HeaderSection.vue'
-import ActiveTab from '@/base/ActiveTab.vue'
-import ArchivedTab from '@/base/ArchivedTab.vue'
 import TableTab from '@/base/TableTab.vue'
-
-const currentTab = ref('Active')
-
-const tabs = {
-  ActiveTab,
-  ArchivedTab,
-}
-
-const tabNames = ['Active', 'Archived']
 </script>

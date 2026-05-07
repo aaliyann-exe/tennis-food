@@ -1,5 +1,11 @@
 <template>
-  <div class="flex h-screen w-full">
+  <div class="flex h-screen w-full font-sans">
+    <Teleport to="body" v-if="modalOpen">
+      <PopupModal icon="pi-check-circle" @close="modalOpen = false">
+        <template #title>Successful</template>
+        <template #body>An email has been sent to your email</template>
+      </PopupModal>
+    </Teleport>
     <div class="hidden lg:block lg:w-1/2">
       <img :src="tennisInstructor" class="h-full w-full object-cover" />
     </div>
@@ -11,48 +17,62 @@
         </div>
 
         <div class="text-center space-y-2 pt-5">
-          <h1 class="text-3xl font-semibold">{{ $t('login.login') }}</h1>
+          <h1 class="text-3xl font-semibold text-gray-800">
+            {{ signup ? $t('login.signup') : $t('login.login') }}
+          </h1>
           <p class="text-xs font-medium text-gray-500">{{ $t('login.title') }}</p>
         </div>
 
-        <form @submit.prevent="handleLogin" class="w-full space-y-5">
-          <div class="flex flex-col">
-            <InputSimple
-              v-model="form.email"
-              :label="$t('login.emailLabel')"
-              :placeholder="$t('login.email')"
-              :error="error"
-              @input="validateEmail"
-              @blur="validateEmail"
-              type="email"
-              icon="envelope"
-            />
-          </div>
+        <form @submit.prevent="submitForm" class="w-full space-y-5">
+          <InputSimple
+            v-model="form.email"
+            :label="$t('login.emailLabel')"
+            :placeholder="$t('login.email')"
+            :error="error"
+            type="email"
+            icon="envelope"
+          />
 
-          <div class="flex flex-col">
-            <InputSimple
-              v-model="form.password"
-              :label="$t('login.password')"
-              :placeholder="$t('login.password')"
-              :error="error"
-              @input="validatePassword"
-              @blur="validatePassword"
-              type="password"
-              icon="lock"
-              password
-            />
-          </div>
+          <InputSimple
+            v-model="form.password"
+            :label="$t('login.password')"
+            :placeholder="$t('login.password')"
+            :error="error"
+            type="password"
+            icon="lock"
+            password
+          />
 
           <p v-if="error" class="text-sm text-red-500">{{ errorMessage }}</p>
 
-          <Button @click="handleLogin" bgColor="orange" textColor="white" class="w-full">
-            {{ $t('login.signin') }}
-          </Button>
-        </form>
+          <div class="flex items-center justify-center pt-2">
+            <button
+              :disabled="isLoading"
+              :type="submit"
+              :class="[
+                isLoading
+                  ? 'cursor-not-allowed disabled bg-orange-600/60'
+                  : 'cursor-pointer bg-orange-500 hover:bg-orange-600',
+                ' text-white font-medium text-sm py-3 px-4 w-full flex items-center justify-center rounded transition-colors duration-300',
+              ]"
+            >
+              <i v-if="isLoading" class="pi pi-spin pi-spinner" style="font-size: 1rem"></i>
 
-        <div>
-          <ForgotButton href="/forgot-password" />
-        </div>
+              <div v-else>
+                {{ signup ? $t('login.signup') : $t('login.signin') }}
+              </div>
+            </button>
+          </div>
+        </form>
+        <button
+          type="button"
+          @click="signup = !signup"
+          class="text-sm font-medium text-orange-500 hover:text-orange-600 hover:underline cursor-pointer transition-all duration-300"
+        >
+          {{ signup ? `Already have an account? Log in` : `Don't have an account? Create one` }}
+        </button>
+
+        <ForgotButton href="/forgot-password" />
       </div>
     </div>
   </div>
@@ -64,12 +84,12 @@ import { useRouter } from 'vue-router'
 import axios from 'axios'
 
 import InputSimple from '@/base/InputSimple.vue'
-import Button from '@/base/Button.vue'
 import ForgotButton from '@/base/ForgotButton.vue'
 import { useAuthStore } from '@/stores/authStore'
 
 import tennisInstructor from '@/assets/tennisInstructor.png'
 import tennisLogo from '@/assets/tennisLogo.svg'
+import PopupModal from '@/base/PopupModal.vue'
 
 const router = useRouter()
 const auth = useAuthStore()
@@ -82,76 +102,56 @@ const form = reactive({
 const error = ref(false)
 const errorMessage = ref('')
 
-const emailDetails = {
-  service_id: 'service_6663',
-  template_id: 'template_1sfi9tm',
-  user_id: 'pA5LYBmru7_WuBy5U',
-  template_params: {
-    to_email: form.email,
-    message: 'You have logged in successfully!',
-  },
-}
+const isLoading = ref(false)
 
-const validateEmail = () => {
-  if (!form.email && !form.password) {
-    errorMessage.value = 'Email and password are required'
+const signup = ref(false)
+
+const modalOpen = ref(false)
+
+const handleSignup = async () => {
+  error.value = false
+  console.log('signed up')
+  isLoading.value = true
+  if (!form.email || !form.password) {
+    errorMessage.value = 'Enter an email and password to sign up.'
     error.value = true
     return
-  } else {
-    !form.email
-      ? (errorMessage.value = 'Email is required')
-      : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
-        ? (errorMessage.value = 'Please enter a valid email address')
-        : (errorMessage.value = '')
-    error.value = !!errorMessage.value
+  }
+
+  try {
+    const response = await axios.post('http://localhost:5000/signup', form)
+    modalOpen.value = true
+  } catch (err) {
+    errorMessage.value = err.response?.data || 'Signup failed.'
+    error.value = true
+  } finally {
+    isLoading.value = false
   }
 }
 
-const validatePassword = () => {
-  if (!form.email && !form.password) {
-    errorMessage.value = 'Email and password are required'
-    error.value = true
-    return
-  } else {
-    errorMessage.value = !form.password ? 'Password is required' : ''
-    error.value = !!errorMessage.value
-  }
-}
-
-const handleLogin = () => {
+const handleLogin = async () => {
   error.value = false
   errorMessage.value = ''
+  console.log('logged in')
+  isLoading.value = true
 
-  if (!form.email && !form.password) {
-    errorMessage.value = 'Email and password are required'
-    error.value = true
-    return
-  }
-
-  validateEmail()
-  validatePassword()
-
-  const success = auth.login(form.email, form.password)
-
-  if (success) {
-    const sendEmailAlert = async () => {
-      try {
-        // await axios.post('http://localhost:3000/send-email')
-        await axios.post('http://localhost:5000/send-email')
-
-        console.log('The server handled it!')
-      } catch (error) {
-        console.error('The server missed the call', error)
-      }
-    }
-
-    sendEmailAlert()
-
+  try {
+    await axios.post('http://localhost:5000/login', form)
+    auth.login()
     router.push('/dashboard')
-    return
+  } catch (err) {
+    errorMessage.value = err.response?.data || 'Login failed.'
+    error.value = true
+  } finally {
+    isLoading.value = false
   }
+}
 
-  errorMessage.value = 'Invalid email or password'
-  error.value = true
+const submitForm = () => {
+  if (signup.value) {
+    handleSignup()
+  } else {
+    handleLogin()
+  }
 }
 </script>

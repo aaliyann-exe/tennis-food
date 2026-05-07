@@ -33,11 +33,13 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { useMainStore } from '@/stores/dataStore'
 
 import LargeBox from './LargeBox.vue'
 import PlayerEngagementBar from './PlayerEngagementBar.vue'
 
-const totalPlayers = useMainStore().totalPlayers
-const activePlayers = useMainStore().activePlayers.length
+const mainStore = useMainStore()
+
+const activePlayers = mainStore.activeEntities('players')
 </script>

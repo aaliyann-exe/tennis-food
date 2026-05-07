@@ -1,42 +1,48 @@
 <template>
   <div class="w-full">
-    <label class="block text-xs font-medium mb-3">
-      {{ label }}
+    <label v-if="label" class="block text-[13px] font-medium text-gray-800 mb-1.5">
+      {{ label }} <span v-if="required" class="text-orange-500">*</span>
     </label>
 
-    <div class="relative mt-1 rounded-md w-full">
-      <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-        <i :class="`pi pi-${icon} text-gray-500`"></i>
+    <div class="relative w-full rounded-md">
+      <div
+        v-if="icon"
+        class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none"
+      >
+        <i :class="`pi pi-${icon} text-gray-400 text-sm`"></i>
       </div>
 
       <input
         v-model="model"
-        :type="passwordHidden ? 'password' : 'text'"
+        :type="passwordHidden ? 'password' : type"
         :placeholder="placeholder"
+        :disabled="disabled"
         @blur="$emit('blur')"
         :class="[
-          error ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-300',
-          'block w-full rounded-md border focus:outline-none text-orange-500 py-3 pl-11 pr-10 placeholder-gray-300 placeholder:text-[14px] sm:text-sm transition-colors duration-200',
+          error ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-400',
+          disabled ? 'bg-gray-50 text-gray-500 cursor-not-allowed' : 'bg-white text-gray-800',
+          icon ? 'pl-10' : 'pl-3.5',
+          'block w-full rounded-lg border focus:outline-none focus:ring-1 focus:ring-orange-400 py-2.5 pr-10 placeholder-gray-300 text-[14px] transition-colors duration-200',
         ]"
       />
 
       <button
-        v-if="password"
+        v-if="type === 'password'"
         type="button"
         @click="passwordHidden = !passwordHidden"
         class="absolute inset-y-0 right-0 flex items-center pr-3"
       >
         <i
           :class="[
-            'pi',
+            'pi text-sm',
             passwordHidden ? 'pi-eye-slash' : 'pi-eye',
-            'text-gray-500 hover:text-gray-400 cursor-pointer ',
+            'text-gray-400 hover:text-gray-600 cursor-pointer',
           ]"
         ></i>
       </button>
     </div>
 
-    <p v-if="errorMessage" class="text-red-500 text-sm mt-1">{{ errorMessage }}</p>
+    <p v-if="errorMessage" class="text-red-500 text-xs mt-1">{{ errorMessage }}</p>
   </div>
 </template>
 
@@ -46,19 +52,15 @@ import { ref } from 'vue'
 const props = defineProps({
   label: String,
   placeholder: String,
-  type: {
-    type: String,
-    default: 'text',
-  },
+  type: { type: String, default: 'text' },
   icon: String,
-  password: Boolean,
+  required: Boolean,
+  disabled: Boolean,
   error: Boolean,
   errorMessage: String,
 })
 
 const emit = defineEmits(['blur'])
-
 const model = defineModel()
-
-const passwordHidden = ref(props.password ? true : false)
+const passwordHidden = ref(props.type === 'password')
 </script>

@@ -1,6 +1,6 @@
 <template>
-  <div class="flex h-screen">
-    <div class="hidden lg:block lg:w-1/2">
+  <div class="flex h-screen w-full">
+    <div class="w-1/2">
       <img :src="tennisInstructor" class="h-full w-full object-cover" />
     </div>
 
@@ -48,14 +48,10 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
-import { useI18n } from 'vue-i18n'
 const router = useRouter()
-const { t } = useI18n()
 
 import InputSimple from '@/base/InputSimple.vue'
 import Button from '@/base/Button.vue'
-import ForgotButton from '@/base/ForgotButton.vue'
-import InputDropdown from '@/base/InputDropdown.vue'
 
 import tennisInstructor from '@/assets/tennisInstructor.png'
 import tennisLogo from '@/assets/tennisLogo.svg'

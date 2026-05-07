@@ -13,10 +13,5 @@
 </template>
 
 <script setup>
-import { useMainStore } from '@/stores/dataStore'
-
 import LargeBox from './LargeBox.vue'
-import PlayerAgeBar from './PlayerAgeBar.vue'
-
-const activePlayers = useMainStore().activePlayers.length
 </script>

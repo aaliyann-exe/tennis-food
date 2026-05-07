@@ -1,139 +1,185 @@
 <template>
-  <div class="bg-white flex w-full h-screen rounded-3xl border border-gray-200">
-    <div v-if="mainStore.isLoading" class="w-full">
-      <div
-        v-for="row in 11"
-        :key="row"
-        class="grid grid-cols-4 gap-4 px-4 py-8 border-b border-gray-200"
-      >
-        <div
-          v-for="col in 4"
-          :key="col"
-          class="h-4 w-full bg-gray-200 rounded-md animate-pulse [animation-duration:750ms]"
-        ></div>
-      </div>
-    </div>
-
-    <div v-else-if="mainStore.length" class="flex flex-col w-full rounded-3xl">
-      <!-- Header -->
-      <div class="grid grid-cols-4 bg-gray-100 px-8 py-4 border-b border-gray-200">
-        <div class="text-base font-medium uppercase flex gap-1">
-          <div
-            @click="ascendingOrder = !ascendingOrder"
-            class="flexbox items-center justify-center"
-          >
-            <h1
-              :class="[
-                ascendingOrder ? 'opacity-60' : 'opacity-20',
-                'text-[10px] cursor-pointer hover:bg-orange-500/30 px-1 rounded-lg transition-all duration-300',
-              ]"
-            >
-              ▲
-            </h1>
-            <h1
-              :class="[
-                ascendingOrder ? 'opacity-20' : 'opacity-60',
-                'text-[10px] cursor-pointer hover:bg-orange-500/30 px-1 rounded-lg transition-all duration-300',
-              ]"
-            >
-              ▼
-            </h1>
-          </div>
-          Club Name
-        </div>
-        <div class="text-base font-medium uppercase flex">Phone</div>
-        <div class="text-base font-medium uppercase flex">Status</div>
-        <div class="text-base font-medium uppercase flex">Actions</div>
-      </div>
-
-      <div>
-        <div
-          v-for="club in mainStore.clubs"
-          :key="club.id"
-          class="grid grid-cols-4 px-8 py-5 items-center border-b border-gray-200 hover:bg-gray-100"
-        >
-          <div class="flex items-center gap-4">
-            <img v-if="club.image" :src="club.image" class="w-11 h-11 rounded-full" />
-            <div
-              v-else
-              class="w-11 h-11 rounded-full bg-orange-500 flex items-center justify-center text-white text-sm"
-            >
-              {{ club.name?.substring(0, 2).toUpperCase() || 'TF' }}
-            </div>
-            <div class="flex flex-col leading-tight">
-              <span class="text-base">{{ club.name }}</span>
-              <span class="text-xs text-orange-500 opacity-80">{{ club.email }}</span>
-            </div>
-          </div>
-
-          <!-- Phone/Location -->
-          <div class="text-sm">
-            {{ club.phone || 'N/A' }}
-          </div>
-
-          <!-- Status Pill -->
-          <div>
-            <span
-              :class="[
-                club.status
-                  ? 'bg-green-100 text-emerald-500 border border-emerald-500'
-                  : 'bg-red-100 text-rose-500 border border-rose-500',
-                'px-5 py-2 text-xs font-semibold rounded-full',
-              ]"
-            >
-              {{ club.status ? $t('table.active') : $t('table.inactive') }}
-            </span>
-          </div>
-
-          <!-- Action Icons -->
-          <div class="flex items-center justify-end gap-6 text-gray-400">
-            <button class="hover:text-gray-600">
-              <i class="pi pi-eye"></i>
-            </button>
-            <button class="hover:text-gray-600">
-              <i class="pi pi-pencil"></i>
-            </button>
-            <button class="hover:text-gray-600" @click="mainStore.toggleEntity(club)">
-              <i :class="[isActive ? 'pi pi-refresh' : 'pi pi-eye']"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div v-else class="flex flex-col items-center gap-2">
-      <h1 class="font-semibold text-2xl">
-        <slot>
-          {{ $t('tab.noDataFound') }}
-        </slot>
-      </h1>
+  <div class="flex flex-col w-full h-full">
+    <div class="flex gap-10 mb-4 w-full px-2">
       <button
-        class="border border-orange-500 bg-white rounded-full px-7 py-3 font-medium text-sm text-orange-500 hover:text-white hover:bg-orange-500 transition-all duration-300 cursor-pointer"
+        @click="activeTab = 'active'"
+        :class="[
+          'pb-3 text-sm transition-all relative cursor-pointer w-18',
+          activeTab === 'active'
+            ? 'text-orange-500 font-medium border-b-2 border-orange-500'
+            : 'text-gray-500 hover:text-gray-700 border-b-2 border-gray-100',
+        ]"
       >
-        <slot>
-          {{ $t('tab.addData') }}
-        </slot>
+        {{ $t('tab.active') }}
       </button>
+      <button
+        @click="activeTab = 'archived'"
+        :class="[
+          'pb-3 text-sm transition-all relative, cursor-pointer  w-18',
+          activeTab === 'archived'
+            ? 'text-orange-500 font-medium border-b-2 border-orange-500'
+            : 'text-gray-500 hover:text-gray-700 border-b-2 border-gray-100',
+        ]"
+      >
+        {{ $t('tab.archived') }}
+      </button>
+    </div>
+
+    <div class="bg-white rounded-t-xl border border-gray-200 overflow-hidden flex-1 flex flex-col">
+      <div v-if="isLoading" class="w-full">
+        <div
+          v-for="row in 6"
+          :key="row"
+          class="grid grid-cols-4 gap-4 px-8 py-6 border-b border-gray-100"
+        >
+          <div
+            v-for="col in 4"
+            :key="col"
+            class="h-4 w-full bg-gray-200 rounded-md animate-pulse"
+          ></div>
+        </div>
+      </div>
+
+      <div v-else-if="filteredData.length" class="flex flex-col w-full">
+        <div
+          class="grid grid-cols-[3fr_2.5fr_1fr_0.5fr] bg-gray-100 px-6 py-4 border-b border-gray-200 uppercase font-medium"
+        >
+          <div v-for="(col, index) in columns" :key="col.field" class="flex items-center gap-2">
+            <div
+              v-if="index === 0"
+              class="flex flex-col cursor-pointer justify-center items-center"
+            >
+              <div
+                :class="[
+                  ascendingOrder ? 'text-black' : 'text-gray-300',
+                  'text-xs hover:bg-orange-500/10 cursor-pointer rounded-full',
+                ]"
+                @click="ascendingOrder ? null : toggleOrder()"
+              >
+                ▲
+              </div>
+              <div
+                :class="[
+                  ascendingOrder ? 'text-gray-300' : 'text-black',
+                  'text-xs hover:bg-orange-500/10 cursor-pointer rounded-full',
+                ]"
+                @click="ascendingOrder ? toggleOrder() : null"
+              >
+                ▼
+              </div>
+            </div>
+            {{ col.header }}
+          </div>
+          <div class="flex items-center">Status</div>
+          <div class="flex items-center">Actions</div>
+        </div>
+
+        <div class="overflow-y-auto max-h-[60vh]">
+          <div
+            v-for="item in filteredData"
+            :key="item.id"
+            class="grid grid-cols-[2.5fr_1.5fr_1fr_1fr] px-6 py-4 items-center border-b border-gray-100 hover:bg-gray-50/50 transition-colors"
+          >
+            <div v-for="(col, index) in columns" :key="col.field" class="text-sm text-gray-800">
+              <div v-if="index === 0" class="flex items-center gap-4">
+                <img
+                  v-if="item.image"
+                  :src="item.image"
+                  class="w-12 h-12 rounded-full object-cover"
+                />
+                <div
+                  v-else
+                  class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center text-white text-[15px] font-medium"
+                >
+                  {{ (item[col.field] || 'TF').substring(0, 2).toUpperCase() }}
+                </div>
+                <div class="flex flex-col leading-tight gap-0.5">
+                  <span class="text-[15px] text-gray-800 font-normal">{{ item[col.field] }}</span>
+                  <span v-if="col.subfield" class="text-[13px] text-orange-500">{{
+                    item[col.subfield]
+                  }}</span>
+                </div>
+              </div>
+
+              <span v-else>{{ item[col.field] || 'N/A' }}</span>
+            </div>
+
+            <div class="flex items-center">
+              <span
+                :class="[
+                  item.status
+                    ? 'bg-green-100 text-emerald-700 border border-emerald-400'
+                    : 'bg-red-100 text-red-500 border border-red-500',
+                  'py-1 px-5 text-[12px] rounded-full',
+                ]"
+              >
+                {{ item.status ? 'Active' : 'Inactive' }}
+              </span>
+            </div>
+
+            <div class="flex gap-5 text-gray-400">
+              <button
+                @click="$emit('view', item)"
+                class="hover:text-gray-600 transition-colors cursor-pointer"
+              >
+                <i class="pi pi-eye text-lg"></i>
+              </button>
+              <button
+                @click="$emit('edit', item)"
+                class="hover:text-gray-600 transition-colors cursor-pointer"
+              >
+                <i class="pi pi-pencil text-lg"></i>
+              </button>
+              <button
+                @click="$emit('toggle', item)"
+                :class="['hover:text-gray-600 transition-colors cursor-pointer']"
+              >
+                <i class="pi pi-history text-lg"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div v-else class="flex flex-col items-center justify-center h-64 gap-4 text-center bg-white">
+        <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-2">
+          <i class="pi pi-folder-open text-2xl text-gray-400"></i>
+        </div>
+        <h1 class="font-medium text-lg text-gray-800">{{ $t('tab.noDataFound') }}</h1>
+        <button
+          @click="$emit('add')"
+          class="border border-orange-500 bg-white rounded-full px-6 py-2 text-sm text-orange-500 hover:text-white hover:bg-orange-500 transition-all duration-300 font-medium"
+        >
+          {{ $t('tab.addData') }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useMainStore } from '@/stores/dataStore'
+import { ref, computed } from 'vue'
 
 const props = defineProps({
-  isActive: Boolean,
-  data: String,
+  data: { type: Array, required: true },
+  columns: { type: Array, required: true },
+  isLoading: Boolean,
 })
 
-const mainStore = useMainStore()
-
-onMounted(() => {
-  mainStore.fetchData()
-})
+const emit = defineEmits(['view', 'edit', 'toggle', 'add'])
+const activeTab = ref('active')
 
 const ascendingOrder = ref(true)
 
-const isActive = props.isActive
+const toggleOrder = () => {
+  ascendingOrder.value = !ascendingOrder.value
+  props.data.reverse()
+}
+
+// Switch between Active and Archived lists
+const filteredData = computed(() => {
+  return props.data.filter((item) =>
+    activeTab.value === 'active' ? item.status === true : item.status === false,
+  )
+})
 </script>

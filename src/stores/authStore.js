@@ -4,18 +4,9 @@ import { ref } from 'vue'
 export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref(localStorage.getItem('isLoggedIn') === 'true')
 
-  const staticAccountEmail = 'aaliyanamjad6663@gmail.com'
-  const staticAccountPassword = 'abc'
-
-  const login = (email, password) => {
-    if (email === staticAccountEmail && password === staticAccountPassword) {
-      isAuthenticated.value = true
-      localStorage.setItem('isLoggedIn', 'true')
-      return true
-    } else {
-      isAuthenticated.value = false
-      return false
-    }
+  const login = () => {
+    isAuthenticated.value = true
+    localStorage.setItem('isLoggedIn', 'true')
   }
 
   const logout = () => {

@@ -4,12 +4,10 @@
       <HeaderSection filterBar searchBar importButton addButton
         >{{ $t('court.courts') }}
       </HeaderSection>
-      <!-- <AxiosFetchTest /> -->
     </div>
   </div>
 </template>
 
 <script setup>
 import HeaderSection from '@/base/HeaderSection.vue'
-import AxiosFetchTest from '@/base/AxiosFetchTest.vue'
 </script>

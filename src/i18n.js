@@ -11,6 +11,7 @@ const messages = {
       emailLabel: 'User Email',
       password: 'Password',
       signin: 'Sign In',
+      signup: 'Sign Up',
       forgotPass: 'Forgot Password?',
       resetPasswordTitle: 'Reset Your Password',
       resetPasswordLabel:
@@ -183,6 +184,7 @@ const messages = {
       emailLabel: 'Gebruikers E-mail',
       password: 'Wachtwoord',
       signin: 'Inloggen',
+      signup: 'Registreren',
       forgotPass: 'Wachtwoord vergeten?',
       resetPasswordTitle: 'Reset Je Wachtwoord',
       resetPasswordLabel:

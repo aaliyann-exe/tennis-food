@@ -16,7 +16,7 @@
       }}</InfoButton>
     </div>
     <div>
-      <h1 class="font-semibold text-3xl">{{ activeNumber }}/5</h1>
+      <h1 class="font-semibold text-3xl">0/5</h1>
       <h1 class="text-sm opacity-60">
         {{
           props.trainers
@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed } from 'vue'
 
 import { useMainStore } from '@/stores/dataStore'
 import InfoButton from './InfoButton.vue'
@@ -44,17 +44,11 @@ const props = defineProps({
   players: Boolean,
 })
 
-const totalNumber = ref(0)
-const activeNumber = ref(0)
-const inactiveNumber = ref(0)
+const mainStore = useMainStore()
 
-if (props.trainers) {
-  totalNumber.value = useMainStore().totalTrainers
-  activeNumber.value = useMainStore().activeTrainers.length
-} else if (props.players) {
-  totalNumber.value = useMainStore().totalPlayers
-  activeNumber.value = useMainStore().activePlayers.length
-}
+const entityKey = computed(() => (props.trainers ? 'trainers' : 'players'))
 
-inactiveNumber.value = totalNumber.value - activeNumber.value
+const totalNumber = mainStore.totalEntities(entityKey.value)
+const activeNumber = mainStore.activeEntities(entityKey.value)
+const inactiveNumber = mainStore.inactiveEntities(entityKey.value)
 </script>

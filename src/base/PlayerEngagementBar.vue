@@ -55,7 +55,7 @@ defineProps({
   count: Number,
 })
 
-const totalPlayers = useMainStore().totalPlayers
+const totalPlayers = useMainStore().totalEntities('players')
 
 const listVisible = ref(false)
 const listToggle = () => {

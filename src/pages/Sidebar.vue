@@ -1,13 +1,8 @@
 <template>
   <div class="flex relative h-full w-max pl-6 pr-9 py-1 justify-center bg-white scrollbar-hide">
     <nav class="min-w-60">
-      <router-link
-        to="/dashboard"
-        class="flex items-center text-center justify-start my-8 cursor-pointer"
-      >
-        <img :src="tennisLogo" class="mr-4" />
-
-        <h1 class="font-extrabold text-2xl text-orange-500">TennisFood</h1>
+      <router-link to="/dashboard" class="cursor-pointer">
+        <TennisFoodLogo />
       </router-link>
 
       <ul>
@@ -27,14 +22,8 @@
               ]"
             />
 
-            <div class="text-sm flex items-center font-medium">
-              <i
-                :class="[
-                  item.icon,
-                  $route.path === item.path ? 'text-orange-500' : 'text-gray-400',
-                  'ml-1 mr-3',
-                ]"
-              ></i>
+            <div class="text-sm flex items-center gap-4 font-medium">
+              <v-icon :name="item.icon" :fill="$route.path === item.path ? 'orange' : 'gray'" />
 
               {{ item.label }}
             </div>
@@ -47,7 +36,7 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
-import tennisLogo from '@/assets/tennisLogo.svg'
+import TennisFoodLogo from '@/base/TennisFoodLogo.vue'
 import bracketIcon from '@/assets/bracketIcon.svg'
 
 const { t } = useI18n()
@@ -55,37 +44,37 @@ const { t } = useI18n()
 const sidebarPages = [
   {
     path: '/dashboard',
-    icon: 'pi pi-chart-pie',
+    icon: 'hi-chart-pie',
     label: 'Dashboard',
   },
   {
     path: '/clubs',
-    icon: 'pi pi-shield',
+    icon: 'gi-rosa-shield',
     label: 'Clubs',
   },
   {
     path: '/trainers',
-    icon: 'pi pi-users',
+    icon: 'gi-tennis-racket',
     label: 'Trainers',
   },
   {
     path: '/players',
-    icon: 'pi pi-user',
+    icon: 'bi-person',
     label: t('player.players'),
   },
   {
     path: '/hashtags',
-    icon: 'pi pi-hashtag',
+    icon: 'hi-hashtag',
     label: 'Hashtags',
   },
   {
     path: '/courts',
-    icon: 'pi pi-warehouse',
+    icon: 'gi-tennis-court',
     label: t('court.courts'),
   },
   {
     path: '/trainings',
-    icon: 'pi pi-stopwatch',
+    icon: 'bi-stopwatch',
     label: t('dashboard.trainings'),
   },
 ]

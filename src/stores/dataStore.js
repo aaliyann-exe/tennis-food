@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import axios from 'axios'
 
 export const useMainStore = defineStore('main', () => {
@@ -18,11 +18,13 @@ export const useMainStore = defineStore('main', () => {
         axios.get('https://69f05a2b112e1b968e259a8e.mockapi.io/api/data'),
         axios.get('https://69f05a2b112e1b968e259a8e.mockapi.io/api/hashtags'),
       ])
-      clubs.value = entitiesAPIData.data.clubs
-      trainers.value = entitiesAPIData.data.trainers
-      players.value = entitiesAPIData.data.players
-      courts.value = entitiesAPIData.data.courts
-      trainings.value = entitiesAPIData.data.trainings
+      const rawData = entitiesAPIData.data[0]
+
+      clubs.value = rawData.clubs
+      trainers.value = rawData.trainers
+      players.value = rawData.players
+      courts.value = rawData.courts
+      trainings.value = rawData.trainings
       hashtags.value = hashtagAPIData.data
     } catch (error) {
       console.error('Error fetching data: ', error)
@@ -31,18 +33,50 @@ export const useMainStore = defineStore('main', () => {
     }
   }
 
-  // Getters
-  const totalEntities = computed((entityName) => entityName.value.length)
-  const activeEntities = computed((entityName) => entityName.value.filter((e) => e.status))
-  const inactiveEntities = computed((entityName) => entityName.value.filter((e) => !e.status))
+  const collections = {
+    clubs,
+    trainers,
+    players,
+    courts,
+    trainings,
+  }
 
-  // Functions
+  function totalEntities(entityName) {
+    return collections[entityName].value.length
+  }
+
+  function activeEntities(entityName) {
+    return collections[entityName].value.filter((e) => e.status).length
+  }
+
+  function inactiveEntities(entityName) {
+    return collections[entityName].value.filter((e) => !e.status).length
+  }
+
   function toggleEntity(entity) {
     entity.status = !entity.status
   }
 
-  function addEntity(entityName, newEntity) {
-    entityName.value.push(newEntity)
+  function saveEntity(entityName, entityData) {
+    const list = collections[entityName]?.value
+
+    if (!list) return
+
+    // Editing
+    if (entityData.id) {
+      const index = list.findIndex((e) => e.id === entityData.id)
+      if (index !== -1) {
+        list[index] = { ...list[index], ...entityData }
+      }
+    } else {
+      // Adding
+      const newEntity = {
+        ...entityData,
+        id: Date.now(),
+        status: true,
+      }
+      list.push(newEntity)
+    }
   }
 
   return {
@@ -52,12 +86,12 @@ export const useMainStore = defineStore('main', () => {
     hashtags,
     courts,
     trainings,
+    isLoading,
+    fetchData,
     totalEntities,
     activeEntities,
     inactiveEntities,
     toggleEntity,
-    addEntity,
-    fetchData,
-    isLoading,
+    saveEntity,
   }
 })

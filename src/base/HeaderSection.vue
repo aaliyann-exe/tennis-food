@@ -19,24 +19,25 @@
         <input
           type="text"
           :placeholder="`${$t('tab.search')}...`"
-          class="bg-white border border-white focus:border-orange-500 focus:border focus:outline-none placeholder:opacity-20 placeholder:text-black text-orange-500 rounded-lg px-4 py-3 w-full transition-colors duration-300 z-10"
+          class="bg-white border border-white focus:border-orange-500 focus:border focus:outline-none placeholder:opacity-40 placeholder:text-black text-gray-900 rounded-lg px-4 py-3 w-full transition-colors duration-300 z-10"
         />
         <i class="pi pi-search text-sm opacity-60 flex absolute right-5 z-10"></i>
       </div>
 
       <div
         v-if="props.importButton"
-        class="cursor-pointer rounded-full border border-gray-300 bg-gray-100 hover:bg-gray-200 transition-all duration-300 justify-center px-5 py-3 font-medium opacity-50 text-bg flex gap-2 items-center"
+        class="cursor-pointer rounded-full border border-gray-300 bg-gray-100 hover:bg-gray-200 transition-all duration-300 justify-center px-5 py-3 font-medium text-gray-500 flex gap-2 items-center"
       >
-        <i class="pi pi-file-import text-2xl"></i>
+        <i class="pi pi-file-import text-xl"></i>
         Import
       </div>
 
       <div
         v-if="props.addButton"
-        class="w-11 h-11 bg-orange-500 hover:bg-orange-600 rounded-full justify-center items-center flex cursor-pointer"
+        @click="$emit('addClick')"
+        class="w-12 h-12 bg-orange-500 hover:bg-orange-600 rounded-full justify-center items-center flex cursor-pointer transition-colors"
       >
-        <i class="pi pi-plus-circle text-gray-100"></i>
+        <i class="pi pi-plus text-white text-xl"></i>
       </div>
     </div>
   </div>
@@ -53,5 +54,6 @@ const props = defineProps({
   options: Array,
 })
 
+defineEmits(['addClick'])
 const options = props.options || ['Option 1', 'Option 2', 'Option 3']
 </script>

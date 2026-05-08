@@ -28,7 +28,7 @@
     <div class="bg-white rounded-t-xl border border-gray-300 overflow-hidden flex-1 flex flex-col">
       <div v-if="isLoading" class="w-full">
         <div
-          v-for="row in 6"
+          v-for="row in 9"
           :key="row"
           class="grid grid-cols-4 gap-4 px-8 py-6 border-b border-gray-100"
         >

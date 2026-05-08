@@ -7,7 +7,7 @@
         class="flex items-center justify-between px-8 py-6 border-b border-gray-100 top-0 bg-white z-10"
       >
         <h1 class="text-4xl text-gray-800 font-semibold gap-2 flex items-end">
-          {{ mode === 'add' ? title : initialData.name
+          {{ mode === 'add' ? title + ' ' + $t('table.information') : initialData.name
           }}<span v-if="mode === 'edit'" class="text-xl">( Edit )</span>
         </h1>
         <button @click="$emit('close')">
@@ -53,9 +53,10 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-x-6 gap-y-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
           <template v-for="(field, index) in fields" :key="index">
-            <div v-if="field.type === 'divider'" class="col-span-2 mt-4 mb-1">
+            <!-- Divider logic stays the same -->
+            <div v-if="field.type === 'divider'" class="col-span-1 md:col-span-2 mt-4 mb-1">
               <h3 class="text-xl font-semibold text-gray-800 flex items-center gap-2">
                 {{ field.label }}
                 <span v-if="field.subtext" class="text-xs text-orange-500 font-medium">
@@ -64,7 +65,8 @@
               </h3>
             </div>
 
-            <div v-else :class="field.colSpan === 2 ? 'col-span-1 md:col-span-2' : 'col-span-1'">
+            <!-- Updated wrapper logic -->
+            <div v-else :class="[field.colSpan === 2 ? 'col-span-1 md:col-span-2' : 'col-span-1']">
               <InputDropdown
                 v-if="field.type === 'select'"
                 v-model="formData[field.key]"

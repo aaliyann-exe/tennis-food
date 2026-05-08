@@ -3,7 +3,7 @@
     <EntityFormModal
       :isOpen="isModalOpen"
       :mode="modalMode"
-      :title="modalTitle"
+      title="Club"
       :fields="clubFormFields"
       :initialData="selectedClub"
       @close="closeModal"
@@ -33,6 +33,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import { useMainStore } from '@/stores/dataStore'
+import { useOptionStore } from '@/stores/optionStore'
 import { useI18n } from 'vue-i18n'
 
 import HeaderSection from '@/base/HeaderSection.vue'
@@ -40,22 +41,16 @@ import DataTable from '@/base/DataTable.vue'
 import EntityFormModal from '@/base/EntityFormModal.vue'
 
 const dataStore = useMainStore()
+const optionStore = useOptionStore()
 const { t } = useI18n()
 
 onMounted(() => {
   dataStore.fetchData()
 })
 
-// --- MODAL STATE ---
 const isModalOpen = ref(false)
 const modalMode = ref('add')
 const selectedClub = ref({})
-
-const modalTitle = computed(() => {
-  if (modalMode.value === 'add') return `Add Club`
-  if (modalMode.value === 'view') return `Club Information`
-  return `Edit Club`
-})
 
 const openModal = (mode, data = {}) => {
   modalMode.value = mode
@@ -73,9 +68,6 @@ const saveClub = (formData) => {
   closeModal()
 }
 
-// --- CONFIGURATIONS ---
-
-// The columns for the DataTable
 const tableColumns = [
   {
     header: 'Club Name',
@@ -88,26 +80,43 @@ const tableColumns = [
   },
 ]
 
-// The schema for the Form Modal
 const clubFormFields = [
   {
     key: 'name',
     label: 'Club Name',
     type: 'text',
     icon: 'building',
-    required: true,
     placeholder: 'Club Name',
+    required: true,
   },
-  { key: 'email', label: 'Email', type: 'email', icon: 'envelope', placeholder: 'info@youmai.com' },
-  { key: 'phone', label: 'Phone', type: 'text', icon: 'phone', placeholder: 'Enter phone number' },
-  { key: 'website', label: 'Website', type: 'text', icon: 'globe', placeholder: 'www.club.com' },
+  {
+    key: 'email',
+    label: 'Email',
+    type: 'email',
+    icon: 'envelope',
+    placeholder: 'info@youmai.com',
+  },
+  {
+    key: 'phone',
+    label: 'Phone',
+    type: 'text',
+    icon: 'phone',
+    placeholder: 'Enter phone number',
+  },
+  {
+    key: 'website',
+    label: 'Website',
+    type: 'text',
+    icon: 'globe',
+    placeholder: 'www.club.com',
+  },
   {
     key: 'school',
     label: 'School',
     type: 'select',
     icon: 'building',
     placeholder: 'Select School',
-    options: ['Royal Dutch Tennis', 'Ace Tennis School'],
+    options: optionStore.club,
   },
   {
     key: 'address',
@@ -115,14 +124,29 @@ const clubFormFields = [
     type: 'text',
     icon: 'map-marker',
     placeholder: 'Enter address',
-    colSpan: 2,
+    colSpan: 1,
   },
 
-  // Notice this sub-header right here!
-  { type: 'divider', label: 'Primary Contact Person', subtext: 'Optional' },
+  {
+    type: 'divider',
+    label: 'Primary Contact Person',
+    subtext: 'Optional',
+  },
 
-  { key: 'fName', label: 'First Name', type: 'text', icon: 'user', placeholder: 'First name' },
-  { key: 'lName', label: 'Last Name', type: 'text', icon: 'user', placeholder: 'Last name' },
+  {
+    key: 'fName',
+    label: 'First Name',
+    type: 'text',
+    icon: 'user',
+    placeholder: 'First name',
+  },
+  {
+    key: 'lName',
+    label: 'Last Name',
+    type: 'text',
+    icon: 'user',
+    placeholder: 'Last name',
+  },
   {
     key: 'otherPhone',
     label: 'Phone',

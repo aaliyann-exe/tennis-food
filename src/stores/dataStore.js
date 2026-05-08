@@ -62,14 +62,12 @@ export const useMainStore = defineStore('main', () => {
 
     if (!list) return
 
-    // Editing
     if (entityData.id) {
       const index = list.findIndex((e) => e.id === entityData.id)
       if (index !== -1) {
         list[index] = { ...list[index], ...entityData }
       }
     } else {
-      // Adding
       const newEntity = {
         ...entityData,
         id: Date.now(),

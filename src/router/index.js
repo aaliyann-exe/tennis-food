@@ -5,6 +5,7 @@ import { useAuthStore } from '@/stores/authStore'
 const Login = () => import('@/pages/LoginView.vue')
 const ForgotPassword = () => import('@/pages/ForgotPasswordView.vue')
 const NotFound = () => import('@/pages/NotFoundView.vue')
+const Profile = () => import('@/pages/ProfileView.vue')
 const Dashboard = () => import('@/pages/DashboardView.vue')
 const Clubs = () => import('@/pages/ClubsView.vue')
 const Trainers = () => import('@/pages/TrainersView.vue')
@@ -33,6 +34,12 @@ const routes = [
     path: '/:pathMatch(.*)*',
     name: '404',
     component: NotFound,
+  },
+
+  {
+    path: '/profile',
+    component: Profile,
+    meta: { requiresAuth: true, sidebar: true },
   },
 
   {

@@ -33,7 +33,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
 import { useMainStore } from '@/stores/dataStore'
 
 import LargeBox from './LargeBox.vue'

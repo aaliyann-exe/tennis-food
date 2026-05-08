@@ -25,7 +25,7 @@
       </button>
     </div>
 
-    <div class="bg-white rounded-t-xl border border-gray-200 overflow-hidden flex-1 flex flex-col">
+    <div class="bg-white rounded-t-xl border border-gray-300 overflow-hidden flex-1 flex flex-col">
       <div v-if="isLoading" class="w-full">
         <div
           v-for="row in 6"
@@ -78,7 +78,7 @@
           <div
             v-for="item in filteredData"
             :key="item.id"
-            class="grid grid-cols-[2.5fr_1.5fr_1fr_1fr] px-6 py-4 items-center border-b border-gray-100 hover:bg-gray-50/50 transition-colors"
+            class="grid grid-cols-[3fr_2.5fr_1fr_0.5fr] px-6 py-4 items-center border-b border-gray-300 hover:bg-gray-100 transition-colors"
           >
             <div v-for="(col, index) in columns" :key="col.field" class="text-sm text-gray-800">
               <div v-if="index === 0" class="flex items-center gap-4">
@@ -141,14 +141,14 @@
         </div>
       </div>
 
-      <div v-else class="flex flex-col items-center justify-center h-64 gap-4 text-center bg-white">
-        <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-2">
-          <i class="pi pi-folder-open text-2xl text-gray-400"></i>
-        </div>
-        <h1 class="font-medium text-lg text-gray-800">{{ $t('tab.noDataFound') }}</h1>
+      <div
+        v-else
+        class="flex flex-1 flex-col items-center justify-center gap-4 text-center bg-white"
+      >
+        <h1 class="font-semibold text-2xl text-gray-800">{{ $t('tab.noDataFound') }}</h1>
         <button
           @click="$emit('add')"
-          class="border border-orange-500 bg-white rounded-full px-6 py-2 text-sm text-orange-500 hover:text-white hover:bg-orange-500 transition-all duration-300 font-medium"
+          class="border border-orange-500 bg-white rounded-full px-6 py-2 text-sm text-orange-500 hover:text-white hover:bg-orange-500 transition-all duration-300 font-medium cursor-pointer"
         >
           {{ $t('tab.addData') }}
         </button>

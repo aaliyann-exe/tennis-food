@@ -1,6 +1,9 @@
 <template>
   <div class="w-full">
-    <label v-if="label" class="block text-[13px] font-medium text-gray-800 mb-1.5">
+    <label
+      v-if="label"
+      :class="[disabled ? 'text-gray-500' : 'text-black', 'block text-base font-semibold mb-1.5']"
+    >
       {{ label }} <span v-if="required" class="text-orange-500">*</span>
     </label>
 

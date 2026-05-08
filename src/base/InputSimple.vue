@@ -1,6 +1,9 @@
 <template>
   <div class="w-full">
-    <label v-if="label" class="block text-[13px] font-medium text-gray-800 mb-1.5">
+    <label
+      v-if="label"
+      :class="[disabled ? 'text-gray-500' : 'text-black', 'block text-base font-semibold mb-1.5']"
+    >
       {{ label }} <span v-if="required" class="text-orange-500">*</span>
     </label>
 
@@ -19,10 +22,10 @@
         :disabled="disabled"
         @blur="$emit('blur')"
         :class="[
-          error ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-400',
+          error ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-orange-500',
           disabled ? 'bg-gray-50 text-gray-500 cursor-not-allowed' : 'bg-white text-gray-800',
           icon ? 'pl-10' : 'pl-3.5',
-          'block w-full rounded-lg border focus:outline-none focus:ring-1 focus:ring-orange-400 py-2.5 pr-10 placeholder-gray-300 text-[14px] transition-colors duration-200',
+          'block w-full rounded-lg border outline-none focus:border-orange-500 py-2.5 pr-10 text-orange-500 placeholder-gray-300 text-[14px] transition-colors duration-300',
         ]"
       />
 

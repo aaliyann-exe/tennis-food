@@ -37,7 +37,7 @@
         @click="$emit('addClick')"
         class="w-12 h-12 bg-orange-500 hover:bg-orange-600 rounded-full justify-center items-center flex cursor-pointer transition-colors"
       >
-        <i class="pi pi-plus text-white text-xl"></i>
+        <i class="pi pi-plus-circle text-white text-2xl"></i>
       </div>
     </div>
   </div>

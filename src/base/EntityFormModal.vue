@@ -1,21 +1,28 @@
 <template>
-  <div
-    v-if="isOpen"
-    class="fixed inset-0 bg-black/40 flex justify-center items-center z-50 backdrop-blur-sm"
-  >
-    <div class="bg-white rounded-2xl overflow-y-auto shadow-2xl flex flex-col w-175 max-h-[90vh]">
+  <div v-if="isOpen" class="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+    <div
+      class="bg-white rounded-2xl overflow-y-auto shadow-2xl flex flex-col w-[56vw] max-h-[96vh]"
+    >
       <div
         class="flex items-center justify-between px-8 py-6 border-b border-gray-100 top-0 bg-white z-10"
       >
-        <h1 class="text-3xl text-gray-800 font-semibold">{{ title }}</h1>
+        <h1 class="text-4xl text-gray-800 font-semibold gap-2 flex items-end">
+          {{ mode === 'add' ? title : initialData.name
+          }}<span v-if="mode === 'edit'" class="text-xl">( Edit )</span>
+        </h1>
         <button @click="$emit('close')">
-          <i class="text-2xl pi pi-times text-gray-400 hover:text-gray-600 cursor-pointer"></i>
+          <i
+            class="pi pi-times text-gray-400 hover:text-gray-600 cursor-pointer transition-all duration-300"
+            style="font-size: x-large"
+          ></i>
         </button>
       </div>
 
+      <hr class="mx-6 opacity-20" />
+
       <div class="px-8 py-6 flex-1">
         <div v-if="showAvatar" class="mb-8 flex flex-col items-center sm:items-start">
-          <div class="relative inline-block">
+          <div class="relative inline-block hover:opacity-80 duration-300 transition-all">
             <div
               @click="triggerImageUpload"
               class="w-20 h-20 rounded-full text-center bg-orange-500 flex justify-center items-center text-white text-2xl font-bold shadow-md overflow-hidden cursor-pointer"
@@ -46,15 +53,12 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+        <div class="grid grid-cols-2 gap-x-6 gap-y-5">
           <template v-for="(field, index) in fields" :key="index">
-            <div v-if="field.type === 'divider'" class="col-span-1 md:col-span-2 mt-4 mb-1">
-              <h3 class="text-lg font-medium text-gray-800 flex items-center gap-2">
+            <div v-if="field.type === 'divider'" class="col-span-2 mt-4 mb-1">
+              <h3 class="text-xl font-semibold text-gray-800 flex items-center gap-2">
                 {{ field.label }}
-                <span
-                  v-if="field.subtext"
-                  class="text-xs text-orange-500 font-normal bg-orange-50 px-2 py-0.5 rounded-full"
-                >
+                <span v-if="field.subtext" class="text-xs text-orange-500 font-medium">
                   {{ field.subtext }}
                 </span>
               </h3>
@@ -88,17 +92,17 @@
 
       <div
         v-if="mode !== 'view'"
-        class="px-8 py-5 border-t border-gray-100 flex justify-start gap-4 sticky bottom-0 bg-white z-10"
+        class="px-8 py-5 border-t border-gray-100 flex justify-start gap-3 bg-white z-10 cursor-pointer"
       >
         <button
           @click="$emit('close')"
-          class="px-8 py-2.5 rounded-lg border border-orange-500 text-orange-500 hover:bg-orange-50 font-medium transition-colors"
+          class="w-full px-10 py-3 rounded-lg border border-orange-500 text-orange-500 hover:bg-orange-50 font-medium transition-colors cursor-pointer duration-300"
         >
           {{ $t('table.cancel') }}
         </button>
         <button
           @click="handleSave"
-          class="px-8 py-2.5 rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-medium shadow-sm transition-colors"
+          class="w-full px-10 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-medium shadow-sm transition-colors cursor-pointer duration-300"
         >
           {{ $t('table.save') }}
         </button>
@@ -111,14 +115,27 @@
 import { ref, watch, computed } from 'vue'
 import InputSimple from './InputSimple.vue'
 import InputDropdown from './InputDropdown.vue'
+import PrimeVueDropdown from './PrimeVueDropdown.vue'
 
 const props = defineProps({
   isOpen: Boolean,
-  mode: { type: String, default: 'add' }, // 'add', 'edit', 'view'
+  mode: {
+    type: String,
+    default: 'add',
+  },
   title: String,
-  showAvatar: { type: Boolean, default: true },
-  initialData: { type: Object, default: () => ({}) },
-  fields: { type: Array, required: true }, // Schema for form generation
+  showAvatar: {
+    type: Boolean,
+    default: true,
+  },
+  initialData: {
+    type: Object,
+    default: () => ({}),
+  },
+  fields: {
+    type: Array,
+    required: true,
+  },
 })
 
 const emit = defineEmits(['close', 'save'])

@@ -10,8 +10,10 @@
           <router-link
             :to="item.path"
             :class="[
-              $route.path === item.path ? 'text-orange-500' : 'text-gray-600',
-              'hover:bg-orange-500/5 rounded-lg transition-colors duration-300 flex p-3 hover:text-orange-500 items-center cursor-pointer relative',
+              $route.path === item.path
+                ? 'text-orange-500 translate-x-2'
+                : 'text-gray-600 translate-x-0',
+              'hover:bg-orange-500/5 rounded-lg transition-all duration-300 flex px-3 py-2.5 hover:text-orange-500 items-center cursor-pointer relative',
             ]"
           >
             <img
@@ -23,10 +25,36 @@
             />
 
             <div class="text-sm flex items-center gap-4 font-medium">
-              <v-icon :name="item.icon" :fill="$route.path === item.path ? 'orange' : 'gray'" />
+              <v-icon
+                :name="item.icon"
+                :fill="$route.path === item.path ? 'orange' : 'gray'"
+                scale="1.2"
+              />
 
               {{ item.label }}
             </div>
+          </router-link>
+        </li>
+
+        <hr class="my-6 opacity-10" />
+
+        <li>
+          <router-link
+            to="/profile"
+            :class="[
+              $route.path === '/profile' ? 'translate-x-2' : 'translate-x-0',
+              'flex gap-5 items-center justify-center hover:bg-orange-500/5 py-4 transition-all duration-300 rounded-xl',
+            ]"
+          >
+            <img
+              :src="schoolAdminIcon"
+              class="rounded-full flex items-center justify-center w-10 h-10"
+            />
+            <div>
+              <h1 class="font-medium text-sm">Royal</h1>
+              <h1 class="font-medium text-xs text-orange-500">School {{ $t('table.admin') }}</h1>
+            </div>
+            <i class="pi pi-arrow-right ml-12" style="font-size: x-small"></i>
           </router-link>
         </li>
       </ul>
@@ -38,6 +66,7 @@
 import { useI18n } from 'vue-i18n'
 import TennisFoodLogo from '@/base/TennisFoodLogo.vue'
 import bracketIcon from '@/assets/bracketIcon.svg'
+import schoolAdminIcon from '@/assets/schoolAdminIcon.jpg'
 
 const { t } = useI18n()
 
